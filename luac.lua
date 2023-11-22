@@ -2709,7 +2709,7 @@ function f.newExplorer()
 			end
 			self:Refresh()
 		end)
-		entry.MouseButton2Up:Connect(function()
+		entry.MouseButton1Up:Connect(function()
 			if rightEntry and f.checkMouseInGui(rightEntry) then
 				f.rightClick((self.Tree[i + self.Index]).Obj)
 			end
