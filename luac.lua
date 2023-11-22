@@ -2700,7 +2700,7 @@ function f.newExplorer()
 			propertiesTree:TreeUpdate()
 			propertiesTree:Refresh()
 		end)
-		entry.MouseButton2Down:Connect(function()
+		entry.MouseButton1Down:Connect(function()
 			local node = self.Tree[i + self.Index]
 			rightEntry = entry
 			rightClickContext.Frame.Parent = nil
@@ -3775,7 +3775,7 @@ function f.newProperties()
 			local node = self.Tree[i + self.Index]
 			--node.Control:Focus()
 		end)
-		entry.MouseButton2Down:Connect(function()
+		entry.MouseButton1Down:Connect(function()
 			local node = self.Tree[i + self.Index]
 			--node.Control:Focus()
 		end)
