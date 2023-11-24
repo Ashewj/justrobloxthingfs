@@ -1564,10 +1564,7 @@ local ContextMenu do
           end
 
           if item.OnClick and not item.Disabled then
-            newEntry.MouseButton1Click:Connect(function()
-              print("AAAAAA")
-              item.OnClick()
-            end)
+            newEntry.MouseButton1Click:Connect(item.OnClick)
           end
 
           newEntry.InputBegan:Connect(function(input)
