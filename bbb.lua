@@ -2697,6 +2697,7 @@ function f.newExplorer()
         self.Selection:Add(node.Obj)
       else
         self.Selection:Set({node.Obj})
+        print("Bitch")
       end
       self:Refresh()
       propertiesTree:TreeUpdate()
