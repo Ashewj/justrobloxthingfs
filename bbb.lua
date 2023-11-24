@@ -1,18 +1,18 @@
 local Services = setmetatable({},{
-	__index = function(self, ind)
-		if ypcall(function()game:GetService(ind)end) then
-			return game:GetService(ind)
-		else
-			return nil
-		end
-	end
+  __index = function(self, ind)
+    if ypcall(function()game:GetService(ind)end) then
+      return game:GetService(ind)
+    else
+      return nil
+    end
+  end
 })
 
 Services.StarterGui:SetCore("SendNotification", { 
     Title = 'Loading instances',
-	Text = 'usually takes 4s',
-	Duration = 0.2,
-	Button1 = 'Screen freeze is normal'
+  Text = 'usually takes 4s',
+  Duration = 0.2,
+  Button1 = 'Screen freeze is normal'
 })
 wait(.5)
 
@@ -21,29 +21,29 @@ local plr = Services.Players.LocalPlayer
 local scrframe
 
 function CreateInstance(cls,props)
-	local inst = Instance.new(cls)
-	for i,v in pairs(props) do
-		inst[i] = v
-	end
-	return inst
+  local inst = Instance.new(cls)
+  for i,v in pairs(props) do
+    inst[i] = v
+  end
+  return inst
 end
 
 local function protectedGui()
     local DexGui = Services.CoreGui:FindFirstChildOfClass('ScreenGui') or CreateInstance("ScreenGui",{DisplayOrder=0,Enabled=true,ResetOnSpawn=true})
-	if syn and syn.protect_gui or protect_gui then (syn.protect_gui or protect_gui)(DexGui) else
-	    if getconnections then
-	        local function cleancons(v)
-	            for i,v in pairs(getconnections(v)) do
-	                v:Disconnect()
-	            end
-	        end
-	        cleancons(DexGui.DescendantAdded)
-	        cleancons(DexGui.ChildAdded)
-	        cleancons(Services.CoreGui.DescendantAdded)
-	        cleancons(game.DescendantAdded)
-	    end
-	end
-	return DexGui
+  if syn and syn.protect_gui or protect_gui then (syn.protect_gui or protect_gui)(DexGui) else
+      if getconnections then
+          local function cleancons(v)
+              for i,v in pairs(getconnections(v)) do
+                  v:Disconnect()
+              end
+          end
+          cleancons(DexGui.DescendantAdded)
+          cleancons(DexGui.ChildAdded)
+          cleancons(Services.CoreGui.DescendantAdded)
+          cleancons(game.DescendantAdded)
+      end
+  end
+  return DexGui
 end
 
 do
@@ -65,23 +65,23 @@ do
         local Tokens_ = Instance.new("TextLabel")
         local Comments_ = Instance.new("TextLabel")
         local ResizeBtn = Instance.new("ImageButton")
-        
+
         local did = (shared.did or 0) + 1
         shared.did = did
-        
+
         Frame.Parent = protectedGui()
         Frame.BackgroundColor3 = Color3.fromRGB(42, 44, 49)
         Frame.BorderSizePixel = 0
         Frame.Position = UDim2.new(0.1, did*100, 0.01, did*80)
         Frame.Size = UDim2.new(0, 510, 0, 427)
         Frame.Visible = false
-        
+
         top.Name = "top"
         top.Parent = Frame
         top.BackgroundColor3 = Color3.fromRGB(62, 65, 72)
         top.BorderSizePixel = 0
         top.Size = UDim2.new(1, 0, 0, 29)
-        
+
         name.Name = "name"
         name.Parent = top
         name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -93,7 +93,7 @@ do
         name.TextColor3 = Color3.fromRGB(227, 227, 227)
         name.TextSize = 14.000
         name.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         clear.Name = "clear"
         clear.Parent = top
         clear.BackgroundTransparency = 1.000
@@ -108,7 +108,7 @@ do
             Frame.Visible = not Frame.Visible
             shared.did = did-1
         end)
-        
+
         list.Name = "list"
         list.Parent = Frame
         list.Active = true
@@ -118,17 +118,17 @@ do
         list.Size = UDim2.new(1, -8, 1, -36)
         list.ScrollBarThickness = 4
         list.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
-        
+
         lay.Name = "lay"
         lay.Parent = list
         lay.SortOrder = Enum.SortOrder.LayoutOrder
-        
+
         sp.Name = "sp"
         sp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         sp.BackgroundTransparency = 1.000
         sp.BorderSizePixel = 0
         sp.Size = UDim2.new(0, 492, 0, 20)
-        
+
         num.Name = "num"
         num.Parent = sp
         num.BackgroundColor3 = Color3.fromRGB(53, 54, 61)
@@ -139,7 +139,7 @@ do
         num.TextColor3 = Color3.fromRGB(226, 226, 226)
         num.TextSize = 16.000
         num.TextStrokeColor3 = Color3.fromRGB(226, 226, 226)
-        
+
         cod.Name = "cod"
         cod.Parent = sp
         cod.BackgroundColor3 = Color3.fromRGB(53, 54, 61)
@@ -153,7 +153,7 @@ do
         cod.TextSize = 16.000
         cod.TextStrokeColor3 = Color3.fromRGB(226, 226, 226)
         cod.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         Globals_.Name = "Globals_"
         Globals_.Parent = cod
         Globals_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -165,7 +165,7 @@ do
         Globals_.TextColor3 = Color3.fromRGB(102, 153, 204)
         Globals_.TextSize = 16.000
         Globals_.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         Keywords_.Name = "Keywords_"
         Keywords_.Parent = cod
         Keywords_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -177,7 +177,7 @@ do
         Keywords_.TextColor3 = Color3.fromRGB(204, 153, 204)
         Keywords_.TextSize = 16.000
         Keywords_.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         Numbers_.Name = "Numbers_"
         Numbers_.Parent = cod
         Numbers_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -189,7 +189,7 @@ do
         Numbers_.TextColor3 = Color3.fromRGB(210, 210, 210)
         Numbers_.TextSize = 16.000
         Numbers_.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         RemoteHighlight_.Name = "RemoteHighlight_"
         RemoteHighlight_.Parent = cod
         RemoteHighlight_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -201,7 +201,7 @@ do
         RemoteHighlight_.TextColor3 = Color3.fromRGB(0, 144, 255)
         RemoteHighlight_.TextSize = 16.000
         RemoteHighlight_.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         Strings_.Name = "Strings_"
         Strings_.Parent = cod
         Strings_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -213,7 +213,7 @@ do
         Strings_.TextColor3 = Color3.fromRGB(153, 204, 153)
         Strings_.TextSize = 16.000
         Strings_.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         Tokens_.Name = "Tokens_"
         Tokens_.Parent = cod
         Tokens_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -225,7 +225,7 @@ do
         Tokens_.TextColor3 = Color3.fromRGB(102, 204, 204)
         Tokens_.TextSize = 16.000
         Tokens_.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         Comments_.Name = "Comments_"
         Comments_.Parent = cod
         Comments_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -237,7 +237,7 @@ do
         Comments_.TextColor3 = Color3.fromRGB(59, 200, 59)
         Comments_.TextSize = 16.000
         Comments_.TextXAlignment = Enum.TextXAlignment.Left
-        
+
         ResizeBtn.Name = "ResizeBtn"
         ResizeBtn.Parent = Frame
         ResizeBtn.BackgroundTransparency = 1.000
@@ -248,426 +248,426 @@ do
         ResizeBtn.Image = "rbxassetid://3926305904"
         ResizeBtn.ImageRectOffset = Vector2.new(564, 284)
         ResizeBtn.ImageRectSize = Vector2.new(36, 36)
-        
+
         local a = Frame
         local b = sp
         local c = list
         local d = lay
         local w = game:GetService('TextService')
         local e = {
-        	["local"] = "204,153,204",
-        	["return"] = "204,153,204",
-        	["if"] = "204,153,204",
-        	["elseif"] = "204,153,204",
-        	["then"] = "204,153,204",
-        	["function"] = "204,153,204",
-        	["end"] = "204,153,204",
-        	["or"] = "204,153,204",
-        	["and"] = "204,153,204",
-        	["self"] = "242,119,122",
-        	["="] = "102,204,204",
-        	['"'] = "146,194,146"
+          ["local"] = "204,153,204",
+          ["return"] = "204,153,204",
+          ["if"] = "204,153,204",
+          ["elseif"] = "204,153,204",
+          ["then"] = "204,153,204",
+          ["function"] = "204,153,204",
+          ["end"] = "204,153,204",
+          ["or"] = "204,153,204",
+          ["and"] = "204,153,204",
+          ["self"] = "242,119,122",
+          ["="] = "102,204,204",
+          ['"'] = "146,194,146"
         }
         local function f(g, v)
-        	local h = b:Clone()
-        	h.num.Text = g
-        	h.cod.Text = ' '..v
-        	h.Size = UDim2.new(0, #v*9, 0, 20)
-        	h.Parent = c
-        	return h
+          local h = b:Clone()
+          h.num.Text = g
+          h.cod.Text = ' '..v
+          h.Size = UDim2.new(0, #v*9, 0, 20)
+          h.Parent = c
+          return h
         end
-    
+
         name.Text = 'Decompiling...'
         Frame.Visible = true
         i = decompile(i)
         local j = {"and","break","do","else","elseif","end","false","for","function","goto","if","in","local","nil","not","or","repeat","return","then","true","until","while"}
         local k = {"getrawmetatable","game","workspace","script","math","string","table","print","wait","BrickColor","Color3","next","pairs","ipairs","select","unpack","Instance","Vector2","Vector3","CFrame","Ray","UDim2","Enum","assert","error","warn","tick","loadstring","_G","shared","getfenv","setfenv","newproxy","setmetatable","getmetatable","os","debug","pcall","ypcall","xpcall","rawequal","rawset","rawget","tonumber","tostring","type","typeof","_VERSION","coroutine","delay","require","spawn","LoadLibrary","settings","stats","time","UserSettings","version","Axes","ColorSequence","Faces","ColorSequenceKeypoint","NumberRange","NumberSequence","NumberSequenceKeypoint","gcinfo","elapsedTime","collectgarbage","PhysicalProperties","Rect","Region3","Region3int16","UDim","Vector2int16","Vector3int16"}
         local l = function(m, n)
-        	local o = {}
-        	local p = m
-        	local q = {
-        		["="] = true,
-        		["."] = true,
-        		[","] = true,
-        		["("] = true,
-        		[")"] = true,
-        		["["] = true,
-        		["]"] = true,
-        		["{"] = true,
-        		["}"] = true,
-        		[":"] = true,
-        		["*"] = true,
-        		["/"] = true,
-        		["+"] = true,
-        		["-"] = true,
-        		["%"] = true,
-        		[";"] = true,
-        		["~"] = true
-        	}
-        	for g, v in pairs(n) do
-        		o[v] = true
-        	end
-        	p =
-        		p:gsub(
-        			".",
-        			function(h)
-        			if q[h] ~= nil then
-        				return "\32"
-        			else
-        				return h
-        			end
-        		end
-        		)
-        	p =
-        		p:gsub(
-        			"%S+",
-        			function(h)
-        			if o[h] ~= nil then
-        				return h
-        			else
-        				return (" "):rep(#h)
-        			end
-        		end
-        		)
-        	return p
+          local o = {}
+          local p = m
+          local q = {
+            ["="] = true,
+            ["."] = true,
+            [","] = true,
+            ["("] = true,
+            [")"] = true,
+            ["["] = true,
+            ["]"] = true,
+            ["{"] = true,
+            ["}"] = true,
+            [":"] = true,
+            ["*"] = true,
+            ["/"] = true,
+            ["+"] = true,
+            ["-"] = true,
+            ["%"] = true,
+            [";"] = true,
+            ["~"] = true
+          }
+          for g, v in pairs(n) do
+            o[v] = true
+          end
+          p =
+            p:gsub(
+              ".",
+              function(h)
+              if q[h] ~= nil then
+                return "\32"
+              else
+                return h
+              end
+            end
+            )
+          p =
+            p:gsub(
+              "%S+",
+              function(h)
+              if o[h] ~= nil then
+                return h
+              else
+                return (" "):rep(#h)
+              end
+            end
+            )
+          return p
         end
         local r = function(m)
-        	local q = {
-        		["="] = true,
-        		["."] = true,
-        		[","] = true,
-        		["("] = true,
-        		[")"] = true,
-        		["["] = true,
-        		["]"] = true,
-        		["{"] = true,
-        		["}"] = true,
-        		[":"] = true,
-        		["*"] = true,
-        		["/"] = true,
-        		["+"] = true,
-        		["-"] = true,
-        		["%"] = true,
-        		[";"] = true,
-        		["~"] = true
-        	}
-        	local s = ""
-        	m:gsub(
-        		".",
-        		function(h)
-        			if q[h] ~= nil then
-        				s = s .. h
-        			elseif h == "\n" then
-        				s = s .. "\n"
-        			elseif h == "\t" then
-        				s = s .. "\t"
-        			else
-        				s = s .. "\32"
-        			end
-        		end
-        	)
-        	return s
+          local q = {
+            ["="] = true,
+            ["."] = true,
+            [","] = true,
+            ["("] = true,
+            [")"] = true,
+            ["["] = true,
+            ["]"] = true,
+            ["{"] = true,
+            ["}"] = true,
+            [":"] = true,
+            ["*"] = true,
+            ["/"] = true,
+            ["+"] = true,
+            ["-"] = true,
+            ["%"] = true,
+            [";"] = true,
+            ["~"] = true
+          }
+          local s = ""
+          m:gsub(
+            ".",
+            function(h)
+              if q[h] ~= nil then
+                s = s .. h
+              elseif h == "\n" then
+                s = s .. "\n"
+              elseif h == "\t" then
+                s = s .. "\t"
+              else
+                s = s .. "\32"
+              end
+            end
+          )
+          return s
         end
         local t = function(m)
-        	local u = ""
-        	local w = false
-        	m:gsub(
-        		".",
-        		function(h)
-        			if w == false and h == '"' then
-        				w = true
-        			elseif w == true and h == '"' then
-        				w = false
-        			end
-        			if w == false and h == '"' then
-        				u = u .. '"'
-        			elseif h == "\n" then
-        				u = u .. "\n"
-        			elseif h == "\t" then
-        				u = u .. "\t"
-        			elseif w == true then
-        				u = u .. h
-        			elseif w == false then
-        				u = u .. "\32"
-        			end
-        		end
-        	)
-        	return u
+          local u = ""
+          local w = false
+          m:gsub(
+            ".",
+            function(h)
+              if w == false and h == '"' then
+                w = true
+              elseif w == true and h == '"' then
+                w = false
+              end
+              if w == false and h == '"' then
+                u = u .. '"'
+              elseif h == "\n" then
+                u = u .. "\n"
+              elseif h == "\t" then
+                u = u .. "\t"
+              elseif w == true then
+                u = u .. h
+              elseif w == false then
+                u = u .. "\32"
+              end
+            end
+          )
+          return u
         end
         local x = function(m)
-        	local y = ""
-        	m:gsub(
-        		"[^\r\n]+",
-        		function(h)
-        			local z = false
-        			local g = 0
-        			h:gsub(
-        				".",
-        				function(A)
-        					g = g + 1
-        					if h:sub(g, g + 1) == "--" then
-        						z = true
-        					end
-        					if z == true then
-        						y = y .. A
-        					else
-        						y = y .. "\32"
-        					end
-        				end
-        			)
-        			y = y
-        		end
-        	)
-        	return y
+          local y = ""
+          m:gsub(
+            "[^\r\n]+",
+            function(h)
+              local z = false
+              local g = 0
+              h:gsub(
+                ".",
+                function(A)
+                  g = g + 1
+                  if h:sub(g, g + 1) == "--" then
+                    z = true
+                  end
+                  if z == true then
+                    y = y .. A
+                  else
+                    y = y .. "\32"
+                  end
+                end
+              )
+              y = y
+            end
+          )
+          return y
         end
         local B = function(m)
-        	local s = ""
-        	m:gsub(
-        		".",
-        		function(h)
-        			if tonumber(h) ~= nil then
-        				s = s .. h
-        			elseif h == "\n" then
-        				s = s .. "\n"
-        			elseif h == "\t" then
-        				s = s .. "\t"
-        			else
-        				s = s .. "\32"
-        			end
-        		end
-        	)
-        	return s
+          local s = ""
+          m:gsub(
+            ".",
+            function(h)
+              if tonumber(h) ~= nil then
+                s = s .. h
+              elseif h == "\n" then
+                s = s .. "\n"
+              elseif h == "\t" then
+                s = s .. "\t"
+              else
+                s = s .. "\32"
+              end
+            end
+          )
+          return s
         end
         local C = function(D, E)
-        	if D == "Text" then
-        		E.Text = ' '..E.Text:gsub("\13", ""):gsub("\t", "      ")
-        		local F = E.Text
-        		E.Keywords_.Text = l(F, j)
-        		E.Globals_.Text = l(F, k)
-        		E.RemoteHighlight_.Text = l(F, {"FireServer", "fireServer", "InvokeServer", "invokeServer"})
-        		E.Tokens_.Text = r(F)
-        		E.Numbers_.Text = B(F)
-        		E.Strings_.Text = t(F)
-        	end
+          if D == "Text" then
+            E.Text = ' '..E.Text:gsub("\13", ""):gsub("\t", "      ")
+            local F = E.Text
+            E.Keywords_.Text = l(F, j)
+            E.Globals_.Text = l(F, k)
+            E.RemoteHighlight_.Text = l(F, {"FireServer", "fireServer", "InvokeServer", "invokeServer"})
+            E.Tokens_.Text = r(F)
+            E.Numbers_.Text = B(F)
+            E.Strings_.Text = t(F)
+          end
         end
         for g, v in pairs(i:split("\n")) do
-        	C("Text", f(g, v).cod)
-	end
-	
-	local v = d.AbsoluteContentSize
+          C("Text", f(g, v).cod)
+  end
+
+  local v = d.AbsoluteContentSize
         c.CanvasSize = UDim2.new(0, v.X, 0, v.Y)
         name.Text = nm
-    	
+
         local b = ResizeBtn
         local mouse = game.Players.LocalPlayer:GetMouse()
         local Pressing = false
-        
+
         local RecordedLastX = nil
         local RecordedLastY = nil
-        
+
         local NowPositionX = nil
         local NowPositionY = nil
-        
+
         local Hovered = false
-        
+
         b.InputBegan:connect(function(key)
-        	if key.UserInputType == Enum.UserInputType.MouseButton1 then
-        		Pressing = true
-        		RecordedLastX = mouse.X
-        		RecordedLastY = mouse.Y
-        		b.InputEnded:connect(function(key2)
-        			if key == key2 then
-        				Pressing =  false
-        			end
-        		end)
-        	end
+          if key.UserInputType == Enum.UserInputType.MouseButton1 then
+            Pressing = true
+            RecordedLastX = mouse.X
+            RecordedLastY = mouse.Y
+            b.InputEnded:connect(function(key2)
+              if key == key2 then
+                Pressing =  false
+              end
+            end)
+          end
         end)
-        
+
         b.MouseEnter:connect(function()
-        	crr = true
-        	Hovered = true
-        	b.MouseLeave:connect(function()
-        		RecordedLastX = mouse.X
-        		RecordedLastY = mouse.Y
-        		wait(.3)
-        		if crr then crr = false return end
-        		Hovered = false
-        	end)
+          crr = true
+          Hovered = true
+          b.MouseLeave:connect(function()
+            RecordedLastX = mouse.X
+            RecordedLastY = mouse.Y
+            wait(.3)
+            if crr then crr = false return end
+            Hovered = false
+          end)
         end)
-        
+
         mouse.Move:connect(function()
-        	if Pressing and Hovered then
-        		NowPositionX = mouse.x
-        		NowPositionY = mouse.y
-        	
-        		local ChangeX = NowPositionX - RecordedLastX
-        		local ChangeY = NowPositionY - RecordedLastY
-        		
-        		RecordedLastX = mouse.X
-        		RecordedLastY = mouse.Y
-        	
-        		Frame.Size = UDim2.new(0, Frame.Size.X.Offset + ChangeX, 0, Frame.Size.Y.Offset + ChangeY)
-        	end
+          if Pressing and Hovered then
+            NowPositionX = mouse.x
+            NowPositionY = mouse.y
+
+            local ChangeX = NowPositionX - RecordedLastX
+            local ChangeY = NowPositionY - RecordedLastY
+
+            RecordedLastX = mouse.X
+            RecordedLastY = mouse.Y
+
+            Frame.Size = UDim2.new(0, Frame.Size.X.Offset + ChangeX, 0, Frame.Size.Y.Offset + ChangeY)
+          end
         end)
-        	
+
         local Object = Frame
         local Min = Object.Size.X.Offset*0.6
         local Max = Min*2.6
-        
+
         Object.Changed:connect(function()
-        	if Object.Size.X.Offset < Min and Object.Size.Y.Offset < Min then
-        		Object.Size = UDim2.new(0, Min, 0, Min)
-        	elseif Object.Size.X.Offset < Min then
-        		Object.Size = UDim2.new(0, Min, 0, Object.Size.Y.Offset)
-        	elseif Object.Size.Y.Offset < Min then
-        		Object.Size = UDim2.new(0, Object.Size.X.Offset, 0, Min)
-        	end
-        	if Object.Size.X.Offset > Max and Object.Size.Y.Offset > Max then
-        		Object.Size = UDim2.new(0, Max, 0, Max)
-        	elseif Object.Size.X.Offset > Max then
-        		Object.Size = UDim2.new(0, Max, 0, Object.Size.Y.Offset)
-        	elseif Object.Size.Y.Offset > Max then
-        		Object.Size = UDim2.new(0, Object.Size.X.Offset, 0, Max)
-        	end
+          if Object.Size.X.Offset < Min and Object.Size.Y.Offset < Min then
+            Object.Size = UDim2.new(0, Min, 0, Min)
+          elseif Object.Size.X.Offset < Min then
+            Object.Size = UDim2.new(0, Min, 0, Object.Size.Y.Offset)
+          elseif Object.Size.Y.Offset < Min then
+            Object.Size = UDim2.new(0, Object.Size.X.Offset, 0, Min)
+          end
+          if Object.Size.X.Offset > Max and Object.Size.Y.Offset > Max then
+            Object.Size = UDim2.new(0, Max, 0, Max)
+          elseif Object.Size.X.Offset > Max then
+            Object.Size = UDim2.new(0, Max, 0, Object.Size.Y.Offset)
+          elseif Object.Size.Y.Offset > Max then
+            Object.Size = UDim2.new(0, Object.Size.X.Offset, 0, Max)
+          end
         end)
-        
+
         local UserInputService = Services.UserInputService      
         local gui = Frame
-        
+
         local dragging
         local dragInput
         local dragStart
         local startPos
-        
+
         local function update(input)
-        	local delta = input.Position - dragStart
-        	gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+          local delta = input.Position - dragStart
+          gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
         end
-        
+
         gui.InputBegan:Connect(function(input)
-        	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        		dragging = true
-        		dragStart = input.Position
-        		startPos = gui.Position
-        		
-        		input.Changed:Connect(function()
-        			if input.UserInputState == Enum.UserInputState.End then
-        				dragging = false
-        			end
-        		end)
-        	end
+          if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
+
+            input.Changed:Connect(function()
+              if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+              end
+            end)
+          end
         end)
-        
+
         gui.InputChanged:Connect(function(input)
-        	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        		dragInput = input
-        	end
+          if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+          end
         end)
-        
+
         UserInputService.InputChanged:Connect(function(input)
-        	if input == dragInput and dragging then
-        		update(input)
-        	end
+          if input == dragInput and dragging then
+            update(input)
+          end
         end)
     end
 end
 
 function createDexGui()
-	local DexGui = protectedGui()
-	
-	local DexGui2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-300,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ContentFrameR",Parent = DexGui})
-	local DexGui3 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,-300,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ContentFrameL",Parent = DexGui})
-	local DexGui4 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,-150,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,0,36),SizeConstraint=0,Visible=false,ZIndex=10,Name="TopMenu",Parent = DexGui})
-	local DexGui5 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="1.1.0",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,16),Rotation=0,Selectable=false,Size=UDim2.new(0,30,0,18),SizeConstraint=0,Visible=true,ZIndex=10,Name="Version",Parent = DexGui4})
-	local DexGui6 = CreateInstance("ImageLabel",{Image="rbxassetid://474172996",ImageColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-9,0,9),Rotation=90,Selectable=false,Size=UDim2.new(0,36,0,18),SizeConstraint=0,Visible=true,ZIndex=10,Name="Slant",Parent = DexGui4})
-	local DexGui7 = CreateInstance("TextLabel",{Font=4,FontSize=5,Text="DEX",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,2),Rotation=0,Selectable=false,Size=UDim2.new(0,30,0,18),SizeConstraint=0,Visible=true,ZIndex=10,Name="Title",Parent = DexGui4})
-	local DexGui8 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.19607844948769,0.19607844948769,0.19607844948769),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,120,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,120,1,0),SizeConstraint=0,Visible=true,ZIndex=10,Name="Content",Parent = DexGui4})
-	local DexGui9 = CreateInstance("TextButton",{Font=3,FontSize=7,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=24,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.039215687662363,0.039215687662363,0.039215687662363),BackgroundTransparency=0,BorderColor3=Color3.new(0.19607844948769,0.19607844948769,0.19607844948769),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,30,0,4),Rotation=0,Selectable=true,Size=UDim2.new(0,112,0,28),SizeConstraint=0,Visible=true,ZIndex=10,Name="SlideSelect",Parent = DexGui4})
-	local DexGui10 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Window Views",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,20,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-28,0,28),SizeConstraint=0,Visible=true,ZIndex=10,Name="SlideName",Parent = DexGui9})
-	local DexGui11 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="V",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-8,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,8,0,28),SizeConstraint=0,Visible=true,ZIndex=10,Name="DropDown",Parent = DexGui9})
-	local DexGui12 = CreateInstance("ImageLabel",{Image="rbxassetid://588745174",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,6),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=10,Name="Icon",Parent = DexGui9})
-	local DexGui13 = CreateInstance("ImageLabel",{Image="rbxassetid://474172996",ImageColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,-18,0,0),Rotation=180,Selectable=false,Size=UDim2.new(0,18,0,36),SizeConstraint=0,Visible=true,ZIndex=10,Name="Slant",Parent = DexGui4})
-	local DexGui14 = CreateInstance("TextButton",{Font=3,FontSize=7,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=24,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-30,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,30,0,36),SizeConstraint=0,Visible=true,ZIndex=10,Name="About",Parent = DexGui4})
-	local DexGui15 = CreateInstance("ImageLabel",{Image="rbxassetid://476354004",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,3,0,6),Rotation=0,Selectable=false,Size=UDim2.new(0,24,0,24),SizeConstraint=0,Visible=true,ZIndex=10,Name="Icon",Parent = DexGui14})
-	local DexGui16 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,100,0,100),SizeConstraint=0,Visible=false,ZIndex=1,Name="Resources",Parent = DexGui})
-	local DexGui17 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,2),Rotation=0,Selectable=true,Size=UDim2.new(1,-18,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entry",Parent = DexGui16})
-	local DexGui18 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0,0,0),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,18,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-18,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Indent",Parent = DexGui17})
-	local DexGui19 = CreateInstance("ImageButton",{Image="",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,-16,0.5,-8),Rotation=0,Selectable=true,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="Expand",Parent = DexGui18})
-	local DexGui20 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-12.562000274658,0,-12.562000274658,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DexGui19})
-	local DexGui21 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Item",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,22,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-22,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = DexGui18})
-	local DexGui22 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,2,0.5,-8),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="IconFrame",Parent = DexGui18})
-	local DexGui23 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-5.811999797821,0,-1.3120000362396,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DexGui22})
-	local DexGui24 = CreateInstance("Folder",{Name="PropControls",Parent = DexGui16})
-	local DexGui25 = CreateInstance("TextBox",{ClearTextOnFocus=true,Font=3,FontSize=5,MultiLine=false,Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="String",Parent = DexGui24})
-	local DexGui26 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.56470590829849,0.56470590829849,0.56470590829849),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-4,1,0),SizeConstraint=0,Visible=false,ZIndex=1,Name="ReadOnly",Parent = DexGui25})
-	local DexGui27 = CreateInstance("TextBox",{ClearTextOnFocus=true,Font=3,FontSize=5,MultiLine=false,Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=true,Size=UDim2.new(1,-2,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Number",Parent = DexGui24})
-	local DexGui28 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-16,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ArrowFrame",Parent = DexGui27})
-	local DexGui29 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,3),Rotation=0,Selectable=true,Size=UDim2.new(1,0,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Up",Parent = DexGui28})
-	local DexGui30 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.63921570777893,0.63529413938522,0.64705884456635),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Arrow",Parent = DexGui29})
-	local DexGui31 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,8,0,3),Rotation=0,Selectable=false,Size=UDim2.new(0,1,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui30})
-	local DexGui32 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,7,0,4),Rotation=0,Selectable=false,Size=UDim2.new(0,3,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui30})
-	local DexGui33 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,6,0,5),Rotation=0,Selectable=false,Size=UDim2.new(0,5,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui30})
-	local DexGui34 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,11),Rotation=0,Selectable=true,Size=UDim2.new(1,0,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Down",Parent = DexGui28})
-	local DexGui35 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.63921570777893,0.63529413938522,0.64705884456635),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Arrow",Parent = DexGui34})
-	local DexGui36 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,8,0,5),Rotation=0,Selectable=false,Size=UDim2.new(0,1,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui35})
-	local DexGui37 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,7,0,4),Rotation=0,Selectable=false,Size=UDim2.new(0,3,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui35})
-	local DexGui38 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,6,0,3),Rotation=0,Selectable=false,Size=UDim2.new(0,5,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui35})
-	local DexGui39 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0.5,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,0.5,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="PropertiesPanel",Parent = DexGui16})
-	local DexGui40 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,50),Rotation=0,Selectable=false,Size=UDim2.new(1,-2,1,-50),SizeConstraint=0,Visible=true,ZIndex=1,Name="Content",Parent = DexGui39})
-	local DexGui41 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.20784315466881,0.27058824896812,0.27450981736183),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="List",Parent = DexGui40})
-	local DexGui42 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,50),SizeConstraint=0,Visible=true,ZIndex=1,Name="TopBar",Parent = DexGui39})
-	local DexGui43 = CreateInstance("TextButton",{Font=4,FontSize=5,Text="X",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-27,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Close",Parent = DexGui42})
-	local DexGui44 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Properties",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,25,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-50,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="WindowTitle",Parent = DexGui42})
-	local DexGui45 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.21960785984993,0.21960785984993,0.21960785984993),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-25,0,25),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Settings",Parent = DexGui42})
-	local DexGui46 = CreateInstance("ImageLabel",{Image="rbxassetid://530240903",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,1,-10),SizeConstraint=0,Visible=true,ZIndex=1,Name="ImageLabel",Parent = DexGui45})
-	local DexGui47 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.4588235616684,0.52156865596771,0.52549022436142),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,45),Rotation=0,Selectable=false,Size=UDim2.new(1,-27,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="SearchFrame",Parent = DexGui42})
-	local DexGui48 = CreateInstance("TextBox",{ClearTextOnFocus=false,Font=3,FontSize=5,MultiLine=false,Text="",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=1,BorderColor3=Color3.new(0.47058826684952,0.47058826684952,0.47058826684952),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,-20),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Search",Parent = DexGui47})
-	local DexGui49 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Search Properties",TextColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Empty",Parent = DexGui48})
-	local DexGui50 = CreateInstance("ImageLabel",{Image="rbxassetid://527318112",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,4,0,-15),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=false,ZIndex=1,Name="ImageLabel",Parent = DexGui47})
-	local DexGui51 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.13333334028721,0.65490198135376,0.94117653369904),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,0,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entering",Parent = DexGui47})
-	local DexGui52 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,0.5,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ExplorerPanel",Parent = DexGui16})
-	local DexGui53 = CreateInstance("Frame",{Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,50),Rotation=0,Selectable=false,Size=UDim2.new(1,-2,1,-50),SizeConstraint=0,Visible=true,ZIndex=1,Name="Content",Parent = DexGui52})
-	local DexGui54 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.20784315466881,0.27058824896812,0.27450981736183),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="List",Parent = DexGui53})
-	local DexGui55 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,50),SizeConstraint=0,Visible=true,ZIndex=1,Name="TopBar",Parent = DexGui52})
-	local DexGui56 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.4588235616684,0.52156865596771,0.52549022436142),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,45),Rotation=0,Selectable=false,Size=UDim2.new(1,-27,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="SearchFrame",Parent = DexGui55})
-	local DexGui57 = CreateInstance("TextBox",{ClearTextOnFocus=false,Font=3,FontSize=5,MultiLine=false,Text="",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=1,BorderColor3=Color3.new(0.47058826684952,0.47058826684952,0.47058826684952),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,-20),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Search",Parent = DexGui56})
-	local DexGui58 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Search Workspace",TextColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Empty",Parent = DexGui57})
-	local DexGui59 = CreateInstance("ImageLabel",{Image="rbxassetid://527318112",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,4,0,-15),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=false,ZIndex=1,Name="ImageLabel",Parent = DexGui56})
-	local DexGui60 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.13333334028721,0.65490198135376,0.94117653369904),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,0,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entering",Parent = DexGui56})
-	local DexGui61 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Explorer",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,25,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-50,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="WindowTitle",Parent = DexGui55})
-	local DexGui62 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.21960785984993,0.21960785984993,0.21960785984993),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-25,0,25),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Settings",Parent = DexGui55})
-	local DexGui63 = CreateInstance("ImageLabel",{Image="rbxassetid://530240903",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,1,-10),SizeConstraint=0,Visible=true,ZIndex=1,Name="ImageLabel",Parent = DexGui62})
-	local DexGui64 = CreateInstance("TextButton",{Font=4,FontSize=5,Text="X",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-27,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Close",Parent = DexGui55})
-	local DexGui65 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.28235295414925,0.28235295414925,0.28235295414925),BackgroundTransparency=0,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,134),Rotation=0,Selectable=true,Size=UDim2.new(0,300,0,22),SizeConstraint=0,Visible=true,ZIndex=1,Name="PEntry",Parent = DexGui16})
-	local DexGui66 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,18,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-18,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Indent",Parent = DexGui65})
-	local DexGui67 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Name",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-2,0,22),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = DexGui66})
-	local DexGui68 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,-16,0.5,-8),Rotation=0,Selectable=true,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=false,ZIndex=1,Name="Expand",Parent = DexGui66})
-	local DexGui69 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-13.6875,0,-12.5625,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DexGui68})
-	local DexGui70 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=1,BorderColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0.5,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Control",Parent = DexGui66})
-	local DexGui71 = CreateInstance("TextBox",{ClearTextOnFocus=true,Font=3,FontSize=5,MultiLine=false,Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="String",Parent = DexGui70})
-	local DexGui72 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,-1,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,1,0,22),SizeConstraint=0,Visible=true,ZIndex=1,Name="Sep",Parent = DexGui66})
-	local DexGui73 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,-250,0.5,-150),Rotation=0,Selectable=false,Size=UDim2.new(0,500,0,300),SizeConstraint=0,Visible=false,ZIndex=1,Name="WelcomeFrame",Parent = DexGui})
-	local DexGui74 = CreateInstance("ImageLabel",{Image="rbxassetid://503289231",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=1,SliceCenter=Rect.new(20,20,460,260),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,-20,0,-20),Rotation=0,Selectable=false,Size=UDim2.new(0,540,0,340),SizeConstraint=0,Visible=true,ZIndex=1,Name="Outline",Parent = DexGui73})
-	local DexGui75 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Content",Parent = DexGui73})
-	local DexGui76 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0.60000002384186,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Main",Parent = DexGui75})
-	local DexGui77 = CreateInstance("TextLabel",{Font=4,FontSize=9,Text="DEX",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=48,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,100),SizeConstraint=0,Visible=true,ZIndex=1,Name="Title",Parent = DexGui76})
-	local DexGui78 = CreateInstance("TextLabel",{Font=4,FontSize=6,Text="V1.1.0 ALPHA",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=18,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=1,TextYAlignment=2,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-105,1,-20),Rotation=0,Selectable=false,Size=UDim2.new(0,100,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Version",Parent = DexGui76})
-	local DexGui79 = CreateInstance("TextLabel",{Font=4,FontSize=6,Text="Made by Moon & Courtney",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=18,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=2,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,1,-20),Rotation=0,Selectable=false,Size=UDim2.new(0,100,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Creator",Parent = DexGui76})
-	local DexGui80 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.039215687662363,0.039215687662363,0.039215687662363),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,50,0,120),Rotation=0,Selectable=false,Size=UDim2.new(0,200,0,80),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress",Parent = DexGui76})
-	local DexGui81 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,2,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Line",Parent = DexGui80})
-	local DexGui82 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Fetching latest API...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress1",Parent = DexGui80})
-	local DexGui83 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Fetching latest Reflection Metadata...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,15),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress2",Parent = DexGui80})
-	local DexGui84 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Importing DexStorage items...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,30),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress3",Parent = DexGui80})
-	local DexGui85 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Indexing tree list...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,45),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress4",Parent = DexGui80})
-	local DexGui86 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Starting up...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,60),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress5",Parent = DexGui80})
-	local DexGui88 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.60000002384186,0,1,-50),Rotation=0,Selectable=false,Size=UDim2.new(0.40000000596046,0,0,50),SizeConstraint=0,Visible=true,ZIndex=1,Name="Bottom",Parent = DexGui75})
-	local DexGui89 = CreateInstance("ImageLabel",{Image="rbxassetid://493608750",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,0,5),Rotation=0,Selectable=false,Size=UDim2.new(0,40,0,40),SizeConstraint=0,Visible=true,ZIndex=1,Name="Logo",Parent = DexGui88})
-	local DexGui90 = CreateInstance("TextLabel",{Font=3,FontSize=6,Text="Powerful and light",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=18,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,50,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-55,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Desc",Parent = DexGui88})
-	local DexGui91 = CreateInstance("TextLabel",{Font=4,FontSize=4,Text="Image by KrystalTeam",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=12,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=2,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,50,1,-20),Rotation=0,Selectable=false,Size=UDim2.new(1,-55,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Credit",Parent = DexGui88})
-	local DexGui92 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.60000002384186,5,0,20),Rotation=0,Selectable=false,Size=UDim2.new(0.40000000596046,-10,1,-75),SizeConstraint=0,Visible=true,ZIndex=1,Name="Changelog",Parent = DexGui75})
-	local DexGui93 = CreateInstance("TextLabel",{Font=10,FontSize=5,Text="Changelog",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,-20),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Title",Parent = DexGui92})
-	
-	return DexGui
+  local DexGui = protectedGui()
+
+  local DexGui2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-300,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ContentFrameR",Parent = DexGui})
+  local DexGui3 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,-300,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ContentFrameL",Parent = DexGui})
+  local DexGui4 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,-150,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,0,36),SizeConstraint=0,Visible=false,ZIndex=10,Name="TopMenu",Parent = DexGui})
+  local DexGui5 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="1.1.0",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,16),Rotation=0,Selectable=false,Size=UDim2.new(0,30,0,18),SizeConstraint=0,Visible=true,ZIndex=10,Name="Version",Parent = DexGui4})
+  local DexGui6 = CreateInstance("ImageLabel",{Image="rbxassetid://474172996",ImageColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-9,0,9),Rotation=90,Selectable=false,Size=UDim2.new(0,36,0,18),SizeConstraint=0,Visible=true,ZIndex=10,Name="Slant",Parent = DexGui4})
+  local DexGui7 = CreateInstance("TextLabel",{Font=4,FontSize=5,Text="DEX",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,2),Rotation=0,Selectable=false,Size=UDim2.new(0,30,0,18),SizeConstraint=0,Visible=true,ZIndex=10,Name="Title",Parent = DexGui4})
+  local DexGui8 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.19607844948769,0.19607844948769,0.19607844948769),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,120,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,120,1,0),SizeConstraint=0,Visible=true,ZIndex=10,Name="Content",Parent = DexGui4})
+  local DexGui9 = CreateInstance("TextButton",{Font=3,FontSize=7,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=24,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.039215687662363,0.039215687662363,0.039215687662363),BackgroundTransparency=0,BorderColor3=Color3.new(0.19607844948769,0.19607844948769,0.19607844948769),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,30,0,4),Rotation=0,Selectable=true,Size=UDim2.new(0,112,0,28),SizeConstraint=0,Visible=true,ZIndex=10,Name="SlideSelect",Parent = DexGui4})
+  local DexGui10 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Window Views",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,20,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-28,0,28),SizeConstraint=0,Visible=true,ZIndex=10,Name="SlideName",Parent = DexGui9})
+  local DexGui11 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="V",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-8,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,8,0,28),SizeConstraint=0,Visible=true,ZIndex=10,Name="DropDown",Parent = DexGui9})
+  local DexGui12 = CreateInstance("ImageLabel",{Image="rbxassetid://588745174",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,6),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=10,Name="Icon",Parent = DexGui9})
+  local DexGui13 = CreateInstance("ImageLabel",{Image="rbxassetid://474172996",ImageColor3=Color3.new(0.11764706671238,0.11764706671238,0.11764706671238),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,-18,0,0),Rotation=180,Selectable=false,Size=UDim2.new(0,18,0,36),SizeConstraint=0,Visible=true,ZIndex=10,Name="Slant",Parent = DexGui4})
+  local DexGui14 = CreateInstance("TextButton",{Font=3,FontSize=7,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=24,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-30,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,30,0,36),SizeConstraint=0,Visible=true,ZIndex=10,Name="About",Parent = DexGui4})
+  local DexGui15 = CreateInstance("ImageLabel",{Image="rbxassetid://476354004",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,3,0,6),Rotation=0,Selectable=false,Size=UDim2.new(0,24,0,24),SizeConstraint=0,Visible=true,ZIndex=10,Name="Icon",Parent = DexGui14})
+  local DexGui16 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,100,0,100),SizeConstraint=0,Visible=false,ZIndex=1,Name="Resources",Parent = DexGui})
+  local DexGui17 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,2),Rotation=0,Selectable=true,Size=UDim2.new(1,-18,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entry",Parent = DexGui16})
+  local DexGui18 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0,0,0),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,18,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-18,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Indent",Parent = DexGui17})
+  local DexGui19 = CreateInstance("ImageButton",{Image="",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,-16,0.5,-8),Rotation=0,Selectable=true,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="Expand",Parent = DexGui18})
+  local DexGui20 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-12.562000274658,0,-12.562000274658,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DexGui19})
+  local DexGui21 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Item",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,22,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-22,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = DexGui18})
+  local DexGui22 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,2,0.5,-8),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="IconFrame",Parent = DexGui18})
+  local DexGui23 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-5.811999797821,0,-1.3120000362396,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DexGui22})
+  local DexGui24 = CreateInstance("Folder",{Name="PropControls",Parent = DexGui16})
+  local DexGui25 = CreateInstance("TextBox",{ClearTextOnFocus=true,Font=3,FontSize=5,MultiLine=false,Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="String",Parent = DexGui24})
+  local DexGui26 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.56470590829849,0.56470590829849,0.56470590829849),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-4,1,0),SizeConstraint=0,Visible=false,ZIndex=1,Name="ReadOnly",Parent = DexGui25})
+  local DexGui27 = CreateInstance("TextBox",{ClearTextOnFocus=true,Font=3,FontSize=5,MultiLine=false,Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=true,Size=UDim2.new(1,-2,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Number",Parent = DexGui24})
+  local DexGui28 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-16,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ArrowFrame",Parent = DexGui27})
+  local DexGui29 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,3),Rotation=0,Selectable=true,Size=UDim2.new(1,0,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Up",Parent = DexGui28})
+  local DexGui30 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.63921570777893,0.63529413938522,0.64705884456635),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Arrow",Parent = DexGui29})
+  local DexGui31 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,8,0,3),Rotation=0,Selectable=false,Size=UDim2.new(0,1,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui30})
+  local DexGui32 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,7,0,4),Rotation=0,Selectable=false,Size=UDim2.new(0,3,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui30})
+  local DexGui33 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,6,0,5),Rotation=0,Selectable=false,Size=UDim2.new(0,5,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui30})
+  local DexGui34 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,11),Rotation=0,Selectable=true,Size=UDim2.new(1,0,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Down",Parent = DexGui28})
+  local DexGui35 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.63921570777893,0.63529413938522,0.64705884456635),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,8),SizeConstraint=0,Visible=true,ZIndex=1,Name="Arrow",Parent = DexGui34})
+  local DexGui36 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,8,0,5),Rotation=0,Selectable=false,Size=UDim2.new(0,1,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui35})
+  local DexGui37 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,7,0,4),Rotation=0,Selectable=false,Size=UDim2.new(0,3,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui35})
+  local DexGui38 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,6,0,3),Rotation=0,Selectable=false,Size=UDim2.new(0,5,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Frame",Parent = DexGui35})
+  local DexGui39 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0.5,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,0.5,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="PropertiesPanel",Parent = DexGui16})
+  local DexGui40 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,50),Rotation=0,Selectable=false,Size=UDim2.new(1,-2,1,-50),SizeConstraint=0,Visible=true,ZIndex=1,Name="Content",Parent = DexGui39})
+  local DexGui41 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.20784315466881,0.27058824896812,0.27450981736183),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="List",Parent = DexGui40})
+  local DexGui42 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,50),SizeConstraint=0,Visible=true,ZIndex=1,Name="TopBar",Parent = DexGui39})
+  local DexGui43 = CreateInstance("TextButton",{Font=4,FontSize=5,Text="X",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-27,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Close",Parent = DexGui42})
+  local DexGui44 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Properties",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,25,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-50,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="WindowTitle",Parent = DexGui42})
+  local DexGui45 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.21960785984993,0.21960785984993,0.21960785984993),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-25,0,25),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Settings",Parent = DexGui42})
+  local DexGui46 = CreateInstance("ImageLabel",{Image="rbxassetid://530240903",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,1,-10),SizeConstraint=0,Visible=true,ZIndex=1,Name="ImageLabel",Parent = DexGui45})
+  local DexGui47 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.4588235616684,0.52156865596771,0.52549022436142),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,45),Rotation=0,Selectable=false,Size=UDim2.new(1,-27,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="SearchFrame",Parent = DexGui42})
+  local DexGui48 = CreateInstance("TextBox",{ClearTextOnFocus=false,Font=3,FontSize=5,MultiLine=false,Text="",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=1,BorderColor3=Color3.new(0.47058826684952,0.47058826684952,0.47058826684952),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,-20),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Search",Parent = DexGui47})
+  local DexGui49 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Search Properties",TextColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Empty",Parent = DexGui48})
+  local DexGui50 = CreateInstance("ImageLabel",{Image="rbxassetid://527318112",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,4,0,-15),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=false,ZIndex=1,Name="ImageLabel",Parent = DexGui47})
+  local DexGui51 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.13333334028721,0.65490198135376,0.94117653369904),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,0,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entering",Parent = DexGui47})
+  local DexGui52 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,300,0.5,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ExplorerPanel",Parent = DexGui16})
+  local DexGui53 = CreateInstance("Frame",{Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,50),Rotation=0,Selectable=false,Size=UDim2.new(1,-2,1,-50),SizeConstraint=0,Visible=true,ZIndex=1,Name="Content",Parent = DexGui52})
+  local DexGui54 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.20784315466881,0.27058824896812,0.27450981736183),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="List",Parent = DexGui53})
+  local DexGui55 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,50),SizeConstraint=0,Visible=true,ZIndex=1,Name="TopBar",Parent = DexGui52})
+  local DexGui56 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.4588235616684,0.52156865596771,0.52549022436142),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,45),Rotation=0,Selectable=false,Size=UDim2.new(1,-27,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="SearchFrame",Parent = DexGui55})
+  local DexGui57 = CreateInstance("TextBox",{ClearTextOnFocus=false,Font=3,FontSize=5,MultiLine=false,Text="",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=1,BorderColor3=Color3.new(0.47058826684952,0.47058826684952,0.47058826684952),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,-20),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Search",Parent = DexGui56})
+  local DexGui58 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Search Workspace",TextColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Empty",Parent = DexGui57})
+  local DexGui59 = CreateInstance("ImageLabel",{Image="rbxassetid://527318112",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,4,0,-15),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=false,ZIndex=1,Name="ImageLabel",Parent = DexGui56})
+  local DexGui60 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.13333334028721,0.65490198135376,0.94117653369904),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,0,0,2),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entering",Parent = DexGui56})
+  local DexGui61 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Explorer",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,25,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-50,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="WindowTitle",Parent = DexGui55})
+  local DexGui62 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.21960785984993,0.21960785984993,0.21960785984993),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-25,0,25),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Settings",Parent = DexGui55})
+  local DexGui63 = CreateInstance("ImageLabel",{Image="rbxassetid://530240903",ImageColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,1,-10),SizeConstraint=0,Visible=true,ZIndex=1,Name="ImageLabel",Parent = DexGui62})
+  local DexGui64 = CreateInstance("TextButton",{Font=4,FontSize=5,Text="X",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-27,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,25,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Close",Parent = DexGui55})
+  local DexGui65 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.28235295414925,0.28235295414925,0.28235295414925),BackgroundTransparency=0,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,134),Rotation=0,Selectable=true,Size=UDim2.new(0,300,0,22),SizeConstraint=0,Visible=true,ZIndex=1,Name="PEntry",Parent = DexGui16})
+  local DexGui66 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,18,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-18,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Indent",Parent = DexGui65})
+  local DexGui67 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Name",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-2,0,22),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = DexGui66})
+  local DexGui68 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,-16,0.5,-8),Rotation=0,Selectable=true,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=false,ZIndex=1,Name="Expand",Parent = DexGui66})
+  local DexGui69 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-13.6875,0,-12.5625,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DexGui68})
+  local DexGui70 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=1,BorderColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0.5,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Control",Parent = DexGui66})
+  local DexGui71 = CreateInstance("TextBox",{ClearTextOnFocus=true,Font=3,FontSize=5,MultiLine=false,Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,0),Rotation=0,Selectable=true,Size=UDim2.new(1,-4,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="String",Parent = DexGui70})
+  local DexGui72 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,-1,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,1,0,22),SizeConstraint=0,Visible=true,ZIndex=1,Name="Sep",Parent = DexGui66})
+  local DexGui73 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.5,-250,0.5,-150),Rotation=0,Selectable=false,Size=UDim2.new(0,500,0,300),SizeConstraint=0,Visible=false,ZIndex=1,Name="WelcomeFrame",Parent = DexGui})
+  local DexGui74 = CreateInstance("ImageLabel",{Image="rbxassetid://503289231",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=1,SliceCenter=Rect.new(20,20,460,260),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,-20,0,-20),Rotation=0,Selectable=false,Size=UDim2.new(0,540,0,340),SizeConstraint=0,Visible=true,ZIndex=1,Name="Outline",Parent = DexGui73})
+  local DexGui75 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Content",Parent = DexGui73})
+  local DexGui76 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0.60000002384186,0,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Main",Parent = DexGui75})
+  local DexGui77 = CreateInstance("TextLabel",{Font=4,FontSize=9,Text="DEX",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=48,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,100),SizeConstraint=0,Visible=true,ZIndex=1,Name="Title",Parent = DexGui76})
+  local DexGui78 = CreateInstance("TextLabel",{Font=4,FontSize=6,Text="V1.1.0 ALPHA",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=18,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=1,TextYAlignment=2,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-105,1,-20),Rotation=0,Selectable=false,Size=UDim2.new(0,100,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Version",Parent = DexGui76})
+  local DexGui79 = CreateInstance("TextLabel",{Font=4,FontSize=6,Text="Made by Moon & Courtney",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=18,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=2,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,1,-20),Rotation=0,Selectable=false,Size=UDim2.new(0,100,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Creator",Parent = DexGui76})
+  local DexGui80 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.039215687662363,0.039215687662363,0.039215687662363),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,50,0,120),Rotation=0,Selectable=false,Size=UDim2.new(0,200,0,80),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress",Parent = DexGui76})
+  local DexGui81 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,2,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Line",Parent = DexGui80})
+  local DexGui82 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Fetching latest API...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress1",Parent = DexGui80})
+  local DexGui83 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Fetching latest Reflection Metadata...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,15),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress2",Parent = DexGui80})
+  local DexGui84 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Importing DexStorage items...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,30),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress3",Parent = DexGui80})
+  local DexGui85 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Indexing tree list...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,45),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress4",Parent = DexGui80})
+  local DexGui86 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Starting up...",TextColor3=Color3.new(0.78431379795074,0.78431379795074,0.78431379795074),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,10,0,60),Rotation=0,Selectable=false,Size=UDim2.new(1,-10,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Progress5",Parent = DexGui80})
+  local DexGui88 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.60000002384186,0,1,-50),Rotation=0,Selectable=false,Size=UDim2.new(0.40000000596046,0,0,50),SizeConstraint=0,Visible=true,ZIndex=1,Name="Bottom",Parent = DexGui75})
+  local DexGui89 = CreateInstance("ImageLabel",{Image="rbxassetid://493608750",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,5,0,5),Rotation=0,Selectable=false,Size=UDim2.new(0,40,0,40),SizeConstraint=0,Visible=true,ZIndex=1,Name="Logo",Parent = DexGui88})
+  local DexGui90 = CreateInstance("TextLabel",{Font=3,FontSize=6,Text="Powerful and light",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=18,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=true,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,50,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-55,0,25),SizeConstraint=0,Visible=true,ZIndex=1,Name="Desc",Parent = DexGui88})
+  local DexGui91 = CreateInstance("TextLabel",{Font=4,FontSize=4,Text="Image by KrystalTeam",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=12,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=2,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,50,1,-20),Rotation=0,Selectable=false,Size=UDim2.new(1,-55,0,15),SizeConstraint=0,Visible=true,ZIndex=1,Name="Credit",Parent = DexGui88})
+  local DexGui92 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=0,BorderColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0.60000002384186,5,0,20),Rotation=0,Selectable=false,Size=UDim2.new(0.40000000596046,-10,1,-75),SizeConstraint=0,Visible=true,ZIndex=1,Name="Changelog",Parent = DexGui75})
+  local DexGui93 = CreateInstance("TextLabel",{Font=10,FontSize=5,Text="Changelog",TextColor3=Color3.new(1,1,1),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,-20),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Title",Parent = DexGui92})
+
+  return DexGui
 end
 
 do
@@ -676,54 +676,54 @@ do
         local ScrollingFrame = Instance.new("ScrollingFrame")
         local UIListLayout = Instance.new("UIListLayout")
         local TextLabel = Instance.new("TextLabel")
-        
+
         Frame.Visible = false
         Frame.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
         Frame.BorderSizePixel = 0
         Frame.Position = UDim2.new(0.285367817, 0, 0.126878127, 0)
         Frame.Size = UDim2.new(0, 476, 0, 388)
         Frame.ZIndex = 5
-        
+
         local UserInputService = Services.UserInputService
-    
+
         local gui = Frame
-        
+
         local dragging
         local dragInput
         local dragStart
         local startPos
-        
+
         local function update(input)
-        	local delta = input.Position - dragStart
-        	gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+          local delta = input.Position - dragStart
+          gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
         end
-        
+
         gui.InputBegan:Connect(function(input)
-        	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        		dragging = true
-        		dragStart = input.Position
-        		startPos = gui.Position
-        		
-        		input.Changed:Connect(function()
-        			if input.UserInputState == Enum.UserInputState.End then
-        				dragging = false
-        			end
-        		end)
-        	end
+          if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
+
+            input.Changed:Connect(function()
+              if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+              end
+            end)
+          end
         end)
-        
+
         gui.InputChanged:Connect(function(input)
-        	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        		dragInput = input
-        	end
+          if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+          end
         end)
-        
+
         UserInputService.InputChanged:Connect(function(input)
-        	if input == dragInput and dragging then
-        		update(input)
-        	end
+          if input == dragInput and dragging then
+            update(input)
+          end
         end)
-        
+
         ScrollingFrame.Parent = Frame
         ScrollingFrame.Active = true
         ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -732,10 +732,10 @@ do
         ScrollingFrame.Position = UDim2.new(0, 9,0, 7)
         ScrollingFrame.Size = UDim2.new(0, 458, 0, 321)
         ScrollingFrame.ScrollBarThickness = 4
-        
+
         UIListLayout.Parent = ScrollingFrame
         UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-        
+
         TextLabel.Parent = ScrollingFrame
         TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextLabel.BackgroundTransparency = 1.000
@@ -746,12 +746,12 @@ do
         TextLabel.TextXAlignment = Enum.TextXAlignment.Left
         TextLabel.TextYAlignment = Enum.TextYAlignment.Top
         TextLabel.RichText = true
-        
+
         local TextButton = Instance.new("TextButton")
         local UICorner = Instance.new("UICorner")
         local TextButton_2 = Instance.new("TextButton")
         local UICorner_2 = Instance.new("UICorner")
-        
+
         TextButton.Parent = Frame
         TextButton.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
         TextButton.BorderSizePixel = 0
@@ -764,10 +764,10 @@ do
         TextButton.MouseButton1Click:Connect(function()
             Frame:Destroy()
         end)
-        
+
         UICorner.CornerRadius = UDim.new(0, 4)
         UICorner.Parent = TextButton
-        
+
         TextButton_2.Parent = Frame
         TextButton_2.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
         TextButton_2.BorderSizePixel = 0
@@ -781,12 +781,12 @@ do
             if not crrObj then wait(.1) end
             if crrObj then setclipboard('require(game.'..crrObj:GetFullName()..')') end
         end)
-        
+
         UICorner_2.CornerRadius = UDim.new(0, 4)
         UICorner_2.Parent = TextButton_2
-        
+
         local TextLabel_2 = Instance.new("TextLabel")
-        
+
         TextLabel_2.Parent = Frame
         TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextLabel_2.BackgroundTransparency = 1.000
@@ -797,10 +797,10 @@ do
         TextLabel_2.TextSize = 12.000
         TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
         TextLabel_2.RichText = true
-    
+
         local function st(e,adcti)
             local tl,sp = '{\n',adcti
-            
+
             local function lp(e)
                 for i,v in pairs(e) do
                     local t = type(v)
@@ -822,7 +822,7 @@ do
             lp(e)
             return tl..'}'
         end
-        
+
         return function(obj)
             Frame.Visible = false
             TextLabel_2.Text = 'Module: <font color="rgb(170,170,170)">'..obj.Name..'</font>'
@@ -864,8 +864,8 @@ local propWidth = 0
 
 -- Settings
 local explorerSettings = {
-	LPaneWidth = 300,
-	RPaneWidth = 300
+  LPaneWidth = 300,
+  RPaneWidth = 300
 }
 
 -- JSON Stuff
@@ -885,752 +885,755 @@ local RMD = {}
 
 -- ScrollBar
 function f.buttonArrows(size,num,dir)
-	local max = num
-	local arrowFrame = CreateInstance("Frame",{
-		BackgroundTransparency = 1,
-		Name = "Arrow",
-		Size = UDim2.new(0,size,0,size)
-	})
-	if dir == "up" then
-		for i = 1,num do
-			local newLine = CreateInstance("Frame",{
-				BackgroundColor3 = Color3.new(220/255,220/255,220/255),
-				BorderSizePixel = 0,
-				Position = UDim2.new(0,math.floor(size/2)-(i-1),0,math.floor(size/2)+i-math.floor(max/2)-1),
-				Size = UDim2.new(0,i+(i-1),0,1),
-				Parent = arrowFrame
-			})
-		end
-		return arrowFrame
-	elseif dir == "down" then
-		for i = 1,num do
-			local newLine = CreateInstance("Frame",{
-				BackgroundColor3 = Color3.new(220/255,220/255,220/255),
-				BorderSizePixel = 0,
-				Position = UDim2.new(0,math.floor(size/2)-(i-1),0,math.floor(size/2)-i+math.floor(max/2)+1),
-				Size = UDim2.new(0,i+(i-1),0,1),
-				Parent = arrowFrame
-			})
-		end
-		return arrowFrame
-	elseif dir == "left" then
-		for i = 1,num do
-			local newLine = CreateInstance("Frame",{
-				BackgroundColor3 = Color3.new(220/255,220/255,220/255),
-				BorderSizePixel = 0,
-				Position = UDim2.new(0,math.floor(size/2)+i-math.floor(max/2)-1,0,math.floor(size/2)-(i-1)),
-				Size = UDim2.new(0,1,0,i+(i-1)),
-				Parent = arrowFrame
-			})
-		end
-		return arrowFrame
-	elseif dir == "right" then
-		for i = 1,num do
-			local newLine = CreateInstance("Frame",{
-				BackgroundColor3 = Color3.new(220/255,220/255,220/255),
-				BorderSizePixel = 0,
-				Position = UDim2.new(0,math.floor(size/2)-i+math.floor(max/2)+1,0,math.floor(size/2)-(i-1)),
-				Size = UDim2.new(0,1,0,i+(i-1)),
-				Parent = arrowFrame
-			})
-		end
-		return arrowFrame
-	end
-	error("r u ok")
+  local max = num
+  local arrowFrame = CreateInstance("Frame",{
+    BackgroundTransparency = 1,
+    Name = "Arrow",
+    Size = UDim2.new(0,size,0,size)
+  })
+  if dir == "up" then
+    for i = 1,num do
+      local newLine = CreateInstance("Frame",{
+        BackgroundColor3 = Color3.new(220/255,220/255,220/255),
+        BorderSizePixel = 0,
+        Position = UDim2.new(0,math.floor(size/2)-(i-1),0,math.floor(size/2)+i-math.floor(max/2)-1),
+        Size = UDim2.new(0,i+(i-1),0,1),
+        Parent = arrowFrame
+      })
+    end
+    return arrowFrame
+  elseif dir == "down" then
+    for i = 1,num do
+      local newLine = CreateInstance("Frame",{
+        BackgroundColor3 = Color3.new(220/255,220/255,220/255),
+        BorderSizePixel = 0,
+        Position = UDim2.new(0,math.floor(size/2)-(i-1),0,math.floor(size/2)-i+math.floor(max/2)+1),
+        Size = UDim2.new(0,i+(i-1),0,1),
+        Parent = arrowFrame
+      })
+    end
+    return arrowFrame
+  elseif dir == "left" then
+    for i = 1,num do
+      local newLine = CreateInstance("Frame",{
+        BackgroundColor3 = Color3.new(220/255,220/255,220/255),
+        BorderSizePixel = 0,
+        Position = UDim2.new(0,math.floor(size/2)+i-math.floor(max/2)-1,0,math.floor(size/2)-(i-1)),
+        Size = UDim2.new(0,1,0,i+(i-1)),
+        Parent = arrowFrame
+      })
+    end
+    return arrowFrame
+  elseif dir == "right" then
+    for i = 1,num do
+      local newLine = CreateInstance("Frame",{
+        BackgroundColor3 = Color3.new(220/255,220/255,220/255),
+        BorderSizePixel = 0,
+        Position = UDim2.new(0,math.floor(size/2)-i+math.floor(max/2)+1,0,math.floor(size/2)-(i-1)),
+        Size = UDim2.new(0,1,0,i+(i-1)),
+        Parent = arrowFrame
+      })
+    end
+    return arrowFrame
+  end
+  error("r u ok")
 end
 
 local ScrollBar do
-	ScrollBar = {}
-	
-	local user = game:GetService("UserInputService")
-	local mouse = game:GetService("Players").LocalPlayer:GetMouse()
-	
-	ScrollMt = {
-		__index = {
-			AddMarker = function(self,ind,color)
-				self.Markers[ind] = color or Color3.new(0,0,0)
-			end,
-			ScrollTo = function(self,ind)
-				self.Index = ind
-				self:Update()
-			end,
-			ScrollUp = function(self)
-				self.Index = self.Index - self.Increment
-				self:Update()
-			end,
-			ScrollDown = function(self)
-				self.Index = self.Index + self.Increment
-				self:Update()
-			end,
-			CanScrollUp = function(self)
-				return self.Index > 0
-			end,
-			CanScrollDown = function(self)
-				return self.Index + self.VisibleSpace < self.TotalSpace
-			end,
-			GetScrollPercent = function(self)
-				return self.Index/(self.TotalSpace-self.VisibleSpace)
-			end,
-			SetScrollPercent = function(self,perc)
-				self.Index = math.floor(perc*(self.TotalSpace-self.VisibleSpace))
-				self:Update()
-			end
-		}
-	}
-	
-	function ScrollBar.new(hor)
-		local newFrame = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.35294118523598,0.35294118523598,0.35294118523598),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-16,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ScrollBar",})
-		local button1 = nil
-		local button2 = nil
-		
-		local lastTotalSpace = 0
-		
-		if hor then
-			newFrame.Size = UDim2.new(1,0,0,16)
-			button1 = CreateInstance("ImageButton",{
-				Parent = newFrame,
-				Name = "Left",
-				Size = UDim2.new(0,16,0,16),
-				BackgroundTransparency = 1,
-				BorderSizePixel = 0,
-				AutoButtonColor = false
-			})
-			f.buttonArrows(16,4,"left").Parent = button1
-			button2 = CreateInstance("ImageButton",{
-				Parent = newFrame,
-				Name = "Right",
-				Position = UDim2.new(1,-16,0,0),
-				Size = UDim2.new(0,16,0,16),
-				BackgroundTransparency = 1,
-				BorderSizePixel = 0,
-				AutoButtonColor = false
-			})
-			f.buttonArrows(16,4,"right").Parent = button2
-		else
-			newFrame.Size = UDim2.new(0,16,1,0)
-			button1 = CreateInstance("ImageButton",{
-				Parent = newFrame,
-				Name = "Up",
-				Size = UDim2.new(0,16,0,16),
-				BackgroundTransparency = 1,
-				BorderSizePixel = 0,
-				AutoButtonColor = false
-			})
-			f.buttonArrows(16,4,"up").Parent = button1
-			button2 = CreateInstance("ImageButton",{
-				Parent = newFrame,
-				Name = "Down",
-				Position = UDim2.new(0,0,1,-16),
-				Size = UDim2.new(0,16,0,16),
-				BackgroundTransparency = 1,
-				BorderSizePixel = 0,
-				AutoButtonColor = false
-			})
-			f.buttonArrows(16,4,"down").Parent = button2
-		end
-		
-		local scrollThumbFrame = CreateInstance("Frame",{
-			BackgroundTransparency = 1,
-			Parent = newFrame
-		})
-		if hor then
-			scrollThumbFrame.Position = UDim2.new(0,16,0,0)
-			scrollThumbFrame.Size = UDim2.new(1,-32,1,0)
-		else
-			scrollThumbFrame.Position = UDim2.new(0,0,0,16)
-			scrollThumbFrame.Size = UDim2.new(1,0,1,-32)
-		end
-		
-		local scrollThumb = CreateInstance("Frame",{
-			BackgroundColor3 = Color3.new(120/255,120/255,120/255),
-			BorderSizePixel = 0,
-			Parent = scrollThumbFrame
-		})
-		
-		local markerFrame = CreateInstance("Frame",{
-			BackgroundTransparency = 1,
-			Name = "Markers",
-			Size = UDim2.new(1,0,1,0),
-			Parent = scrollThumbFrame
-		})
-		
-		local newMt = setmetatable({
-			Gui = newFrame,
-			Index = 0,
-			VisibleSpace = 0,
-			TotalSpace = 0,
-			Increment = 1,
-			Markers = {}
-		},ScrollMt)
-		
-		local function drawThumb()
-			local total = newMt.TotalSpace
-			local visible = newMt.VisibleSpace
-			local index = newMt.Index
-			
-			if not (newMt:CanScrollUp()	or newMt:CanScrollDown()) then
-				scrollThumb.Visible = false
-			else
-				scrollThumb.Visible = true
-			end
-			
-			if hor then
-				scrollThumb.Size = UDim2.new(visible/total,0,1,0)
-				if scrollThumb.AbsoluteSize.X < 16 then
-					scrollThumb.Size = UDim2.new(0,16,1,0)
-				end
-				local fs = scrollThumbFrame.AbsoluteSize.X
-				local bs = scrollThumb.AbsoluteSize.X
-				scrollThumb.Position = UDim2.new(newMt:GetScrollPercent()*(fs-bs)/fs,0,0,0)
-			else
-				scrollThumb.Size = UDim2.new(1,0,visible/total,0)
-				if scrollThumb.AbsoluteSize.Y < 16 then
-					scrollThumb.Size = UDim2.new(1,0,0,16)
-				end
-				local fs = scrollThumbFrame.AbsoluteSize.Y
-				local bs = scrollThumb.AbsoluteSize.Y
-				scrollThumb.Position = UDim2.new(0,0,newMt:GetScrollPercent()*(fs-bs)/fs,0)
-			end
-		end
-		
-		local function updateMarkers()
-			markerFrame:ClearAllChildren()
-	
-			for i,v in pairs(newMt.Markers) do
-				if i < newMt.TotalSpace then
-					CreateInstance("Frame",{
-						BackgroundTransparency = 0,
-						BackgroundColor3 = v,
-						BorderSizePixel = 0,
-						Position = hor and UDim2.new(i/newMt.TotalSpace,0,1,-6) or UDim2.new(1,-6,i/newMt.TotalSpace,0),
-						Size = hor and UDim2.new(0,1,0,6) or UDim2.new(0,6,0,1),
-						Name = "Marker"..tostring(i),
-						Parent = markerFrame
-					})
-				end
-			end
-		end
-		newMt.UpdateMarkers = updateMarkers
-		
-		local function update()
-			local total = newMt.TotalSpace
-			local visible = newMt.VisibleSpace
-			local index = newMt.Index
-			
-			if visible <= total then
-				if index > 0 then
-					if index + visible > total then
-						newMt.Index = total - visible
-					end
-				else
-					newMt.Index = 0
-				end
-			else
-				newMt.Index = 0
-			end
+  ScrollBar = {}
 
-			if lastTotalSpace ~= newMt.TotalSpace then
-				lastTotalSpace = newMt.TotalSpace
-				updateMarkers()
-			end
-			
-			if newMt.OnUpdate then newMt:OnUpdate() end
-			
-			if newMt:CanScrollUp() then
-				for i,v in pairs(button1.Arrow:GetChildren()) do
-					v.BackgroundTransparency = 0
-				end
-			else
-				button1.BackgroundTransparency = 1
-				for i,v in pairs(button1.Arrow:GetChildren()) do
-					v.BackgroundTransparency = 0.5
-				end
-			end
-			if newMt:CanScrollDown() then
-				for i,v in pairs(button2.Arrow:GetChildren()) do
-					v.BackgroundTransparency = 0
-				end
-			else
-				button2.BackgroundTransparency = 1
-				for i,v in pairs(button2.Arrow:GetChildren()) do
-					v.BackgroundTransparency = 0.5
-				end
-			end
-			
-			drawThumb()
-		end
-		
-		local buttonPress = false
-		local thumbPress = false
-		local thumbFramePress = false
-		
-		local thumbColor = Color3.new(120/255,120/255,120/255)
-		local thumbSelectColor = Color3.new(140/255,140/255,140/255)
-		button1.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress and newMt:CanScrollUp() then button1.BackgroundTransparency = 0.8 end
-			if input.UserInputType ~= Enum.UserInputType.MouseButton1 or not newMt:CanScrollUp() then return end
-			buttonPress = true
-			button1.BackgroundTransparency = 0.5
-			if newMt:CanScrollUp() then newMt:ScrollUp() end
-			local buttonTick = tick()
-			local releaseEvent
-			releaseEvent = user.InputEnded:Connect(function(input)
-				if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
-				releaseEvent:Disconnect()
-				if f.checkMouseInGui(button1) and newMt:CanScrollUp() then button1.BackgroundTransparency = 0.8 else button1.BackgroundTransparency = 1 end
-				buttonPress = false
-			end)
-			while buttonPress do
-				if tick() - buttonTick >= 0.3 and newMt:CanScrollUp() then
-					newMt:ScrollUp()
-				end
-				wait()
-			end
-		end)
-		button1.InputEnded:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress then button1.BackgroundTransparency = 1 end
-		end)
-		button2.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress and newMt:CanScrollDown() then button2.BackgroundTransparency = 0.8 end
-			if input.UserInputType ~= Enum.UserInputType.MouseButton1 or not newMt:CanScrollDown() then return end
-			buttonPress = true
-			button2.BackgroundTransparency = 0.5
-			if newMt:CanScrollDown() then newMt:ScrollDown() end
-			local buttonTick = tick()
-			local releaseEvent
-			releaseEvent = user.InputEnded:Connect(function(input)
-				if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
-				releaseEvent:Disconnect()
-				if f.checkMouseInGui(button2) and newMt:CanScrollDown() then button2.BackgroundTransparency = 0.8 else button2.BackgroundTransparency = 1 end
-				buttonPress = false
-			end)
-			while buttonPress do
-				if tick() - buttonTick >= 0.3 and newMt:CanScrollDown() then
-					newMt:ScrollDown()
-				end
-				wait()
-			end
-		end)
-		button2.InputEnded:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress then button2.BackgroundTransparency = 1 end
-		end)
-		
-		scrollThumb.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement and not thumbPress then scrollThumb.BackgroundTransparency = 0.2 scrollThumb.BackgroundColor3 = thumbSelectColor end
-			if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
-			
-			local dir = hor and "X" or "Y"
-			local lastThumbPos = nil
-			
-			buttonPress = false
-			thumbFramePress = false			
-			thumbPress = true
-			scrollThumb.BackgroundTransparency = 0
-			local mouseOffset = mouse[dir] - scrollThumb.AbsolutePosition[dir]
-			local mouseStart = mouse[dir]
-			local releaseEvent
-			local mouseEvent
-			releaseEvent = user.InputEnded:Connect(function(input)
-				if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
-				releaseEvent:Disconnect()
-				if mouseEvent then mouseEvent:Disconnect() end
-				if f.checkMouseInGui(scrollThumb) then scrollThumb.BackgroundTransparency = 0.2 else scrollThumb.BackgroundTransparency = 0 scrollThumb.BackgroundColor3 = thumbColor end
-				thumbPress = false
-			end)
-			newMt:Update()
-			--while math.abs(mouse[dir] - mouseStart) == 0 do wait() end
-			mouseEvent = user.InputChanged:Connect(function(input)
-				if input.UserInputType == Enum.UserInputType.MouseMovement and thumbPress and releaseEvent.Connected then
-					local thumbFrameSize = scrollThumbFrame.AbsoluteSize[dir]-scrollThumb.AbsoluteSize[dir]
-					local pos = mouse[dir] - scrollThumbFrame.AbsolutePosition[dir] - mouseOffset
-					if pos > thumbFrameSize then
-						pos = thumbFrameSize
-					elseif pos < 0 then
-						pos = 0
-					end
-					if lastThumbPos ~= pos then
-						lastThumbPos = pos
-						newMt:ScrollTo(math.floor(pos/thumbFrameSize*(newMt.TotalSpace-newMt.VisibleSpace)))
-					end
-					wait()
-				end
-			end)
-		end)
-		scrollThumb.InputEnded:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement and not thumbPress then scrollThumb.BackgroundTransparency = 0 scrollThumb.BackgroundColor3 = thumbColor end
-		end)
-		scrollThumbFrame.InputBegan:Connect(function(input)
-			if input.UserInputType ~= Enum.UserInputType.MouseButton1 or f.checkMouseInGui(scrollThumb) then return end
-			
-			local dir = hor and "X" or "Y"
-			
-			local function doTick()
-				local thumbFrameSize = scrollThumbFrame.AbsoluteSize[dir]-scrollThumb.AbsoluteSize[dir]
-				local thumbFrameDist = scrollThumb.AbsolutePosition[dir] - scrollThumbFrame.AbsolutePosition[dir]
-				local pos = thumbFrameDist + (mouse[dir] < scrollThumb.AbsolutePosition[dir] + math.floor(scrollThumb.AbsoluteSize[dir]/2) and -50 or 50)
-				if pos > thumbFrameSize then
-					pos = thumbFrameSize
-				elseif pos < 0 then
-					pos = 0
-				end
-				if pos < thumbFrameDist and scrollThumbFrame.AbsolutePosition[dir] + pos + math.floor(scrollThumb.AbsoluteSize[dir]/2) <= mouse[dir] then
-					pos = mouse[dir] - scrollThumbFrame.AbsolutePosition[dir] - math.floor(scrollThumb.AbsoluteSize[dir]/2)
-				elseif pos > thumbFrameDist and scrollThumbFrame.AbsolutePosition[dir] + pos + math.floor(scrollThumb.AbsoluteSize[dir]/2) >= mouse[dir] then
-					pos = mouse[dir] - scrollThumbFrame.AbsolutePosition[dir] - math.floor(scrollThumb.AbsoluteSize[dir]/2)
-				end
-				newMt:ScrollTo(math.floor(pos/thumbFrameSize*(newMt.TotalSpace-newMt.VisibleSpace)))
-			end
-			
-			thumbPress = false			
-			thumbFramePress = true
-			doTick()
-			local thumbFrameTick = tick()
-			local releaseEvent
-			releaseEvent = user.InputEnded:Connect(function(input)
-				if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
-				releaseEvent:Disconnect()
-				thumbFramePress = false
-			end)
-			while thumbFramePress and not f.checkMouseInGui(scrollThumb) do
-				if tick() - thumbFrameTick >= 0.3 then
-					doTick()
-				end
-				wait()
-			end
-		end)
-		
-		local function texture(self,data)
-			thumbColor = data.ThumbColor or Color3.new(0,0,0)
-			thumbSelectColor = data.ThumbSelectColor or Color3.new(0,0,0)
-			scrollThumb.BackgroundColor3 = data.ThumbColor or Color3.new(0,0,0)
-			newFrame.BackgroundColor3 = data.FrameColor or Color3.new(0,0,0)
-			button1.BackgroundColor3 = data.ButtonColor or Color3.new(0,0,0)
-			button2.BackgroundColor3 = data.ButtonColor or Color3.new(0,0,0)
-			for i,v in pairs(button1.Arrow:GetChildren()) do
-				v.BackgroundColor3 = data.ArrowColor or Color3.new(0,0,0)
-			end
-			for i,v in pairs(button2.Arrow:GetChildren()) do
-				v.BackgroundColor3 = data.ArrowColor or Color3.new(0,0,0)
-			end
-		end
-		newMt.Texture = texture
-		
-		local wheelIncrement = 1
-		local scrollOverlay = Instance.new("ScrollingFrame")
-		scrollOverlay.BackgroundTransparency = 1
-		scrollOverlay.Size = UDim2.new(1,0,1,0)
-		scrollOverlay.ScrollBarThickness = 0
-		scrollOverlay.CanvasSize = UDim2.new(0,0,0,0)
-		local scrollOverlayFrame = Instance.new("Frame",scrollOverlay)
-		scrollOverlayFrame.BackgroundTransparency = 1
-		scrollOverlayFrame.Size = UDim2.new(1,0,1,0)
-		scrollOverlayFrame.MouseWheelForward:Connect(function()newMt:ScrollTo(newMt.Index - wheelIncrement)end)
-		scrollOverlayFrame.MouseWheelBackward:Connect(function()newMt:ScrollTo(newMt.Index + wheelIncrement)end)
-		
-		local scrollUpEvent,scrollDownEvent
-		
-		local function setScrollFrame(self,frame,inc)
-			wheelIncrement = inc or self.Increment
-			if scrollUpEvent then scrollUpEvent:Disconnect() scrollUpEvent = nil end
-			if scrollDownEvent then scrollDownEvent:Disconnect() scrollDownEvent = nil end
-			scrollUpEvent = frame.MouseWheelForward:Connect(function()newMt:ScrollTo(newMt.Index - wheelIncrement)end)
-			scrollDownEvent = frame.MouseWheelBackward:Connect(function()newMt:ScrollTo(newMt.Index + wheelIncrement)end)
-			--scrollOverlay.Parent = frame
-		end
-		newMt.SetScrollFrame = setScrollFrame
-		
-		newMt.Update = update
-		
-		update()
-		return newMt
-	end
+  local user = game:GetService("UserInputService")
+  local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+
+  ScrollMt = {
+    __index = {
+      AddMarker = function(self,ind,color)
+        self.Markers[ind] = color or Color3.new(0,0,0)
+      end,
+      ScrollTo = function(self,ind)
+        self.Index = ind
+        self:Update()
+      end,
+      ScrollUp = function(self)
+        self.Index = self.Index - self.Increment
+        self:Update()
+      end,
+      ScrollDown = function(self)
+        self.Index = self.Index + self.Increment
+        self:Update()
+      end,
+      CanScrollUp = function(self)
+        return self.Index > 0
+      end,
+      CanScrollDown = function(self)
+        return self.Index + self.VisibleSpace < self.TotalSpace
+      end,
+      GetScrollPercent = function(self)
+        return self.Index/(self.TotalSpace-self.VisibleSpace)
+      end,
+      SetScrollPercent = function(self,perc)
+        self.Index = math.floor(perc*(self.TotalSpace-self.VisibleSpace))
+        self:Update()
+      end
+    }
+  }
+
+  function ScrollBar.new(hor)
+    local newFrame = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.35294118523598,0.35294118523598,0.35294118523598),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(1,-16,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="ScrollBar",})
+    local button1 = nil
+    local button2 = nil
+
+    local lastTotalSpace = 0
+
+    if hor then
+      newFrame.Size = UDim2.new(1,0,0,16)
+      button1 = CreateInstance("ImageButton",{
+        Parent = newFrame,
+        Name = "Left",
+        Size = UDim2.new(0,16,0,16),
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        AutoButtonColor = false
+      })
+      f.buttonArrows(16,4,"left").Parent = button1
+      button2 = CreateInstance("ImageButton",{
+        Parent = newFrame,
+        Name = "Right",
+        Position = UDim2.new(1,-16,0,0),
+        Size = UDim2.new(0,16,0,16),
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        AutoButtonColor = false
+      })
+      f.buttonArrows(16,4,"right").Parent = button2
+    else
+      newFrame.Size = UDim2.new(0,16,1,0)
+      button1 = CreateInstance("ImageButton",{
+        Parent = newFrame,
+        Name = "Up",
+        Size = UDim2.new(0,16,0,16),
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        AutoButtonColor = false
+      })
+      f.buttonArrows(16,4,"up").Parent = button1
+      button2 = CreateInstance("ImageButton",{
+        Parent = newFrame,
+        Name = "Down",
+        Position = UDim2.new(0,0,1,-16),
+        Size = UDim2.new(0,16,0,16),
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        AutoButtonColor = false
+      })
+      f.buttonArrows(16,4,"down").Parent = button2
+    end
+
+    local scrollThumbFrame = CreateInstance("Frame",{
+      BackgroundTransparency = 1,
+      Parent = newFrame
+    })
+    if hor then
+      scrollThumbFrame.Position = UDim2.new(0,16,0,0)
+      scrollThumbFrame.Size = UDim2.new(1,-32,1,0)
+    else
+      scrollThumbFrame.Position = UDim2.new(0,0,0,16)
+      scrollThumbFrame.Size = UDim2.new(1,0,1,-32)
+    end
+
+    local scrollThumb = CreateInstance("Frame",{
+      BackgroundColor3 = Color3.new(120/255,120/255,120/255),
+      BorderSizePixel = 0,
+      Parent = scrollThumbFrame
+    })
+
+    local markerFrame = CreateInstance("Frame",{
+      BackgroundTransparency = 1,
+      Name = "Markers",
+      Size = UDim2.new(1,0,1,0),
+      Parent = scrollThumbFrame
+    })
+
+    local newMt = setmetatable({
+      Gui = newFrame,
+      Index = 0,
+      VisibleSpace = 0,
+      TotalSpace = 0,
+      Increment = 1,
+      Markers = {}
+    },ScrollMt)
+
+    local function drawThumb()
+      local total = newMt.TotalSpace
+      local visible = newMt.VisibleSpace
+      local index = newMt.Index
+
+      if not (newMt:CanScrollUp()	or newMt:CanScrollDown()) then
+        scrollThumb.Visible = false
+      else
+        scrollThumb.Visible = true
+      end
+
+      if hor then
+        scrollThumb.Size = UDim2.new(visible/total,0,1,0)
+        if scrollThumb.AbsoluteSize.X < 16 then
+          scrollThumb.Size = UDim2.new(0,16,1,0)
+        end
+        local fs = scrollThumbFrame.AbsoluteSize.X
+        local bs = scrollThumb.AbsoluteSize.X
+        scrollThumb.Position = UDim2.new(newMt:GetScrollPercent()*(fs-bs)/fs,0,0,0)
+      else
+        scrollThumb.Size = UDim2.new(1,0,visible/total,0)
+        if scrollThumb.AbsoluteSize.Y < 16 then
+          scrollThumb.Size = UDim2.new(1,0,0,16)
+        end
+        local fs = scrollThumbFrame.AbsoluteSize.Y
+        local bs = scrollThumb.AbsoluteSize.Y
+        scrollThumb.Position = UDim2.new(0,0,newMt:GetScrollPercent()*(fs-bs)/fs,0)
+      end
+    end
+
+    local function updateMarkers()
+      markerFrame:ClearAllChildren()
+
+      for i,v in pairs(newMt.Markers) do
+        if i < newMt.TotalSpace then
+          CreateInstance("Frame",{
+            BackgroundTransparency = 0,
+            BackgroundColor3 = v,
+            BorderSizePixel = 0,
+            Position = hor and UDim2.new(i/newMt.TotalSpace,0,1,-6) or UDim2.new(1,-6,i/newMt.TotalSpace,0),
+            Size = hor and UDim2.new(0,1,0,6) or UDim2.new(0,6,0,1),
+            Name = "Marker"..tostring(i),
+            Parent = markerFrame
+          })
+        end
+      end
+    end
+    newMt.UpdateMarkers = updateMarkers
+
+    local function update()
+      local total = newMt.TotalSpace
+      local visible = newMt.VisibleSpace
+      local index = newMt.Index
+
+      if visible <= total then
+        if index > 0 then
+          if index + visible > total then
+            newMt.Index = total - visible
+          end
+        else
+          newMt.Index = 0
+        end
+      else
+        newMt.Index = 0
+      end
+
+      if lastTotalSpace ~= newMt.TotalSpace then
+        lastTotalSpace = newMt.TotalSpace
+        updateMarkers()
+      end
+
+      if newMt.OnUpdate then newMt:OnUpdate() end
+
+      if newMt:CanScrollUp() then
+        for i,v in pairs(button1.Arrow:GetChildren()) do
+          v.BackgroundTransparency = 0
+        end
+      else
+        button1.BackgroundTransparency = 1
+        for i,v in pairs(button1.Arrow:GetChildren()) do
+          v.BackgroundTransparency = 0.5
+        end
+      end
+      if newMt:CanScrollDown() then
+        for i,v in pairs(button2.Arrow:GetChildren()) do
+          v.BackgroundTransparency = 0
+        end
+      else
+        button2.BackgroundTransparency = 1
+        for i,v in pairs(button2.Arrow:GetChildren()) do
+          v.BackgroundTransparency = 0.5
+        end
+      end
+
+      drawThumb()
+    end
+
+    local buttonPress = false
+    local thumbPress = false
+    local thumbFramePress = false
+
+    local thumbColor = Color3.new(120/255,120/255,120/255)
+    local thumbSelectColor = Color3.new(140/255,140/255,140/255)
+    button1.InputBegan:Connect(function(input)
+      if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress and newMt:CanScrollUp() then button1.BackgroundTransparency = 0.8 end
+      if input.UserInputType ~= Enum.UserInputType.MouseButton1 or not newMt:CanScrollUp() then return end
+      buttonPress = true
+      button1.BackgroundTransparency = 0.5
+      if newMt:CanScrollUp() then newMt:ScrollUp() end
+      local buttonTick = tick()
+      local releaseEvent
+      releaseEvent = user.InputEnded:Connect(function(input)
+        if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+        releaseEvent:Disconnect()
+        if f.checkMouseInGui(button1) and newMt:CanScrollUp() then button1.BackgroundTransparency = 0.8 else button1.BackgroundTransparency = 1 end
+        buttonPress = false
+      end)
+      while buttonPress do
+        if tick() - buttonTick >= 0.3 and newMt:CanScrollUp() then
+          newMt:ScrollUp()
+        end
+        wait()
+      end
+    end)
+    button1.InputEnded:Connect(function(input)
+      if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress then button1.BackgroundTransparency = 1 end
+    end)
+    button2.InputBegan:Connect(function(input)
+      if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress and newMt:CanScrollDown() then button2.BackgroundTransparency = 0.8 end
+      if input.UserInputType ~= Enum.UserInputType.MouseButton1 or not newMt:CanScrollDown() then return end
+      buttonPress = true
+      button2.BackgroundTransparency = 0.5
+      if newMt:CanScrollDown() then newMt:ScrollDown() end
+      local buttonTick = tick()
+      local releaseEvent
+      releaseEvent = user.InputEnded:Connect(function(input)
+        if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+        releaseEvent:Disconnect()
+        if f.checkMouseInGui(button2) and newMt:CanScrollDown() then button2.BackgroundTransparency = 0.8 else button2.BackgroundTransparency = 1 end
+        buttonPress = false
+      end)
+      while buttonPress do
+        if tick() - buttonTick >= 0.3 and newMt:CanScrollDown() then
+          newMt:ScrollDown()
+        end
+        wait()
+      end
+    end)
+    button2.InputEnded:Connect(function(input)
+      if input.UserInputType == Enum.UserInputType.MouseMovement and not buttonPress then button2.BackgroundTransparency = 1 end
+    end)
+
+    scrollThumb.InputBegan:Connect(function(input)
+      if input.UserInputType == Enum.UserInputType.MouseMovement and not thumbPress then scrollThumb.BackgroundTransparency = 0.2 scrollThumb.BackgroundColor3 = thumbSelectColor end
+      if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+
+      local dir = hor and "X" or "Y"
+      local lastThumbPos = nil
+
+      buttonPress = false
+      thumbFramePress = false			
+      thumbPress = true
+      scrollThumb.BackgroundTransparency = 0
+      local mouseOffset = mouse[dir] - scrollThumb.AbsolutePosition[dir]
+      local mouseStart = mouse[dir]
+      local releaseEvent
+      local mouseEvent
+      releaseEvent = user.InputEnded:Connect(function(input)
+        if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+        releaseEvent:Disconnect()
+        if mouseEvent then mouseEvent:Disconnect() end
+        if f.checkMouseInGui(scrollThumb) then scrollThumb.BackgroundTransparency = 0.2 else scrollThumb.BackgroundTransparency = 0 scrollThumb.BackgroundColor3 = thumbColor end
+        thumbPress = false
+      end)
+      newMt:Update()
+      --while math.abs(mouse[dir] - mouseStart) == 0 do wait() end
+      mouseEvent = user.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement and thumbPress and releaseEvent.Connected then
+          local thumbFrameSize = scrollThumbFrame.AbsoluteSize[dir]-scrollThumb.AbsoluteSize[dir]
+          local pos = mouse[dir] - scrollThumbFrame.AbsolutePosition[dir] - mouseOffset
+          if pos > thumbFrameSize then
+            pos = thumbFrameSize
+          elseif pos < 0 then
+            pos = 0
+          end
+          if lastThumbPos ~= pos then
+            lastThumbPos = pos
+            newMt:ScrollTo(math.floor(pos/thumbFrameSize*(newMt.TotalSpace-newMt.VisibleSpace)))
+          end
+          wait()
+        end
+      end)
+    end)
+    scrollThumb.InputEnded:Connect(function(input)
+      if input.UserInputType == Enum.UserInputType.MouseMovement and not thumbPress then scrollThumb.BackgroundTransparency = 0 scrollThumb.BackgroundColor3 = thumbColor end
+    end)
+    scrollThumbFrame.InputBegan:Connect(function(input)
+      if input.UserInputType ~= Enum.UserInputType.MouseButton1 or f.checkMouseInGui(scrollThumb) then return end
+
+      local dir = hor and "X" or "Y"
+
+      local function doTick()
+        local thumbFrameSize = scrollThumbFrame.AbsoluteSize[dir]-scrollThumb.AbsoluteSize[dir]
+        local thumbFrameDist = scrollThumb.AbsolutePosition[dir] - scrollThumbFrame.AbsolutePosition[dir]
+        local pos = thumbFrameDist + (mouse[dir] < scrollThumb.AbsolutePosition[dir] + math.floor(scrollThumb.AbsoluteSize[dir]/2) and -50 or 50)
+        if pos > thumbFrameSize then
+          pos = thumbFrameSize
+        elseif pos < 0 then
+          pos = 0
+        end
+        if pos < thumbFrameDist and scrollThumbFrame.AbsolutePosition[dir] + pos + math.floor(scrollThumb.AbsoluteSize[dir]/2) <= mouse[dir] then
+          pos = mouse[dir] - scrollThumbFrame.AbsolutePosition[dir] - math.floor(scrollThumb.AbsoluteSize[dir]/2)
+        elseif pos > thumbFrameDist and scrollThumbFrame.AbsolutePosition[dir] + pos + math.floor(scrollThumb.AbsoluteSize[dir]/2) >= mouse[dir] then
+          pos = mouse[dir] - scrollThumbFrame.AbsolutePosition[dir] - math.floor(scrollThumb.AbsoluteSize[dir]/2)
+        end
+        newMt:ScrollTo(math.floor(pos/thumbFrameSize*(newMt.TotalSpace-newMt.VisibleSpace)))
+      end
+
+      thumbPress = false			
+      thumbFramePress = true
+      doTick()
+      local thumbFrameTick = tick()
+      local releaseEvent
+      releaseEvent = user.InputEnded:Connect(function(input)
+        if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+        releaseEvent:Disconnect()
+        thumbFramePress = false
+      end)
+      while thumbFramePress and not f.checkMouseInGui(scrollThumb) do
+        if tick() - thumbFrameTick >= 0.3 then
+          doTick()
+        end
+        wait()
+      end
+    end)
+
+    local function texture(self,data)
+      thumbColor = data.ThumbColor or Color3.new(0,0,0)
+      thumbSelectColor = data.ThumbSelectColor or Color3.new(0,0,0)
+      scrollThumb.BackgroundColor3 = data.ThumbColor or Color3.new(0,0,0)
+      newFrame.BackgroundColor3 = data.FrameColor or Color3.new(0,0,0)
+      button1.BackgroundColor3 = data.ButtonColor or Color3.new(0,0,0)
+      button2.BackgroundColor3 = data.ButtonColor or Color3.new(0,0,0)
+      for i,v in pairs(button1.Arrow:GetChildren()) do
+        v.BackgroundColor3 = data.ArrowColor or Color3.new(0,0,0)
+      end
+      for i,v in pairs(button2.Arrow:GetChildren()) do
+        v.BackgroundColor3 = data.ArrowColor or Color3.new(0,0,0)
+      end
+    end
+    newMt.Texture = texture
+
+    local wheelIncrement = 1
+    local scrollOverlay = Instance.new("ScrollingFrame")
+    scrollOverlay.BackgroundTransparency = 1
+    scrollOverlay.Size = UDim2.new(1,0,1,0)
+    scrollOverlay.ScrollBarThickness = 0
+    scrollOverlay.CanvasSize = UDim2.new(0,0,0,0)
+    local scrollOverlayFrame = Instance.new("Frame",scrollOverlay)
+    scrollOverlayFrame.BackgroundTransparency = 1
+    scrollOverlayFrame.Size = UDim2.new(1,0,1,0)
+    scrollOverlayFrame.MouseWheelForward:Connect(function()newMt:ScrollTo(newMt.Index - wheelIncrement)end)
+    scrollOverlayFrame.MouseWheelBackward:Connect(function()newMt:ScrollTo(newMt.Index + wheelIncrement)end)
+
+    local scrollUpEvent,scrollDownEvent
+
+    local function setScrollFrame(self,frame,inc)
+      wheelIncrement = inc or self.Increment
+      if scrollUpEvent then scrollUpEvent:Disconnect() scrollUpEvent = nil end
+      if scrollDownEvent then scrollDownEvent:Disconnect() scrollDownEvent = nil end
+      scrollUpEvent = frame.MouseWheelForward:Connect(function()newMt:ScrollTo(newMt.Index - wheelIncrement)end)
+      scrollDownEvent = frame.MouseWheelBackward:Connect(function()newMt:ScrollTo(newMt.Index + wheelIncrement)end)
+      --scrollOverlay.Parent = frame
+    end
+    newMt.SetScrollFrame = setScrollFrame
+
+    newMt.Update = update
+
+    update()
+    return newMt
+  end
 end
 
 local TreeView do
-	TreeView = {}
-	
-	local treeMt = {
-		__index = {
-			Length = function(self)
-				return #self.Tree
-			end
-		}
-	}
-	
-	function TreeView.new()
-		local function createDNodeTemplate()
-			local DNodeTemplate = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,2),Rotation=0,Selectable=true,Size=UDim2.new(1,-18,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entry",})
-			local DNodeTemplate2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0,0,0),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,18,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-18,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Indent",Parent = DNodeTemplate})
-			local DNodeTemplate3 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Item",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,22,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-22,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = DNodeTemplate2})
-			local DNodeTemplate4 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,2,0.5,-8),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="IconFrame",Parent = DNodeTemplate2})
-			local DNodeTemplate5 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-5.811999797821,0,-1.3120000362396,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DNodeTemplate4})
-			local DNodeTemplate6 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,-16,0.5,-8),Rotation=0,Selectable=true,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="Expand",Parent = DNodeTemplate2})
-			local DNodeTemplate7 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-12.562000274658,0,-12.562000274658,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DNodeTemplate6})
-			return DNodeTemplate
-		end
-		local dNodeTemplate = createDNodeTemplate()		
-		
-		local newMt = setmetatable({
-			Index = 0,
-			Tree = {},
-			Expanded = {},
-			NodeTemplate = dNodeTemplate,
-			DisplayFrame = nil,
-			Entries = {},
-			Height = 18,
-			OffX = 1,
-			OffY = 1
-		},treeMt)
-		
-		local function refresh(self)
-			if not self.DisplayFrame then warn("Tree: No Display Frame") return end
-			
-			if self.PreUpdate then self:PreUpdate() end
-			
-			local displayFrame = self.DisplayFrame
-			local entrySpace = math.ceil(displayFrame.AbsoluteSize.Y / (self.Height + 1))
-			
-			for i = 1,entrySpace do
-				local node = self.Tree[i + self.Index]
-				if node then
-					local entry = self.Entries[i]
-					if not entry then
-						entry = self.NodeTemplate:Clone()
-						entry.Position = UDim2.new(0,self.OffX,0,self.OffY + (self.Height + 1) * #displayFrame:GetChildren())
-						entry.Parent = displayFrame
-						self.Entries[i] = entry
-						if self.NodeCreate then self:NodeCreate(entry,i) end
-					end
-					entry.Visible = true
-					if self.NodeDraw then self:NodeDraw(entry,node) end
-				else
-					local entry = self.Entries[i]
-					if entry then
-						entry.Visible = false
-					end
-				end
-			end
-			
-			for i = entrySpace+1,#self.Entries do
-				if self.Entries[i] then
-					self.Entries[i]:Destroy()
-					self.Entries[i] = nil
-				end
-			end
-			
-			if self.OnUpdate then self:OnUpdate() end
-			if self.RefreshNeeded then self.RefreshNeeded = false self:Refresh() end
-		end
-		newMt.Refresh = refresh
-		
-		local function expand(self,item)
-			self.Expanded[item] = not self.Expanded[item]
-			if self.TreeUpdate then self:TreeUpdate() end
-			self:Refresh()
-		end
-		newMt.Expand = expand
-		
-		local Selection do
-			Selection = {
-				List = {},
-				Selected = {}
-			}
-	
-			function Selection:Add(obj)
-				if Selection.Selected[obj] then return end
-		
-				Selection.Selected[obj] = true
-				table.insert(Selection.List,obj)
-			end
-	
-			function Selection:Set(objs)
-				for i,v in pairs(Selection.List) do
-					Selection.Selected[v] = nil
-				end
-				Selection.List = {}
-		
-				for i,v in pairs(objs) do
-					if not Selection.Selected[v] then
-						Selection.Selected[v] = true
-						table.insert(Selection.List,v)
-					end
-				end
-			end
-	
-			function Selection:Remove(obj)
-				if not Selection.Selected[obj] then return end
-		
-				Selection.Selected[obj] = false
-				for i,v in pairs(Selection.List) do
-					if v == obj then table.remove(Selection.List,i) break end
-				end
-			end
-		end
-		newMt.Selection = Selection
-		
-		return newMt
-	end
+  TreeView = {}
+
+  local treeMt = {
+    __index = {
+      Length = function(self)
+        return #self.Tree
+      end
+    }
+  }
+
+  function TreeView.new()
+    local function createDNodeTemplate()
+      local DNodeTemplate = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,1,0,2),Rotation=0,Selectable=true,Size=UDim2.new(1,-18,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entry",})
+      local DNodeTemplate2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0,0,0),BackgroundTransparency=1,BorderColor3=Color3.new(0.14509804546833,0.20784315466881,0.21176472306252),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,18,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-18,1,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Indent",Parent = DNodeTemplate})
+      local DNodeTemplate3 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Item",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,22,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-22,0,18),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = DNodeTemplate2})
+      local DNodeTemplate4 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,2,0.5,-8),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="IconFrame",Parent = DNodeTemplate2})
+      local DNodeTemplate5 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-5.811999797821,0,-1.3120000362396,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DNodeTemplate4})
+      local DNodeTemplate6 = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=true,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,-16,0.5,-8),Rotation=0,Selectable=true,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="Expand",Parent = DNodeTemplate2})
+      local DNodeTemplate7 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(-12.562000274658,0,-12.562000274658,0),Rotation=0,Selectable=false,Size=UDim2.new(16,0,16,0),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = DNodeTemplate6})
+      return DNodeTemplate
+    end
+    local dNodeTemplate = createDNodeTemplate()		
+
+    local newMt = setmetatable({
+      Index = 0,
+      Tree = {},
+      Expanded = {},
+      NodeTemplate = dNodeTemplate,
+      DisplayFrame = nil,
+      Entries = {},
+      Height = 18,
+      OffX = 1,
+      OffY = 1
+    },treeMt)
+
+    local function refresh(self)
+      if not self.DisplayFrame then warn("Tree: No Display Frame") return end
+
+      if self.PreUpdate then self:PreUpdate() end
+
+      local displayFrame = self.DisplayFrame
+      local entrySpace = math.ceil(displayFrame.AbsoluteSize.Y / (self.Height + 1))
+
+      for i = 1,entrySpace do
+        local node = self.Tree[i + self.Index]
+        if node then
+          local entry = self.Entries[i]
+          if not entry then
+            entry = self.NodeTemplate:Clone()
+            entry.Position = UDim2.new(0,self.OffX,0,self.OffY + (self.Height + 1) * #displayFrame:GetChildren())
+            entry.Parent = displayFrame
+            self.Entries[i] = entry
+            if self.NodeCreate then self:NodeCreate(entry,i) end
+          end
+          entry.Visible = true
+          if self.NodeDraw then self:NodeDraw(entry,node) end
+        else
+          local entry = self.Entries[i]
+          if entry then
+            entry.Visible = false
+          end
+        end
+      end
+
+      for i = entrySpace+1,#self.Entries do
+        if self.Entries[i] then
+          self.Entries[i]:Destroy()
+          self.Entries[i] = nil
+        end
+      end
+
+      if self.OnUpdate then self:OnUpdate() end
+      if self.RefreshNeeded then self.RefreshNeeded = false self:Refresh() end
+    end
+    newMt.Refresh = refresh
+
+    local function expand(self,item)
+      self.Expanded[item] = not self.Expanded[item]
+      if self.TreeUpdate then self:TreeUpdate() end
+      self:Refresh()
+    end
+    newMt.Expand = expand
+
+    local Selection do
+      Selection = {
+        List = {},
+        Selected = {}
+      }
+
+      function Selection:Add(obj)
+        if Selection.Selected[obj] then return end
+
+        Selection.Selected[obj] = true
+        table.insert(Selection.List,obj)
+      end
+
+      function Selection:Set(objs)
+        for i,v in pairs(Selection.List) do
+          Selection.Selected[v] = nil
+        end
+        Selection.List = {}
+
+        for i,v in pairs(objs) do
+          if not Selection.Selected[v] then
+            Selection.Selected[v] = true
+            table.insert(Selection.List,v)
+          end
+        end
+      end
+
+      function Selection:Remove(obj)
+        if not Selection.Selected[obj] then return end
+
+        Selection.Selected[obj] = false
+        for i,v in pairs(Selection.List) do
+          if v == obj then table.remove(Selection.List,i) break end
+        end
+      end
+    end
+    newMt.Selection = Selection
+
+    return newMt
+  end
 end
 
 local ContextMenu do
-	ContextMenu = {}
-	
-	local function createContextEntry()
-		local ContextEntry = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,2),Rotation=0,Selectable=true,Size=UDim2.new(1,0,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entry",})
-		local ContextEntry2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,2,0.5,-8),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="IconFrame",Parent = ContextEntry})
-		local ContextEntry3 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = ContextEntry2})
-		local ContextEntry4 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Item",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,24,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-24,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = ContextEntry})
-		local ContextEntry5 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Ctrl+C",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=1,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,24,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-30,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Shortcut",Parent = ContextEntry})
-		return ContextEntry
-	end
-	
-	local function createContextDivider()
-		local ContextDivider = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,20),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,12),SizeConstraint=0,Visible=true,ZIndex=1,Name="Divider",})
-		local ContextDivider2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-4,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Line",Parent = ContextDivider})
-		return ContextDivider
-	end
-	
-	local contextFrame = CreateInstance("ScrollingFrame",{BottomImage="rbxasset://textures/ui/Scroll/scroll-bottom.png",CanvasPosition=Vector2.new(0,0),CanvasSize=UDim2.new(0,0,2,0),MidImage="rbxasset://textures/ui/Scroll/scroll-middle.png",ScrollBarThickness=0,ScrollingEnabled=true,TopImage="rbxasset://textures/ui/Scroll/scroll-top.png",Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,200,0,100),SizeConstraint=0,Visible=true,ZIndex=1,Name="ContextFrame",})
-	local contextEntry = createContextEntry()
-	local contextDivider = createContextDivider()
-	
-	function ContextMenu.new()
-		local newMt = setmetatable({
-			Width = 200,
-			Height = 20,
-			Items = {},
-			Frame = contextFrame:Clone()
-		},{})
-		
-		local mainFrame = newMt.Frame
-		mainFrame.ZIndex = 5
-		local entryFrame = contextEntry:Clone()
-		local dividerFrame = contextDivider:Clone()
-		
-		mainFrame.ScrollingEnabled = false
-		
-		local function add(self,item)
-			local newItem = {
-				Name = item.Name or "Item",
-				Icon = item.Icon or "",
-				Shortcut = item.Shortcut or "",
-				OnClick = item.OnClick,
-				OnHover = item.OnHover,
-				Disabled = item.Disabled or false,
-				DisabledIcon = item.DisabledIcon or ""
-			}
-			table.insert(self.Items,newItem)
-		end
-		newMt.Add = add
-		
-		local function addDivider(self)
-			table.insert(self.Items,"Divider")
-		end
-		newMt.AddDivider = addDivider
-		
-		local function clear(self)
-			self.Items = {}
-		end
-		newMt.Clear = clear
-		
-		local function refresh(self)
-			mainFrame:ClearAllChildren()
-			
-			local currentPos = 2
-			for _,item in pairs(self.Items) do
-				if item == "Divider" then
-					local newDivider = dividerFrame:Clone()
-					newDivider.Position = UDim2.new(0,0,0,currentPos)
-					newDivider.Parent = mainFrame
-					currentPos = currentPos + 12
-				else
-					local newEntry = entryFrame:Clone()
-					newEntry.Position = UDim2.new(0,0,0,currentPos)
-					newEntry.EntryName.Text = item.Name
-					newEntry.Shortcut.Text = item.Shortcut
-					if item.Disabled then
-						newEntry.EntryName.TextColor3 = Color3.new(150/255,150/255,150/255)
-						newEntry.Shortcut.TextColor3 = Color3.new(150/255,150/255,150/255)
-					end
-					
-					local useIcon = item.Disabled and item.DisabledIcon or item.Icon
-					if type(useIcon) == "string" then
-						newEntry.IconFrame.Icon.Image = useIcon
-					else
-						newEntry.IconFrame:Destroy()
-						local newIcon = useIcon:Clone()
-						newIcon.Position = UDim2.new(0,2,0.5,-8)
-						newIcon.Parent = newEntry
-					end
-					
-					if item.OnClick and not item.Disabled then newEntry.MouseButton1Click:Connect(item.OnClick) end
-					
-					newEntry.InputBegan:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseMovement then
-							newEntry.BackgroundTransparency = 0.5
-						end
-					end)
-					
-					newEntry.InputEnded:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseMovement then
-							newEntry.BackgroundTransparency = 1
-						end
-					end)
-					
-					newEntry.Parent = mainFrame
-					currentPos = currentPos + self.Height
-				end
-			end
-			
-			mainFrame.Size = UDim2.new(0,self.Width,0,currentPos+2)
-		end
-		newMt.Refresh = refresh
-		
-		local function show(self,displayFrame,x,y)
-			local toSize = mainFrame.Size.Y.Offset
-			local reverseY = false
-			
-			local maxX,maxY = gui.AbsoluteSize.X,gui.AbsoluteSize.Y
-			
-			if x + self.Width > maxX then x = x - self.Width end
-			if y + toSize > maxY then reverseY = true end
-			
-			mainFrame.Position = UDim2.new(0,x,0,y)
-			mainFrame.Size = UDim2.new(0,self.Width,0,0)
-			mainFrame.Parent = displayFrame
-			
-			local closeEvent = Services.UserInputService.InputBegan:Connect(function(input)
-				if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
-				
-				if not f.checkMouseInGui(mainFrame) then
-					self:Hide()
-				end
-			end)
-			
-			if reverseY then
-				if y - toSize < 0 then y = toSize end
-				mainFrame:TweenSizeAndPosition(UDim2.new(0,self.Width,0,toSize),UDim2.new(0,x,0,y - toSize),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.2,true)
-			else
-				mainFrame:TweenSize(UDim2.new(0,self.Width,0,toSize),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.2,true)
-			end
-		end
-		newMt.Show = show
-		
-		local function hide(self)
-			mainFrame.Parent = nil
-		end
-		newMt.Hide = hide
-		
-		return newMt
-	end
+  ContextMenu = {}
+
+  local function createContextEntry()
+    local ContextEntry = CreateInstance("TextButton",{Font=3,FontSize=5,Text="",TextColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=2,TextYAlignment=1,AutoButtonColor=false,Modal=false,Selected=false,Style=0,Active=true,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.37647062540054,0.54901963472366,0.82745105028152),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,2),Rotation=0,Selectable=true,Size=UDim2.new(1,0,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Entry",})
+    local ContextEntry2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,2,0.5,-8),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="IconFrame",Parent = ContextEntry})
+    local ContextEntry3 = CreateInstance("ImageLabel",{Image="rbxassetid://529659138",ImageColor3=Color3.new(1,1,1),ImageRectOffset=Vector2.new(0,0),ImageRectSize=Vector2.new(0,0),ImageTransparency=0,ScaleType=0,SliceCenter=Rect.new(0,0,0,0),Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=false,Size=UDim2.new(0,16,0,16),SizeConstraint=0,Visible=true,ZIndex=1,Name="Icon",Parent = ContextEntry2})
+    local ContextEntry4 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Item",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=0,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,24,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-24,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="EntryName",Parent = ContextEntry})
+    local ContextEntry5 = CreateInstance("TextLabel",{Font=3,FontSize=5,Text="Ctrl+C",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextScaled=false,TextSize=14,TextStrokeColor3=Color3.new(0,0,0),TextStrokeTransparency=1,TextTransparency=0,TextWrapped=false,TextXAlignment=1,TextYAlignment=1,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=1,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,24,0,0),Rotation=0,Selectable=false,Size=UDim2.new(1,-30,0,20),SizeConstraint=0,Visible=true,ZIndex=1,Name="Shortcut",Parent = ContextEntry})
+    return ContextEntry
+  end
+
+  local function createContextDivider()
+    local ContextDivider = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.18823531270027,0.18823531270027,0.18823531270027),BackgroundTransparency=1,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,0,0,20),Rotation=0,Selectable=false,Size=UDim2.new(1,0,0,12),SizeConstraint=0,Visible=true,ZIndex=1,Name="Divider",})
+    local ContextDivider2 = CreateInstance("Frame",{Style=0,Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BackgroundTransparency=0,BorderColor3=Color3.new(0.10588236153126,0.16470588743687,0.20784315466881),BorderSizePixel=0,ClipsDescendants=false,Draggable=false,Position=UDim2.new(0,2,0,5),Rotation=0,Selectable=false,Size=UDim2.new(1,-4,0,1),SizeConstraint=0,Visible=true,ZIndex=1,Name="Line",Parent = ContextDivider})
+    return ContextDivider
+  end
+
+  local contextFrame = CreateInstance("ScrollingFrame",{BottomImage="rbxasset://textures/ui/Scroll/scroll-bottom.png",CanvasPosition=Vector2.new(0,0),CanvasSize=UDim2.new(0,0,2,0),MidImage="rbxasset://textures/ui/Scroll/scroll-middle.png",ScrollBarThickness=0,ScrollingEnabled=true,TopImage="rbxasset://textures/ui/Scroll/scroll-top.png",Active=false,AnchorPoint=Vector2.new(0,0),BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=0,BorderColor3=Color3.new(0.43921571969986,0.43921571969986,0.43921571969986),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0,0,0,0),Rotation=0,Selectable=true,Size=UDim2.new(0,200,0,100),SizeConstraint=0,Visible=true,ZIndex=1,Name="ContextFrame",})
+  local contextEntry = createContextEntry()
+  local contextDivider = createContextDivider()
+
+  function ContextMenu.new()
+    local newMt = setmetatable({
+      Width = 200,
+      Height = 20,
+      Items = {},
+      Frame = contextFrame:Clone()
+    },{})
+
+    local mainFrame = newMt.Frame
+    mainFrame.ZIndex = 5
+    local entryFrame = contextEntry:Clone()
+    local dividerFrame = contextDivider:Clone()
+
+    mainFrame.ScrollingEnabled = false
+
+    local function add(self,item)
+      local newItem = {
+        Name = item.Name or "Item",
+        Icon = item.Icon or "",
+        Shortcut = item.Shortcut or "",
+        OnClick = item.OnClick,
+        OnHover = item.OnHover,
+        Disabled = item.Disabled or false,
+        DisabledIcon = item.DisabledIcon or ""
+      }
+      table.insert(self.Items,newItem)
+    end
+    newMt.Add = add
+
+    local function addDivider(self)
+      table.insert(self.Items,"Divider")
+    end
+    newMt.AddDivider = addDivider
+
+    local function clear(self)
+      self.Items = {}
+    end
+    newMt.Clear = clear
+
+    local function refresh(self)
+      mainFrame:ClearAllChildren()
+
+      local currentPos = 2
+      for _,item in pairs(self.Items) do
+        if item == "Divider" then
+          local newDivider = dividerFrame:Clone()
+          newDivider.Position = UDim2.new(0,0,0,currentPos)
+          newDivider.Parent = mainFrame
+          currentPos = currentPos + 12
+        else
+          local newEntry = entryFrame:Clone()
+          newEntry.Position = UDim2.new(0,0,0,currentPos)
+          newEntry.EntryName.Text = item.Name
+          newEntry.Shortcut.Text = item.Shortcut
+          if item.Disabled then
+            newEntry.EntryName.TextColor3 = Color3.new(150/255,150/255,150/255)
+            newEntry.Shortcut.TextColor3 = Color3.new(150/255,150/255,150/255)
+          end
+
+          local useIcon = item.Disabled and item.DisabledIcon or item.Icon
+          if type(useIcon) == "string" then
+            newEntry.IconFrame.Icon.Image = useIcon
+          else
+            newEntry.IconFrame:Destroy()
+            local newIcon = useIcon:Clone()
+            newIcon.Position = UDim2.new(0,2,0.5,-8)
+            newIcon.Parent = newEntry
+          end
+
+          if item.OnClick and not item.Disabled then
+            newEntry.MouseButton1Click:Connect(item.OnClick)
+            print("Clicked")
+          end
+
+          newEntry.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseMovement then
+              newEntry.BackgroundTransparency = 0.5
+            end
+          end)
+
+          newEntry.InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseMovement then
+              newEntry.BackgroundTransparency = 1
+            end
+          end)
+
+          newEntry.Parent = mainFrame
+          currentPos = currentPos + self.Height
+        end
+      end
+
+      mainFrame.Size = UDim2.new(0,self.Width,0,currentPos+2)
+    end
+    newMt.Refresh = refresh
+
+    local function show(self,displayFrame,x,y)
+      local toSize = mainFrame.Size.Y.Offset
+      local reverseY = false
+
+      local maxX,maxY = gui.AbsoluteSize.X,gui.AbsoluteSize.Y
+
+      if x + self.Width > maxX then x = x - self.Width end
+      if y + toSize > maxY then reverseY = true end
+
+      mainFrame.Position = UDim2.new(0,x,0,y)
+      mainFrame.Size = UDim2.new(0,self.Width,0,0)
+      mainFrame.Parent = displayFrame
+
+      local closeEvent = Services.UserInputService.InputBegan:Connect(function(input)
+        if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+
+        if not f.checkMouseInGui(mainFrame) then
+          self:Hide()
+        end
+      end)
+
+      if reverseY then
+        if y - toSize < 0 then y = toSize end
+        mainFrame:TweenSizeAndPosition(UDim2.new(0,self.Width,0,toSize),UDim2.new(0,x,0,y - toSize),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.2,true)
+      else
+        mainFrame:TweenSize(UDim2.new(0,self.Width,0,toSize),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.2,true)
+      end
+    end
+    newMt.Show = show
+
+    local function hide(self)
+      mainFrame.Parent = nil
+    end
+    newMt.Hide = hide
+
+    return newMt
+  end
 end
 
 -- Explorer
 local workspaces = {
-	["Default"] = {
-		Data = {"Default"},
-		IsDefault = true
-	}
+  ["Default"] = {
+    Data = {"Default"},
+    IsDefault = true
+  }
 }
 local nodes = {}
 
@@ -1641,267 +1644,267 @@ local entryTemplate = resources:WaitForChild("Entry")
 
 local iconMap = "rbxassetid://765660635"
 local iconIndex = {
-	-- Core
-	NodeCollapsed = 165;
-	NodeExpanded = 166;
-	NodeCollapsedOver = 179;
-	NodeExpandedOver = 180;
-	
-	-- Buttons
-	CUT_ICON = 174;
-	COPY_ICON = 175;
-	PASTE_ICON = 176;
-	DELETE_ICON = 177;
-	GROUP_ICON = 150;
-	UNGROUP_ICON = 151;
-	SELECTCHILDREN_ICON = 152;
-	
-	CUT_D_ICON = 160;
-	COPY_D_ICON = 161;
-	PASTE_D_ICON = 162;
-	DELETE_D_ICON = 163;
-	GROUP_D_ICON = 136;
-	UNGROUP_D_ICON = 137;
-	SELECTCHILDREN_D_ICON = 138;
-	
-	-- Classes
-	["Accessory"] = 32;
-	["Accoutrement"] = 32;
-	["AdvancedDragger"] = 41;
-	["AdService"] = 73;
-	["AlignOrientation"] = 110;
-	["AlignPosition"] = 111;
-	["Animation"] = 60;
-	["AnimationController"] = 60;
-	["AnimationTrack"] = 60;
-	["Animator"] = 60;
-	["ArcHandles"] = 56;
-	["AssetService"] = 72;
-	["Attachment"] = 92;
-	["Backpack"] = 20;
-	["BadgeService"] = 75;
-	["BallSocketConstraint"] = 97;
-	["BillboardGui"] = 64;
-	["BinaryStringValue"] = 4;
-	["BindableEvent"] = 67;
-	["BindableFunction"] = 66;
-	["BlockMesh"] = 8;
-	["BloomEffect"] = 90;
-	["BlurEffect"] = 90;
-	["BodyAngularVelocity"] = 14;
-	["BodyForce"] = 14;
-	["BodyGyro"] = 14;
-	["BodyPosition"] = 14;
-	["BodyThrust"] = 14;
-	["BodyVelocity"] = 14;
-	["BoolValue"] = 4;
-	["BoxHandleAdornment"] = 54;
-	["BrickColorValue"] = 4;
-	["Camera"] = 5;
-	["CFrameValue"] = 4;
-	["ChangeHistoryService"] = 118;
-	["CharacterMesh"] = 60;
-	["Chat"] = 33;
-	["ClickDetector"] = 41;
-	["CollectionService"] = 30;
-	["Color3Value"] = 4;
-	["ColorCorrectionEffect"] = 90;
-	["ConeHandleAdornment"] = 54;
-	["Configuration"] = 58;
-	["ContentProvider"] = 72;
-	["ContextActionService"] = 41;
-	["ControllerService"] = 84;
-	["CookiesService"] = 119;
-	["CoreGui"] = 46;
-	["CoreScript"] = 91;
-	["CornerWedgePart"] = 1;
-	["CustomEvent"] = 4;
-	["CustomEventReceiver"] = 4;
-	["CylinderHandleAdornment"] = 54;
-	["CylinderMesh"] = 8;
-	["CylindricalConstraint"] = 89;
-	["Debris"] = 30;
-	["Decal"] = 7;
-	["Dialog"] = 62;
-	["DialogChoice"] = 63;
-	["DoubleConstrainedValue"] = 4;
-	["Explosion"] = 36;
-	["FileMesh"] = 8;
-	["Fire"] = 61;
-	["Flag"] = 38;
-	["FlagStand"] = 39;
-	["FloorWire"] = 4;
-	["Folder"] = 70;
-	["ForceField"] = 37;
-	["Frame"] = 48;
-	["FriendService"] = 121;
-	["GamepadService"] = 84;
-	["GamePassService"] = 19;
-	["Geometry"] = 120;
-	["Glue"] = 34;
-	["GuiButton"] = 52;
-	["GuiMain"] = 47;
-	["GuiService"] = 47;
-	["Handles"] = 53;
-	["HapticService"] = 84;
-	["Hat"] = 45;
-	["HingeConstraint"] = 89;
-	["Hint"] = 33;
-	["HopperBin"] = 22;
-	["HttpRbxApiService"] = 76;
-	["HttpService"] = 76;
-	["Humanoid"] = 9;
-	["HumanoidController"] = 9;
-	["ImageButton"] = 52;
-	["ImageLabel"] = 49;
-	["InsertService"] = 72;
-	["IntConstrainedValue"] = 4;
-	["IntValue"] = 4;
-	["JointInstance"] = 34;
-	["JointsService"] = 34;
-	["Keyframe"] = 60;
-	["KeyframeSequence"] = 60;
-	["KeyframeSequenceProvider"] = 60;
-	["Lighting"] = 13;
-	["LineForce"] = 112;
-	["LineHandleAdornment"] = 54;
-	["LocalScript"] = 18;
-	["LogService"] = 87;
-	["LuaWebService"] = 91;
-	["MarketplaceService"] = 106;
-	["MeshContentProvider"] = 8;
-	["MeshPart"] = 77;
-	["Message"] = 33;
-	["Model"] = 2;
-	["ModuleScript"] = 71;
-	["Motor"] = 34;
-	["Motor6D"] = 34;
-	["MoveToConstraint"] = 89;
-	["NegateOperation"] = 78;
-	["NetworkClient"] = 16;
-	["NetworkReplicator"] = 29;
-	["NetworkServer"] = 15;
-	["NotificationService"] = 117;
-	["NumberValue"] = 4;
-	["ObjectValue"] = 4;
-	["Pants"] = 44;
-	["ParallelRampPart"] = 1;
-	["Part"] = 1;
-	["ParticleEmitter"] = 69;
-	["PartPairLasso"] = 57;
-	["PathfindingService"] = 37;
-	["PersonalServerService"] = 121;
-	["PhysicsService"] = 30;
-	["Platform"] = 35;
-	["Player"] = 12;
-	["PlayerGui"] = 46;
-	["Players"] = 21;
-	["PlayerScripts"] = 82;
-	["PointLight"] = 13;
-	["PointsService"] = 83;
-	["Pose"] = 60;
-	["PrismaticConstraint"] = 89;
-	["PrismPart"] = 1;
-	["PyramidPart"] = 1;
-	["RayValue"] = 4;
-	["ReflectionMetadata"] = 86;
-	["ReflectionMetadataCallbacks"] = 86;
-	["ReflectionMetadataClass"] = 86;
-	["ReflectionMetadataClasses"] = 86;
-	["ReflectionMetadataEnum"] = 86;
-	["ReflectionMetadataEnumItem"] = 86;
-	["ReflectionMetadataEnums"] = 86;
-	["ReflectionMetadataEvents"] = 86;
-	["ReflectionMetadataFunctions"] = 86;
-	["ReflectionMetadataMember"] = 86;
-	["ReflectionMetadataProperties"] = 86;
-	["ReflectionMetadataYieldFunctions"] = 86;
-	["RemoteEvent"] = 80;
-	["RemoteFunction"] = 79;
-	["RenderHooksService"] = 122;
-	["ReplicatedFirst"] = 72;
-	["ReplicatedStorage"] = 72;
-	["RightAngleRampPart"] = 1;
-	["RocketPropulsion"] = 14;
-	["RodConstraint"] = 89;
-	["RopeConstraint"] = 89;
-	["Rotate"] = 34;
-	["RotateP"] = 34;
-	["RotateV"] = 34;
-	["RunService"] = 124;
-	["RuntimeScriptService"] = 91;
-	["ScreenGui"] = 47;
-	["Script"] = 6;
-	["ScriptContext"] = 82;
-	["ScriptService"] = 91;
-	["ScrollingFrame"] = 48;
-	["Seat"] = 35;
-	["Selection"] = 55;
-	["SelectionBox"] = 54;
-	["SelectionPartLasso"] = 57;
-	["SelectionPointLasso"] = 57;
-	["SelectionSphere"] = 54;
-	["ServerScriptService"] = 115;
-	["ServerStorage"] = 74;
-	["Shirt"] = 43;
-	["ShirtGraphic"] = 40;
-	["SkateboardPlatform"] = 35;
-	["Sky"] = 28;
-	["SlidingBallConstraint"] = 89;
-	["Smoke"] = 59;
-	["Snap"] = 34;
-	["SolidModelContentProvider"] = 77;
-	["Sound"] = 11;
-	["SoundGroup"] = 93;
-	["SoundService"] = 31;
-	["Sparkles"] = 42;
-	["SpawnLocation"] = 25;
-	["SpecialMesh"] = 8;
-	["SphereHandleAdornment"] = 54;
-	["SpotLight"] = 13;
-	["SpringConstraint"] = 89;
-	["StarterCharacterScripts"] = 82;
-	["StarterGear"] = 20;
-	["StarterGui"] = 46;
-	["StarterPack"] = 20;
-	["StarterPlayer"] = 88;
-	["StarterPlayerScripts"] = 82;
-	["Status"] = 2;
-	["StringValue"] = 4;
-	["SunRaysEffect"] = 90;
-	["SurfaceGui"] = 64;
-	["SurfaceLight"] = 13;
-	["SurfaceSelection"] = 55;
-	["Team"] = 24;
-	["Teams"] = 23;
-	["TeleportService"] = 81;
-	["Terrain"] = 65;
-	["TerrainRegion"] = 65;
-	["TestService"] = 68;
-	["TextBox"] = 51;
-	["TextButton"] = 51;
-	["TextLabel"] = 50;
-	["TextService"] = 50;
-	["Texture"] = 10;
-	["TextureTrail"] = 4;
-	["TimerService"] = 118;
-	["Tool"] = 17;
-	["Torque"] = 113;
-	["TouchInputService"] = 84;
-	["TouchTransmitter"] = 37;
-	["TrussPart"] = 1;
-	["TweenService"] = 109;
-	["UnionOperation"] = 77;
-	["UserInputService"] = 84;
-	["Vector3Value"] = 4;
-	["VehicleSeat"] = 35;
-	["VelocityMotor"] = 34;
-	["Visit"] = 123;
-	["VRService"] = 95;
-	["WedgePart"] = 1;
-	["Weld"] = 34;
-	["Workspace"] = 19;
-	[""] = 116;
+  -- Core
+  NodeCollapsed = 165;
+  NodeExpanded = 166;
+  NodeCollapsedOver = 179;
+  NodeExpandedOver = 180;
+
+  -- Buttons
+  CUT_ICON = 174;
+  COPY_ICON = 175;
+  PASTE_ICON = 176;
+  DELETE_ICON = 177;
+  GROUP_ICON = 150;
+  UNGROUP_ICON = 151;
+  SELECTCHILDREN_ICON = 152;
+
+  CUT_D_ICON = 160;
+  COPY_D_ICON = 161;
+  PASTE_D_ICON = 162;
+  DELETE_D_ICON = 163;
+  GROUP_D_ICON = 136;
+  UNGROUP_D_ICON = 137;
+  SELECTCHILDREN_D_ICON = 138;
+
+  -- Classes
+  ["Accessory"] = 32;
+  ["Accoutrement"] = 32;
+  ["AdvancedDragger"] = 41;
+  ["AdService"] = 73;
+  ["AlignOrientation"] = 110;
+  ["AlignPosition"] = 111;
+  ["Animation"] = 60;
+  ["AnimationController"] = 60;
+  ["AnimationTrack"] = 60;
+  ["Animator"] = 60;
+  ["ArcHandles"] = 56;
+  ["AssetService"] = 72;
+  ["Attachment"] = 92;
+  ["Backpack"] = 20;
+  ["BadgeService"] = 75;
+  ["BallSocketConstraint"] = 97;
+  ["BillboardGui"] = 64;
+  ["BinaryStringValue"] = 4;
+  ["BindableEvent"] = 67;
+  ["BindableFunction"] = 66;
+  ["BlockMesh"] = 8;
+  ["BloomEffect"] = 90;
+  ["BlurEffect"] = 90;
+  ["BodyAngularVelocity"] = 14;
+  ["BodyForce"] = 14;
+  ["BodyGyro"] = 14;
+  ["BodyPosition"] = 14;
+  ["BodyThrust"] = 14;
+  ["BodyVelocity"] = 14;
+  ["BoolValue"] = 4;
+  ["BoxHandleAdornment"] = 54;
+  ["BrickColorValue"] = 4;
+  ["Camera"] = 5;
+  ["CFrameValue"] = 4;
+  ["ChangeHistoryService"] = 118;
+  ["CharacterMesh"] = 60;
+  ["Chat"] = 33;
+  ["ClickDetector"] = 41;
+  ["CollectionService"] = 30;
+  ["Color3Value"] = 4;
+  ["ColorCorrectionEffect"] = 90;
+  ["ConeHandleAdornment"] = 54;
+  ["Configuration"] = 58;
+  ["ContentProvider"] = 72;
+  ["ContextActionService"] = 41;
+  ["ControllerService"] = 84;
+  ["CookiesService"] = 119;
+  ["CoreGui"] = 46;
+  ["CoreScript"] = 91;
+  ["CornerWedgePart"] = 1;
+  ["CustomEvent"] = 4;
+  ["CustomEventReceiver"] = 4;
+  ["CylinderHandleAdornment"] = 54;
+  ["CylinderMesh"] = 8;
+  ["CylindricalConstraint"] = 89;
+  ["Debris"] = 30;
+  ["Decal"] = 7;
+  ["Dialog"] = 62;
+  ["DialogChoice"] = 63;
+  ["DoubleConstrainedValue"] = 4;
+  ["Explosion"] = 36;
+  ["FileMesh"] = 8;
+  ["Fire"] = 61;
+  ["Flag"] = 38;
+  ["FlagStand"] = 39;
+  ["FloorWire"] = 4;
+  ["Folder"] = 70;
+  ["ForceField"] = 37;
+  ["Frame"] = 48;
+  ["FriendService"] = 121;
+  ["GamepadService"] = 84;
+  ["GamePassService"] = 19;
+  ["Geometry"] = 120;
+  ["Glue"] = 34;
+  ["GuiButton"] = 52;
+  ["GuiMain"] = 47;
+  ["GuiService"] = 47;
+  ["Handles"] = 53;
+  ["HapticService"] = 84;
+  ["Hat"] = 45;
+  ["HingeConstraint"] = 89;
+  ["Hint"] = 33;
+  ["HopperBin"] = 22;
+  ["HttpRbxApiService"] = 76;
+  ["HttpService"] = 76;
+  ["Humanoid"] = 9;
+  ["HumanoidController"] = 9;
+  ["ImageButton"] = 52;
+  ["ImageLabel"] = 49;
+  ["InsertService"] = 72;
+  ["IntConstrainedValue"] = 4;
+  ["IntValue"] = 4;
+  ["JointInstance"] = 34;
+  ["JointsService"] = 34;
+  ["Keyframe"] = 60;
+  ["KeyframeSequence"] = 60;
+  ["KeyframeSequenceProvider"] = 60;
+  ["Lighting"] = 13;
+  ["LineForce"] = 112;
+  ["LineHandleAdornment"] = 54;
+  ["LocalScript"] = 18;
+  ["LogService"] = 87;
+  ["LuaWebService"] = 91;
+  ["MarketplaceService"] = 106;
+  ["MeshContentProvider"] = 8;
+  ["MeshPart"] = 77;
+  ["Message"] = 33;
+  ["Model"] = 2;
+  ["ModuleScript"] = 71;
+  ["Motor"] = 34;
+  ["Motor6D"] = 34;
+  ["MoveToConstraint"] = 89;
+  ["NegateOperation"] = 78;
+  ["NetworkClient"] = 16;
+  ["NetworkReplicator"] = 29;
+  ["NetworkServer"] = 15;
+  ["NotificationService"] = 117;
+  ["NumberValue"] = 4;
+  ["ObjectValue"] = 4;
+  ["Pants"] = 44;
+  ["ParallelRampPart"] = 1;
+  ["Part"] = 1;
+  ["ParticleEmitter"] = 69;
+  ["PartPairLasso"] = 57;
+  ["PathfindingService"] = 37;
+  ["PersonalServerService"] = 121;
+  ["PhysicsService"] = 30;
+  ["Platform"] = 35;
+  ["Player"] = 12;
+  ["PlayerGui"] = 46;
+  ["Players"] = 21;
+  ["PlayerScripts"] = 82;
+  ["PointLight"] = 13;
+  ["PointsService"] = 83;
+  ["Pose"] = 60;
+  ["PrismaticConstraint"] = 89;
+  ["PrismPart"] = 1;
+  ["PyramidPart"] = 1;
+  ["RayValue"] = 4;
+  ["ReflectionMetadata"] = 86;
+  ["ReflectionMetadataCallbacks"] = 86;
+  ["ReflectionMetadataClass"] = 86;
+  ["ReflectionMetadataClasses"] = 86;
+  ["ReflectionMetadataEnum"] = 86;
+  ["ReflectionMetadataEnumItem"] = 86;
+  ["ReflectionMetadataEnums"] = 86;
+  ["ReflectionMetadataEvents"] = 86;
+  ["ReflectionMetadataFunctions"] = 86;
+  ["ReflectionMetadataMember"] = 86;
+  ["ReflectionMetadataProperties"] = 86;
+  ["ReflectionMetadataYieldFunctions"] = 86;
+  ["RemoteEvent"] = 80;
+  ["RemoteFunction"] = 79;
+  ["RenderHooksService"] = 122;
+  ["ReplicatedFirst"] = 72;
+  ["ReplicatedStorage"] = 72;
+  ["RightAngleRampPart"] = 1;
+  ["RocketPropulsion"] = 14;
+  ["RodConstraint"] = 89;
+  ["RopeConstraint"] = 89;
+  ["Rotate"] = 34;
+  ["RotateP"] = 34;
+  ["RotateV"] = 34;
+  ["RunService"] = 124;
+  ["RuntimeScriptService"] = 91;
+  ["ScreenGui"] = 47;
+  ["Script"] = 6;
+  ["ScriptContext"] = 82;
+  ["ScriptService"] = 91;
+  ["ScrollingFrame"] = 48;
+  ["Seat"] = 35;
+  ["Selection"] = 55;
+  ["SelectionBox"] = 54;
+  ["SelectionPartLasso"] = 57;
+  ["SelectionPointLasso"] = 57;
+  ["SelectionSphere"] = 54;
+  ["ServerScriptService"] = 115;
+  ["ServerStorage"] = 74;
+  ["Shirt"] = 43;
+  ["ShirtGraphic"] = 40;
+  ["SkateboardPlatform"] = 35;
+  ["Sky"] = 28;
+  ["SlidingBallConstraint"] = 89;
+  ["Smoke"] = 59;
+  ["Snap"] = 34;
+  ["SolidModelContentProvider"] = 77;
+  ["Sound"] = 11;
+  ["SoundGroup"] = 93;
+  ["SoundService"] = 31;
+  ["Sparkles"] = 42;
+  ["SpawnLocation"] = 25;
+  ["SpecialMesh"] = 8;
+  ["SphereHandleAdornment"] = 54;
+  ["SpotLight"] = 13;
+  ["SpringConstraint"] = 89;
+  ["StarterCharacterScripts"] = 82;
+  ["StarterGear"] = 20;
+  ["StarterGui"] = 46;
+  ["StarterPack"] = 20;
+  ["StarterPlayer"] = 88;
+  ["StarterPlayerScripts"] = 82;
+  ["Status"] = 2;
+  ["StringValue"] = 4;
+  ["SunRaysEffect"] = 90;
+  ["SurfaceGui"] = 64;
+  ["SurfaceLight"] = 13;
+  ["SurfaceSelection"] = 55;
+  ["Team"] = 24;
+  ["Teams"] = 23;
+  ["TeleportService"] = 81;
+  ["Terrain"] = 65;
+  ["TerrainRegion"] = 65;
+  ["TestService"] = 68;
+  ["TextBox"] = 51;
+  ["TextButton"] = 51;
+  ["TextLabel"] = 50;
+  ["TextService"] = 50;
+  ["Texture"] = 10;
+  ["TextureTrail"] = 4;
+  ["TimerService"] = 118;
+  ["Tool"] = 17;
+  ["Torque"] = 113;
+  ["TouchInputService"] = 84;
+  ["TouchTransmitter"] = 37;
+  ["TrussPart"] = 1;
+  ["TweenService"] = 109;
+  ["UnionOperation"] = 77;
+  ["UserInputService"] = 84;
+  ["Vector3Value"] = 4;
+  ["VehicleSeat"] = 35;
+  ["VelocityMotor"] = 34;
+  ["Visit"] = 123;
+  ["VRService"] = 95;
+  ["WedgePart"] = 1;
+  ["Weld"] = 34;
+  ["Workspace"] = 19;
+  [""] = 116;
 }
 
 entryTemplate.Indent.IconFrame.Icon.Image = iconMap
@@ -2213,111 +2216,111 @@ local categoryOrder = {["Appearance"] = 1,["Data"] = 2,["Goals"] = 3,["Thrust"] 
 
 -- Gui Functions
 local function getResource(name)
-	return resources:WaitForChild(name):Clone()
+  return resources:WaitForChild(name):Clone()
 end
 
 function f.prevProportions(t,ind)
-	local count = 0	
-	for i = ind,1,-1 do
-		count = count + t[i].Proportion
-	end
-	return count
+  local count = 0	
+  for i = ind,1,-1 do
+    count = count + t[i].Proportion
+  end
+  return count
 end
 
 function f.buildPanes()
-	for i,v in pairs(RPaneItems) do
-		v.Window:TweenSizeAndPosition(UDim2.new(0,explorerSettings.RPaneWidth,v.Proportion,0),UDim2.new(0,0,f.prevProportions(RPaneItems,i-1),0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
-	end
+  for i,v in pairs(RPaneItems) do
+    v.Window:TweenSizeAndPosition(UDim2.new(0,explorerSettings.RPaneWidth,v.Proportion,0),UDim2.new(0,0,f.prevProportions(RPaneItems,i-1),0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
+  end
 end
 
 function f.distance(x1,y1,x2,y2)
-	return math.sqrt((x2-x1)^2+(y2-y1)^2)
+  return math.sqrt((x2-x1)^2+(y2-y1)^2)
 end
 
 function f.checkMouseInGui(gui)
-	if gui == nil then return false end
-	local guiPosition = gui.AbsolutePosition
-	local guiSize = gui.AbsoluteSize	
-	
-	if mouse.X >= guiPosition.x and mouse.X <= guiPosition.x + guiSize.x and mouse.Y >= guiPosition.y and mouse.Y <= guiPosition.y + guiSize.y then
-		return true
-	else
-		return false
-	end
+  if gui == nil then return false end
+  local guiPosition = gui.AbsolutePosition
+  local guiSize = gui.AbsoluteSize	
+
+  if mouse.X >= guiPosition.x and mouse.X <= guiPosition.x + guiSize.x and mouse.Y >= guiPosition.y and mouse.Y <= guiPosition.y + guiSize.y then
+    return true
+  else
+    return false
+  end
 end
 
 function f.addToPane(window,pane)
-	if pane == "Right" then
-		for i,v in pairs(RPaneItems) do if v.Window == window then return end end
-		for i,v in pairs(RPaneItems) do
-			RPaneItems[i].Proportion = v.Proportion / 100 * 80
-		end
-		window.Parent = contentR
-		if #RPaneItems == 0 then
-			table.insert(RPaneItems,{Window = window, Proportion = 1})
-		else
-			table.insert(RPaneItems,{Window = window, Proportion = 0.2})
-		end
-	end
-	f.buildPanes()
+  if pane == "Right" then
+    for i,v in pairs(RPaneItems) do if v.Window == window then return end end
+    for i,v in pairs(RPaneItems) do
+      RPaneItems[i].Proportion = v.Proportion / 100 * 80
+    end
+    window.Parent = contentR
+    if #RPaneItems == 0 then
+      table.insert(RPaneItems,{Window = window, Proportion = 1})
+    else
+      table.insert(RPaneItems,{Window = window, Proportion = 0.2})
+    end
+  end
+  f.buildPanes()
 end
 
 function f.removeFromPane(window)
-	local pane
-	local windowIndex
-	
-	for i,v in pairs(LPaneItems) do if v.Window == window then pane = LPaneItems windowIndex = i end end
-	for i,v in pairs(RPaneItems) do if v.Window == window then pane = RPaneItems windowIndex = i end end	
-	
-	if pane and #pane > 0 then
-		local weightTop,weightBottom,weightTopN,weightBottomN = 0,0			
-		
-		for i = windowIndex-1,1,-1 do weightTop = weightTop + RPaneItems[i].Proportion end	
-		for i = windowIndex+1,#RPaneItems do weightBottom = weightBottom + RPaneItems[i].Proportion end	
-		
-		if weightTop > 0 and weightBottom == 0 then
-			weightTopN = weightTop + RPaneItems[windowIndex].Proportion
-		elseif weightTop == 0 and weightBottom > 0 then
-			weightBottomN = weightBottom + RPaneItems[windowIndex].Proportion
-		else
-			weightTopN = weightTop + RPaneItems[windowIndex].Proportion/2
-			weightBottomN = weightBottom + RPaneItems[windowIndex].Proportion/2
-		end
-			
-		for i = 1,windowIndex-1 do
-			RPaneItems[i].Proportion = RPaneItems[i].Proportion / weightTop * weightTopN
-		end
-		for i = windowIndex+1,#RPaneItems do
-			RPaneItems[i].Proportion = RPaneItems[i].Proportion / weightBottom * weightBottomN
-		end
+  local pane
+  local windowIndex
 
-		table.remove(RPaneItems,windowIndex)
-		f.buildPanes()
-	end
+  for i,v in pairs(LPaneItems) do if v.Window == window then pane = LPaneItems windowIndex = i end end
+  for i,v in pairs(RPaneItems) do if v.Window == window then pane = RPaneItems windowIndex = i end end	
+
+  if pane and #pane > 0 then
+    local weightTop,weightBottom,weightTopN,weightBottomN = 0,0			
+
+    for i = windowIndex-1,1,-1 do weightTop = weightTop + RPaneItems[i].Proportion end	
+    for i = windowIndex+1,#RPaneItems do weightBottom = weightBottom + RPaneItems[i].Proportion end	
+
+    if weightTop > 0 and weightBottom == 0 then
+      weightTopN = weightTop + RPaneItems[windowIndex].Proportion
+    elseif weightTop == 0 and weightBottom > 0 then
+      weightBottomN = weightBottom + RPaneItems[windowIndex].Proportion
+    else
+      weightTopN = weightTop + RPaneItems[windowIndex].Proportion/2
+      weightBottomN = weightBottom + RPaneItems[windowIndex].Proportion/2
+    end
+
+    for i = 1,windowIndex-1 do
+      RPaneItems[i].Proportion = RPaneItems[i].Proportion / weightTop * weightTopN
+    end
+    for i = windowIndex+1,#RPaneItems do
+      RPaneItems[i].Proportion = RPaneItems[i].Proportion / weightBottom * weightBottomN
+    end
+
+    table.remove(RPaneItems,windowIndex)
+    f.buildPanes()
+  end
 end
 
 function f.resizePaneItem(window,pane,size)
-	local windowIndex = 0
-	local sizeWeight = 0
-	size = math.max(0.2,size)
-	if pane == "Right" then
-		for i,v in pairs(RPaneItems) do
-			if v.Window == window then windowIndex = i break end
-		end
-			
-		for i = windowIndex+1,#RPaneItems do
-			sizeWeight = sizeWeight + RPaneItems[i].Proportion
-		end
-		
-		local oldSize = 1-(sizeWeight+RPaneItems[windowIndex].Proportion)
-		
-		RPaneItems[windowIndex].Proportion = size
-		
-		for i = 1,windowIndex-1 do
-			RPaneItems[i].Proportion = RPaneItems[i].Proportion / oldSize * (1-(sizeWeight+size))
-		end
-	end
-	f.buildPanes()
+  local windowIndex = 0
+  local sizeWeight = 0
+  size = math.max(0.2,size)
+  if pane == "Right" then
+    for i,v in pairs(RPaneItems) do
+      if v.Window == window then windowIndex = i break end
+    end
+
+    for i = windowIndex+1,#RPaneItems do
+      sizeWeight = sizeWeight + RPaneItems[i].Proportion
+    end
+
+    local oldSize = 1-(sizeWeight+RPaneItems[windowIndex].Proportion)
+
+    RPaneItems[windowIndex].Proportion = size
+
+    for i = 1,windowIndex-1 do
+      RPaneItems[i].Proportion = RPaneItems[i].Proportion / oldSize * (1-(sizeWeight+size))
+    end
+  end
+  f.buildPanes()
 end
 
 f.fetchAPI = function()
@@ -2336,11 +2339,11 @@ f.fetchAPI = function()
         elseif eType == "Property" then
             table.insert(classes[entry.Class].Properties,entry)
             entry.Category = (propCategories[entry.Class] and propCategories[entry.Class][entry.Name] or "Other")
-			entry.Tags = {}
-			for i,tag in pairs(entry.tags) do
-				entry.Tags[tag] = true
-			end
-			entry.tags = nil
+      entry.Tags = {}
+      for i,tag in pairs(entry.tags) do
+        entry.Tags[tag] = true
+      end
+      entry.tags = nil
         elseif eType == "Enum" then
             enums[entry.Name] = entry
             entry.EnumItems = {}
@@ -2375,809 +2378,809 @@ f.fetchAPI = function()
 end
 
 f.fetchRMD = function()
-	local rawRMD = nil
+  local rawRMD = nil
     if script and script:FindFirstChild("RMD") then
         rawRMD = require(script.RMD)
     else
         rawRMD = [==[[{"Name":"BindableFunction","Summary":"Allow functions defined in one script to be called by another script","ExplorerOrder":4,"ExplorerImageIndex":66,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Invoke","Summary":"Causes the function assigned to OnInvoke to be called. Arguments passed to this function get passed to OnInvoke function.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"OnInvoke","Summary":"Should be defined as a function. This function is called when Invoke() is called. Number of arguments is variable.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BindableEvent","Summary":"Allow events defined in one script to be subscribed to by another script","ExplorerOrder":5,"ExplorerImageIndex":67,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Fire","Summary":"Used to make the custom event fire (see Event for more info). Arguments can be variable length.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Event","Summary":"This event fires when the Fire() method is used.  Receives the variable length arguments from Fire().","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchTransmitter","Summary":"Used by networking and replication code to transmit touch events - no other purpose","ExplorerOrder":3,"ExplorerImageIndex":37,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ForceField","Summary":"Prevents joint breakage from explosions, and stops Humanoids from taking damage","ExplorerOrder":3,"ExplorerImageIndex":37,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PluginManager","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TeleportService","Summary":"Allows players to seamlessly leave a game and join another","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Plugin","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PluginMouse","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Glue","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CollectionService","Summary":"A service which provides collections of instances based on tags assigned to them.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"ItemAdded","Summary":"Deprecated. Use GetInstanceAddedSignal instead.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"ItemRemoved","Summary":"Deprecated. Use GetInstancedRemovedSignal instead.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"GetCollection","Summary":"Deprecated. Use GetTagged instead.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"GetTagged","Summary":"Returns an array of all of the instances in the data model which have the given tag.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AddTag","Summary":"Adds a tag to an instance.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RemoveTag","Summary":"Removes a tag to an instance.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetTags","Summary":"Returns a list of all the collections that an instance belongs to.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"HasTag","Summary":"Returns whether the given instance has the given tag.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetInstanceAddedSignal","Summary":"Returns a signal that fires when the given tag either has a new instance with that tag added to the data model or that tag is assigned to an instance within the data model.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetInstanceRemovedSignal","Summary":"Returns a signal that fires when the given tag either has an instance with that tag removed from the data model or that tag is removed from an instance within the data model.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"JointsService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RunService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BadgeService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LogService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AssetService","Summary":"A service used to set and get information about assets stored on the Roblox website.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"RevertAsset","Summary":"Reverts a given place id to the version number provided. Returns true if successful on reverting, false otherwise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetPlacePermissions","Summary":"Sets the permissions for a placeID to the place accessType. An optional table (inviteList) can be included that will set the accessType for only the player names provided. The table should be set up as an array of usernames (strings).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetPlacePermissions","Summary":"Given a placeID, this function will return a table with the permissions of the place. Useful for determining what kind of permissions a particular user may have for a place.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetAssetVersions","Summary":"Given a placeID, this function will return a table with the version info of the place. An optional arg of page number can be used to page through all revisions (a single page may hold about 50 revisions).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetCreatorAssetID","Summary":"Given a creationID, this function will return the asset that created the creationID. If no other asset created the given creationID, 0 is returned.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"HttpService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"HttpEnabled","Summary":"Enabling http requests from scripts","Browsable":"true","Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InsertService","Summary":"A service used to insert objects stored on the website into the game.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"AllowClientInsertModels","Summary":"Can be set in non-filtering-enabled places to allow LoadAsset to be used in LocalScripts.","Browsable":"true","Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AllowInsertFreeModels","Summary":"Allows free models to be inserted into place.","Browsable":"false","Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"GetCollection","Summary":"Returns a table for the assets stored in the category.  A category is an setId from www.roblox.com that links to a set.  <a href=\"http://wiki.roblox.com/index.php?title=API:Class/InsertService/GetCollection\" target=\"_blank\">More info on table format</a>. <a href=\"http://wiki.roblox.com/index.php/Sets\" target=\"_blank\">More info on sets</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Insert","Summary":"Inserts the Instance into the workspace.  It is recommended to use Instance.Parent = game.Workspace instead, as this can cause issues currently.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ApproveAssetId","Summary":"Deprecated","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"ApproveAssetVersionId","Summary":"Deprecated","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"GetBaseSets","Summary":"Returns a table containing a list of the various setIds that are ROBLOX approved. <a href=\"http://wiki.roblox.com/index.php/Sets\" target=\"_blank\">More info on sets</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetUserSets","Summary":"Returns a table containing a list of the various setIds that correspond to argument 'userId'. <a href=\"http://wiki.roblox.com/index.php/Sets\" target=\"_blank\">More info on sets</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetBaseCategories","Summary":"Deprecated. Use GetBaseSets() instead.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"GetUserCategories","Summary":"Deprecated. Use GetUserSets() instead.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"LoadAsset","Summary":"Returns a Model containing the Instance that resides at AssetId on the web. This call will also yield the script until the model is returned. Script execution can still continue, however, if you use a <a href=\"http://wiki.roblox.com/index.php?title=Coroutine\" target=\"_blank\">coroutine</a>.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LoadAssetVersion","Summary":"Similar to LoadAsset, but instead an AssetVersionId is passed in, which refers to a particular version of the asset which is not neccessarily the latest version.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Hat","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":45,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"Accessory","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":32,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LocalBackpack","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LocalBackpackItem","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MotorFeature","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"Attachment","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":81,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Rotation","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WorldRotation","Summary":"Deprecated. Use WorldOrientation instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"Orientation","Summary":"Euler angles applied in YXZ order","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WorldOrientation","Summary":"Euler angles applied in YXZ order","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Constraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":86,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Enabled","Summary":"Toggles whether or not this constraint is enabled. Disabled constraints will not render in game.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Color","Summary":"The color of the in-game visual.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Visible","Summary":"Toggles the in-game visual associated with this constraint.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BallSocketConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":86,"Browsable":true,"PreferredParent":"","Members":[{"Name":"LimitsEnabled","Summary":"Enables the angular limit between the axis of Attachment0 and the axis of Attachment1.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UpperAngle","Summary":"Maximum angle between the two main axes. Value in [0, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Restitution","Summary":"Restitution of the limit, or how elastic it is. Value in [0, 1].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TwistLimitsEnabled","Summary":"Enables the angular limits around the main axis of Attachment1.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TwistUpperAngle","Summary":"Upper angular limit around the axis of Attachment1. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TwistLowerAngle","Summary":"Lower angular limit around the axis of Attachment1. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Radius","Summary":"Radius of the in-game visual. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RopeConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":89,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Length","Summary":"The length of the rope or the maximum distance between the two attachments. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Restitution","Summary":"Restitution of the rope, or how elastic it is. Value in [0, 1].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CurrentDistance","Summary":"Current distance between the two attachments. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Thickness","Summary":"The thickness of the in-game visual (diameter). Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RodConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":90,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Length","Summary":"The length of the rod or the distance to be maintained between the two attachments. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CurrentDistance","Summary":"Current distance between the two attachments. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Thickness","Summary":"The thickness of the in-game visual (diameter). Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SpringConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":91,"Browsable":true,"PreferredParent":"","Members":[{"Name":"LimitsEnabled","Summary":"Enables limits on the length of the spring.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Stiffness","Summary":"The stiffness parameter of the spring. Force is scaled based on distance from the free length. The units of this property are force / distance. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Damping","Summary":"The damping parameter of the spring. The force is scaled with respect to relative velocity. The units of this property are force / velocity. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FreeLength","Summary":"The distance (in studs) between the two attachments at which the spring exerts no stiffness force. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MaxForce","Summary":"The maximum force that the spring can apply. Useful to prevent instabilities. The units are mass * studs / seconds^2. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MaxLength","Summary":"Maximum spring length, or the maxium distance between the two attachments. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MinLength","Summary":"Minimum spring length, or the minimum distance between the two attachments. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Radius","Summary":"The radius of the in-game spring coil visual. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Thickness","Summary":"The thickness of the spring wire (diameter) in the in-game visual. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Coils","Summary":"The number of coils in the in-game visual. Value in [0, 8].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CurrentLength","Summary":"Current distance between the two attachments. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WeldConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":94,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"HingeConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":87,"Browsable":true,"PreferredParent":"","Members":[{"Name":"ActuatorType","Summary":"Type of the rotational actuator: None, Motor, or Servo.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LimitsEnabled","Summary":"Enables the angular limits on rotations around the main axis of Attachment0.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UpperAngle","Summary":"Upper limit for the angle from the SecondaryAxis of Attachment0 to the SecondaryAxis of Attachment1 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LowerAngle","Summary":"Lower limit for the angle from the SecondaryAxis of Attachment0 to the SecondaryAxis of Attachment1 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularRestitution","Summary":"Restitution of the two limits, or how elastic they are. Value in [0,1].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularVelocity","Summary":"The target angular velocity of the motor in radians per second around the rotation axis. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MotorMaxTorque","Summary":"The maximum torque the motor can apply to achieve the target angular velocity. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MotorMaxAcceleration","Summary":"The maximum angular acceleration of the motor in radians per second square. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularSpeed","Summary":"Target angular speed. This value is unsigned as the servo will always move toward its target. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ServoMaxTorque","Summary":"Maximum torque the servo motor can apply. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TargetAngle","Summary":"Target angle for the SecondaryAxis of Attachment1 from the SecondaryAxis of Attachment0 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CurrentAngle","Summary":"Signed angle between the SecondaryAxis of Attchement0 and the SecondaryAxis of Attachment1 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Radius","Summary":"Radius of the in-game visual. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SlidingBallConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":88,"Browsable":true,"PreferredParent":"","Members":[{"Name":"ActuatorType","Summary":"Type of linear actuator (along the axis of the slider): None, Motor, or Servo.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LimitsEnabled","Summary":"Enables the limits on the linear motion along the axis of the slider.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LowerLimit","Summary":"Lower limit for the position of Attachment1 with respect to Attachment0 along the slider axis. Value in (-inf, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UpperLimit","Summary":"Upper limit for the position of Attachment1 with respect to Attachment0 along the slider axis. Value in (-inf, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Restitution","Summary":"Restitution of the two limits, or how elastic they are. Value in [0, 1].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Velocity","Summary":"The target linear velocity of the motor in studs per second along the slider axis. Value in (-inf, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MotorMaxForce","Summary":"The maximum force the motor can apply to achieve the target velocity. Units are mass * studs / seconds^2. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MotorMaxAcceleration","Summary":"The maximum acceleration of the motor in studs per second squared. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Speed","Summary":"Target speed in studs per second. This value is unsigned as the servo will always move toward its target. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ServoMaxForce","Summary":"Maximum force the servo motor can apply. Units are mass * studs / seconds^2. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TargetPosition","Summary":"Target position of Attachment1 with respect to Attachment0 along the slider axis. Value in (-inf, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CurrentPosition","Summary":"Current position of Attachment1 with respect to Attachment0 along the slider axis. Value in (-inf, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Size","Summary":"Size of the in-game visual associated with this constraint. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PrismaticConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":88,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CylindricalConstraint","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":95,"Browsable":true,"PreferredParent":"","Members":[{"Name":"InclinationAngle","Summary":"Direction of the rotation axis as an angle from the x-axis in the xy-plane of Attachment0. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularActuatorType","Summary":"Type of angular actuator: None, Motor, or Servo.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularLimitsEnabled","Summary":"Enables the angular limits around the rotation axis.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UpperAngle","Summary":"Upper limit for the angle (in degrees) between the reference axis and the SecondaryAxis of Attachment1 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LowerAngle","Summary":"Lower limit for the angle (in degrees) between the reference axis and the SecondaryAxis of Attachment1 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularRestitution","Summary":"Restitution of the two limits, or how elastic they are. Value in [0, 1].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularVelocity","Summary":"The target angular velocity of the motor in radians per second around the rotation axis. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MotorMaxTorque","Summary":"The maximum torque the motor can apply to achieve the target angular velocity. The units are mass * studs^2 / second^2. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MotorMaxAngularAcceleration","Summary":"The maximum angular acceleration of the motor in radians per second squared. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AngularSpeed","Summary":"Target angular speed. This value is unsigned as the servo will always move toward its target. In radians per second. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ServoMaxTorque","Summary":"Maximum torque the servo motor can apply. The units are mass * studs^2 / second^2. Value in [0, inf).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TargetAngle","Summary":"Target angle (in degrees) between the reference axis and the secondary axis of Attachment1 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CurrentAngle","Summary":"Signed angle (in degrees) between the reference axis and the secondary axis of Attachment1 around the rotation axis. Value in [-180, 180].","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WorldRotationAxis","Summary":"The unit vector direction of the rotation axis in world coordinates.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RotationAxisVisible","Summary":"Enable the visibility of the rotation axis.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AlignOrientation","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":82,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AlignPosition","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":82,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"VectorForce","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":82,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LineForce","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":82,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Torque","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":82,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Mouse","Summary":"Used to receive input from the user. Actually tracks mouse events and keyboard events.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Hit","Summary":"The CoordinateFrame of where the Mouse ray is currently hitting a 3D object in the Workspace.  If the mouse is not over any 3D objects in the Workspace, this property is nil.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Icon","Summary":"The current Texture of the Mouse Icon. Stored as a string, for more information on how to format the string <a href=\"http://wiki.roblox.com/index.php/Content\" target=\"_blank\">go here</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Origin","Summary":"The CoordinateFrame of where the Mouse is when the mouse is not clicking.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Origin","Summary":"The CoordinateFrame of where the Mouse is when the mouse is not clicking.  This CoordinateFrame will be very close to the Camera.CoordinateFrame.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Target","Summary":"The Part the mouse is currently over. If the mouse is not currently over any object (on the skybox, for example) this property is nil.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TargetFilter","Summary":"A Part or Model that the Mouse will ignore when trying to find the Target, TargetSurface and Hit.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TargetSurface","Summary":"The NormalId (Top, Left, Down, etc.) of the face of the part the Mouse is currently over.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UnitRay","Summary":"The Unit Ray from where the mouse is (Origin) to the current Mouse.Target.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ViewSizeX","Summary":"The viewport's (game window) width in pixels.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ViewSizeY","Summary":"The viewport's (game window) height in pixels.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"X","Summary":"The absolute pixel position of the Mouse along the x-axis of the viewport (game window). Values start at 0 on the left hand side of the screen and increase to the right.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Y","Summary":"The absolute pixel position of the Mouse along the y-axis of the viewport (game window). Values start at 0 on the stop of the screen and increase to the bottom.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Button1Down","Summary":"Fired when the first button (usually the left, but could be another) on the mouse is depressed.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Button1Up","Summary":"Fired when the first button (usually the left, but could be another) on the mouse is release.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Button2Down","Summary":"This event is currently non-operational.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Button2Up","Summary":"This event is currently non-operational.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Idle","Summary":"Fired constantly when the mouse is not firing any other event (i.e. the mouse isn't moving, nor any buttons being pressed or depressed).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"KeyDown","Summary":"Fired when a user presses a key on the keyboard. Argument is a string representation of the key.  If the key has no string representation (such as space), the string passed in is the keycode for that character. Keycodes are currently in ASCII.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"KeyUp","Summary":"Fired when a user releases a key on the keyboard. Argument is a string representation of the key.  If the key has no string representation (such as space), the string passed in is the keycode for that character. Keycodes are currently in ASCII.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Move","Summary":"Fired when the mouse X or Y member changes.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WheelBackward","Summary":"This event is currently non-operational.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WheelForward","Summary":"This event is currently non-operational.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ProfilingItem","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ChangeHistoryService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RotateP","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RotateV","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScriptContext","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Selection","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"VelocityMotor","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Weld","Summary":"","ExplorerOrder":20,"ExplorerImageIndex":34,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TaskScheduler","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"SetThreadShare","Summary":"Deprecated","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StatsItem","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Snap","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FileMesh","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ClickDetector","Summary":"Raises mouse events for parent object","ExplorerOrder":3,"ExplorerImageIndex":41,"Browsable":true,"PreferredParent":"","Members":[{"Name":"MaxActivationDistance","Summary":"The maximum distance a Player's character can be from the ClickDetector's parent Part that will allow the Player's mouse to fire events on this object.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseClick","Summary":"Fired when a player clicks on the parent Part of ClickDetector. The argument provided is always of type Player.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseHoverEnter","Summary":"Fired when a player's mouse enters on the parent Part of ClickDetector. The argument provided is always of type Player.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseHoverLeave","Summary":"Fired when a player's mouse leaves the parent Part of ClickDetector. The argument provided is always of type Player.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Clothing","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Smoke","Summary":"Makes the parent part or model object emit smoke","ExplorerOrder":3,"ExplorerImageIndex":59,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Trail","Summary":"Makes two attachments emit trail when moving","ExplorerOrder":3,"ExplorerImageIndex":93,"Browsable":true,"PreferredParent":"","Members":[{"Name":"LightEmission","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Beam","Summary":"Makes beam between two attachments","ExplorerOrder":3,"ExplorerImageIndex":96,"Browsable":true,"PreferredParent":"","Members":[{"Name":"LightEmission","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ParticleEmitter","Summary":"A generic particle system.","ExplorerOrder":3,"ExplorerImageIndex":80,"Browsable":true,"PreferredParent":"","Members":[{"Name":"LightEmission","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LightInfluence","Summary":"Specifies the amount of influence lighting has on the particle emmitter. A value of 0 is unlit, 1 is fully lit. Fractional values blend from unlit to lit.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Drag","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"VelocityInheritance","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Rate","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Rotation","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RotSpeed","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Speed","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Lifetime","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Sparkles","Summary":"Makes the parent part or model object fantastic","ExplorerOrder":3,"ExplorerImageIndex":42,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Explosion","Summary":"Creates an Explosion! This can be used as a purely graphical effect, or can be made to damage objects.","ExplorerOrder":3,"ExplorerImageIndex":36,"Browsable":true,"PreferredParent":"","Members":[{"Name":"BlastPressure","Summary":"How much force this Explosion exerts on objects within it's BlastRadius. Setting this to 0 creates a purely graphical effect. A larger number will cause Parts to fly away at higher velocities.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BlastRadius","Summary":"How big the Explosion is. This is a circle starting from the center of the Explosion's Position, the larger this property the larger the circle of destruction.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Position","Summary":"Where the Explosion occurs in absolute world coordinates.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ExplosionType","Summary":"Defines the behavior of the Explosion. <a href=\"http://wiki.roblox.com/index.php/ExplosionType\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Fire","Summary":"Makes the parent part or model object emit fire","ExplorerOrder":3,"ExplorerImageIndex":61,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Color","Summary":"The color of the base of the fire.  See SecondaryColor for more.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Heat","Summary":"How hot the fire appears to be. The flame moves quicker the higher this value is set.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SecondaryColor","Summary":"The color the fire interpolates to from Color. The longer a particle exists in the fire, the close to this color it becomes.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Size","Summary":"How large the fire appears to be.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Seat","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":35,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Platform","Summary":"Equivalent to a seat, except that the character stands up rather than sits down.","ExplorerOrder":3,"ExplorerImageIndex":35,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SkateboardPlatform","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":35,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"VehicleSeat","Summary":"Automatically finds and powers hinge joints in an assembly.  Ignores motors.","ExplorerOrder":3,"ExplorerImageIndex":35,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Tool","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":17,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Flag","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":38,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[{"Name":"CanBeDropped","Summary":"If someone is carrying this flag, this bool determines whether or not they can drop it and run.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TeamColor","Summary":"The Team this flag is for. Corresponds with the TeamColors in the Teams service.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Preliminary":false,"IsBackend":false},{"Name":"FlagStand","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":39,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"BackpackItem","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Decal","Summary":"Descibes a texture that is placed on one of the sides of the Part it is parented to.","ExplorerOrder":4,"ExplorerImageIndex":7,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Face","Summary":"Describes the face of the Part the decal will be applied to. <a href=\"http://wiki.roblox.com/index.php/NormalId\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Shiny","Summary":"How much light will appear to reflect off of the decal.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Specular","Summary":"How light will react to the surface of the decal.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Transparency","Summary":"How visible the decal is.  1 is completely invisible, while 0 is completely opaque","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"JointInstance","Summary":"","ExplorerOrder":20,"ExplorerImageIndex":34,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Message","Summary":"","ExplorerOrder":11,"ExplorerImageIndex":33,"Browsable":true,"Deprecated":"true","PreferredParent":"StarterGui","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"Hint","Summary":"","ExplorerOrder":11,"ExplorerImageIndex":33,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"IntValue","Summary":"Stores a int value in it's Value member. Useful to share int information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RayValue","Summary":"Stores a Ray value in it's Value member. Useful to share Ray information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"IntConstrainedValue","Summary":"Stores an int value in it's Value member.  Value is clamped to be in range of Min and MaxValue. Useful to share int information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"DoubleConstrainedValue","Summary":"Stores a double value in it's Value member.  Value is clamped to be in range of Min and MaxValue. Useful to share double information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[{"Name":"MaxValue","Summary":"The maximum we allow this Value to be set.  If Value is set higher than this, it automatically gets adjusted to MaxValue","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MinValue","Summary":"The minimum we allow this Value to be set.  If Value is set lower than this, it automatically gets adjusted to MinValue","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Preliminary":false,"IsBackend":false},{"Name":"BoolValue","Summary":"Stores a boolean value in it's Value member. Useful to share boolean information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CustomEvent","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"CustomEventReceiver","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"FloorWire","Summary":"Renders a thin cylinder than can be adorned with textures that 'flow' from one object to the next. Has basic pathing abilities and attempts to to not intersect anything. <a href=\"http://wiki.roblox.com/index.php/FloorWire_Guide\" target=\"_blank\">More info</a>","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[{"Name":"CycleOffset","Summary":"Controls how the decals are positioned along the wire. <a href=\"http://wiki.roblox.com/index.php/CycleOffset\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"From","Summary":"The object the FloorWire 'emits' from","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StudsBetweenTextures","Summary":"The space between two textures on the wire. Note: studs are relative depending on how far the camera is from the FloorWire.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Texture","Summary":"The image we use to render the textures that flow from beginning to end of the FloorWire.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TextureSize","Summary":"The size in studs of the Texture we use to flow from one object to the next.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"To","Summary":"The object the FloorWire 'emits' to","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Velocity","Summary":"The rate of travel that the textures flow along the wire.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WireRadius","Summary":"How thick the wire is.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Preliminary":false,"IsBackend":false},{"Name":"NumberValue","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StringValue","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Vector3Value","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CFrameValue","Summary":"Stores a CFrame value in it's Value member. Useful to share CFrame information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Color3Value","Summary":"Stores a Color3 value in it's Value member. Useful to share Color3 information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BrickColorValue","Summary":"Stores a BrickColor value in it's Value member. Useful to share BrickColor information across multiple scripts.","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ObjectValue","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":4,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SpecialMesh","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":8,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BlockMesh","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":8,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CylinderMesh","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":8,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BevelMesh","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"DataModelMesh","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Texture","Summary":"","ExplorerOrder":4,"ExplorerImageIndex":10,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Sound","Summary":"","ExplorerOrder":1,"ExplorerImageIndex":11,"Browsable":true,"PreferredParent":"","Members":[{"Name":"play","Summary":"Deprecated. Use Play() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"PlayOnRemove","Summary":"The sound will play when it is removed from the Workspace. Looped sounds don't play","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"EchoSoundEffect","Summary":"An echo audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Delay","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Feedback","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DryLevel","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WetLevel","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FlangeSoundEffect","Summary":"A Flanging audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Mix","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Depth","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Rate","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DistortionSoundEffect","Summary":"A Distortion audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Level","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PitchShiftSoundEffect","Summary":"A Pitch Shifting audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Octave","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ChorusSoundEffect","Summary":"A Chorus audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Mix","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Rate","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Depth","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TremoloSoundEffect","Summary":"A Tremolo audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Frequency","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Depth","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Duty","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ReverbSoundEffect","Summary":"A Reverb audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"DecayTime","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Diffusion","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Density","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DryLevel","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WetLevel","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"EqualizerSoundEffect","Summary":"An Three-band Equalizer audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"LowGain","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MidGain","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"HighGain","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CompressorSoundEffect","Summary":"A Compressor audio effect that can be applied to a Sound or SoundGroup.","ExplorerOrder":2,"ExplorerImageIndex":84,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Threshold","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Attack","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Release","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Ratio","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GainMakeup","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SoundGroup","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":85,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StockSound","Summary":"","ExplorerOrder":-1,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SoundService","Summary":"","ExplorerOrder":50,"ExplorerImageIndex":31,"Browsable":true,"PreferredParent":"","Members":[{"Name":"AmbientReverb","Summary":"The ambient sound environment.  May not work when using hardware sound","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DopplerScale","Summary":"The doppler scale is a general scaling factor for how much the pitch varies due to doppler shifting in 3D sound. Doppler is the pitch bending effect when a sound comes towards the listener or moves away from it, much like the effect you hear when a train goes past you with its horn sounding. With dopplerscale you can exaggerate or diminish the effect.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DistanceFactor","Summary":"the relative distance factor, compared to 1.0 meters.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RolloffScale","Summary":"Setting this value makes the sound drop off faster or slower. The higher the value, the faster volume will attenuate, and conversely the lower the value, the slower it will attenuate. For example a rolloff factor of 1 will simulate the real world, where as a value of 2 will make sounds attenuate 2 times quicker.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Backpack","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":20,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StarterPack","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":20,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StarterPlayer","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":79,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StarterGear","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":20,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CoreGui","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":46,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UIGridStyleLayout","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"SetCustomSortFunction","Summary":"When SortOrder is set to Custom, this lua function is used to determine the ordering of elements. Function should take two arguments (each will be an Instance child to compare), and return true if a comes before b, otherwise return false. In other words, use this function the same way you would use a table.sort function. The sorting should be deterministic, otherwise sort will fail and fall back to name order.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"ApplyLayout","Summary":"Forces a relayout of all elements. Useful when sort is set to Custom.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SortOrder","Summary":"Determines how we decide which element to place next. Can be Name or Custom. If using Custom, make sure SetCustomSortFunction was called with an appropriate sort function.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FillDirection","Summary":"Determines which direction to fill the grid. Can be Horizontal or Vertical.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"HorizontalAlignment","Summary":"Determines how grid is placed within it's parent's container in the x direction. Can be Left, Center, or Right.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"VerticalAlignment","Summary":"Determines how grid is placed within it's parent's container in the y direction. Can be Top, Center, or Bottom.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UIListLayout","Summary":"Sets the position of UI elements in a list. You can use a UIListLayout by parenting it to a GuiObject. The UIListLayout will then apply itself to all of its GuiObject siblings.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Padding","Summary":"Determines the amount of free space between each element. Can be set either using scale (Percentage of parent's size in the current direction) or offset (a static spacing value, similar to pixel size).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UIGridLayout","Summary":"Sets the position of UI elements in a 2D grid (this can be modified to 1D grid for list layout). This will also set the elements to a particular size, although this can be overridden with particular constraints on elements. You can use a UIGridLayout by parenting it to a GuiObject. The UIGridLayout will then apply itself to all of its GuiObject siblings.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"CellSize","Summary":"Denotes what size each element should be. Can be overridden by elements using constraints on individual elements.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CellPadding","Summary":"How much space between elements there should be.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FillDirectionMaxCells","Summary":"Determines how many cells over in the FillDirection we go before starting a new row or column. Set to 0 for max cell count.  Will be clamped if this is set higher than the parent container allows room for.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AbsoluteSize","Summary":"Returns the current size of the grid. If more elements are added, this can increase. If elements are removed this can decrease.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StartCorner","Summary":"Which corner we start laying the elements out from. Can be TopLeft, TopRight, BottomLeft, BottomRight.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UIPageLayout","Summary":"Creates a paged viewing window, like the home screen of a mobile device. You can use a UIPageLayout by parenting it to a GuiObject. The UIPageLayout will then apply itself to all of its GuiObject siblings.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"CurrentPage","Summary":"The page that is either currently being displayed or is the target of the current animation.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Circular","Summary":"Whether or not the page layout wraps around at the ends.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Padding","Summary":"Determines the amount that pages are separated from each other by. Can be set either using scale (Percentage of parent's size in the current direction) or offset (a static spacing value, similar to pixel size).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Animated","Summary":"Whether or not to animate transitions between pages.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"EasingStyle","Summary":"The easing style to use when performing an animation.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"EasingDirection","Summary":"The easing direction to use when performing an animation.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TweenTime","Summary":"The length of the animation.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Next","Summary":"Sets CurrentPage to the page after the current page and animates to it, or does nothing if there isn't a next page.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Previous","Summary":"Sets CurrentPage to the page after the current page and animates to it, or does nothing if there isn't a next page.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"JumpTo","Summary":"If the instance is in the layout, then it sets CurrentPage to it and animtes to it. If circular layout is set, it will take the shortest path.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"JumpToIndex","Summary":"If the index is >= 0 and less than the size of the layout, acts like JumpTo. If it's out of bounds and circular is set, it will animate the full distance between the in-bounds index of CurrentPage and the new index.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PageEnter","Summary":"Fires when a page comes into view, and is going to be rendered.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PageLeave","Summary":"Fires when a page leaves view, and will not be rendered.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Stopped","Summary":"Fires when an animation to CurrentPage is completed without being cancelled, and the view stops scrolling.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UITableLayout","Summary":"Provides a layout of rows and columns that are sized based on the cells in them.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Padding","Summary":"The amount of padding to insert in between the cells of the table.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FillEmptySpaceRows","Summary":"Whether the table should expand to fill the available space of its container, row-wise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FillEmptySpaceColumns","Summary":"Whether the table should expand to fill the available space of its container, column-wise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MajorAxis","Summary":"Whether the direct siblings are considered the rows or the columns. The children of the direct siblings are the columns or rows, respectively.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UISizeConstraint","Summary":"Ensures a GuiObject does not become smaller or larger than the min and max size. If an element with a constraint is under the control of a layout, the constraint takes precedence in determining the element�s size, but not position. You can use a Constraint by parenting it to the element you wish to constrain.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"MinSize","Summary":"The smallest size the GuiObject is allowed to be.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MaxSize","Summary":"The biggest size the GuiObject is allowed to be.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UITextSizeConstraint","Summary":"Ensures a GuiObject with text does not allow the font size to become larger or smaller than min and max text sizes. If an element with a constraint is under the control of a layout, the constraint takes precedence in determining the element�s size, but not position. You can use a Constraint by parenting it to the element you wish to constrain.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"MinTextSize","Summary":"The smallest size the font is allowed to be.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MaxTextSize","Summary":"The biggest size the font is allowed to be.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UIAspectRatioConstraint","Summary":"Ensures a GuiObject will always have a particular aspect ratio. If an element with a constraint is under the control of a layout, the constraint takes precedence in determining the element�s size, but not position. You can use a Constraint by parenting it to the element you wish to constrain.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"AspectRatio","Summary":"The aspect ratio to maintain. This is the width/height. Only positive numbers allowed.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AspectType","Summary":"Describes how the aspect ratio will determine its size. Options are FitWithinMaxSize, ScaleWithParentSize. FitWithinMaxSize will make the element the maximum size it can be within the current possible AbsoluteSize of the element while maintaining the AspectRatio. ScaleWithParentSize will make the element the closest to the parent element�s maximum size while maintaining aspect ratio.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DominantAxis","Summary":"Describes which axis to use when determining the new size of the element, while keeping respect to the aspect ratio.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UIScale","Summary":"Uniformly scales a GUI object and all its children.","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Scale","Summary":"The scale factor to apply.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UIPadding","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":26,"Browsable":true,"PreferredParent":"","Members":[{"Name":"PaddingLeft","Summary":"The padding to apply on the left side relative to the parent's normal size.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PaddingRight","Summary":"The padding to apply on the right side relative to the parent's normal size.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PaddingTop","Summary":"The padding to apply on the top side relative to the parent's normal size.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PaddingBottom","Summary":"The padding to apply on the bottom side relative to the parent's normal size.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TweenBase","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"PlaybackState","Summary":"The current state of how the tween is animating. Possible values are Begin, Playing, Paused, Completed and Cancelled. This property is modified by using functions such as Tween:Play(), Tween:Pause(), and Tween:Cancel(). Read-only.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Play","Summary":"Starts or resumes (if Tween.PlaybackState is Paused) the tween animation. If current PlaybackState is Cancelled, this property will reset the tween to the beginning properties and play the animations from the beginning.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Pause","Summary":"Temporarily stops the tween animation. Animation can be resumed by calling Play().","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Cancel","Summary":"Stops the tween animation. Animation can be restarted by calling Play(). Animation will start from the beginning values.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Completed","Summary":"Fires when the tween either reaches PlaybackState Completed or Cancelled. PlaybackState of one of these types is passed as the first arg to the function listening to this event.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Tween","Summary":"An object linked to an instance that animates properties on the instance over a specified period of time. Useful for easily moving UI objects around, rotating objects, etc. without having to write a lot of code. To create a new tween, please use TweenService:Create.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Instance","Summary":"The object this tween is operating on. Read-only.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TweenInfo","Summary":"Specifies how the tween animates. Read-only.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TweenService","Summary":"Service responsible for creating tweens on instances.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StarterGui","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":46,"Browsable":true,"PreferredParent":"","Members":[{"Name":"SetCoreGuiEnabled","Summary":"Will stop/begin certain core gui elements being rendered. See CoreGuiType for core guis that can be modified.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetCoreGuiEnabled","Summary":"Returns a boolean describing whether a CoreGuiType is currently being rendered.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GuiService","Summary":"The GuiService is a special service, which currently allows developers to control what GuiObject is currently being selected by the Gamepad Gui navigator, and allows clients to check if Roblox's main menu is currently open. This service has a lot of hidden members, which are mainly used internally by Roblox's CoreScripts.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"GetGuiInset","Summary":"Returns a Tuple containing two Vector2 values representing the offset of user GUIs in pixels from the top right corner of the screen and the bottom right corner of the screen respectively.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ContextActionService","Summary":"A service used to bind input to various lua functions.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"BindAction","Summary":"Binds 'functionToBind' to fire when any 'inputTypes' happen. InputTypes can be variable in number and type. Types can be Enum.KeyCode, single character strings corresponding to keys, or Enum.UserInputType. 'actionName' is a key used by many other ContextActionService functions to query state. 'createTouchButton' if true will create a button on screen on touch devices.  This button will fire 'functionToBind' with three arguments: first argument is the actionName, second argument is the UserInputState of the input, and the third is the InputObject that fired this function. If 'functionToBind' yields or returns nil or Enum.ContextActionResult.Sink, the input will be sunk. If it returns Enum.ContextActionResult.Pass, the next bound action in the stack will be invoked.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetTitle","Summary":"If 'actionName' key contains a bound action, then 'title' is set as the title of the touch button. Does nothing if a touch button was not created. No guarantees are made whether title will be set when button is manipulated.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetDescription","Summary":"If 'actionName' key contains a bound action, then 'description' is set as the description of the bound action. This description will appear for users in a listing of current actions availables.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetImage","Summary":"If 'actionName' key contains a bound action, then 'image' is set as the image of the touch button. Does nothing if a touch button was not created. No guarantees are made whether image will be set when button is manipulated.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetPosition","Summary":"If 'actionName' key contains a bound action, then 'position' is set as the position of the touch button. Does nothing if a touch button was not created. No guarantees are made whether position will be set when button is manipulated.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UnbindAction","Summary":"If 'actionName' key contains a bound action, removes function from being called by all input that it was bound by (if function was also bound by a different action name as well, those bound input are still active). Will also remove any touch button created (if button was manipulated manually there is no guarantee it will be cleaned up).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UnbindAllActions","Summary":"Removes all functions bound. No actionNames will remain. All touch buttons will be removed. If button was manipulated manually there is no guarantee it will be cleaned up.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetBoundActionInfo","Summary":"Returns a table with info regarding the function bound with 'actionName'. Table has the keys 'title' (current title that was set with SetTitle) 'image' (image set with SetImage) 'description' (description set with SetDescription) 'inputTypes' (tuple containing all input bound for this 'actionName') 'createTouchButton' (whether or not we created a touch button for this 'actionName').","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetAllBoundActionInfo","Summary":"Returns a table with all bound action info. Each entry is a key with 'actionName' and value being the same table you would get from ContextActionService:GetBoundActionInfo('actionName').","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetButton","Summary":"If 'actionName' key contains a bound action, then this will return the touch button (if was created). Returns nil if a touch button was not created. No guarantees are made whether button will be retrievable when button is manipulated.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PointsService","Summary":"A service used to query and award points for Roblox users using the universal point system.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"PointsAwarded","Summary":"Fired when points are successfully awarded 'userId'. Also returns the updated balance of points for usedId in universe via 'userBalanceInUniverse', total points via 'userTotalBalance', and the amount points that were awarded via 'pointsAwarded'. This event fires on the server and also all clients in the game that awarded the points.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AwardPoints","Summary":"Will attempt to award the 'amount' points to 'userId', returns 'userId' awarded to, the number of points awarded, the new point total the user has in the game, and the total number of points the user now has. Will also fire PointsService.PointsAwarded. Works with server scripts ONLY.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetPointBalance","Summary":"Returns the overall balance of points that player with userId has (the sum of all points across all games). Works with server scripts ONLY.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetGamePointBalance","Summary":"Returns the balance of points that player with userId has in the current game (all placeID points combined within the game). Works with server scripts ONLY.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetAwardablePoints","Summary":"Returns the number of points the current universe can award to players. Works with server scripts ONLY.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Chat","Summary":"","ExplorerOrder":51,"ExplorerImageIndex":33,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ChatService","Summary":"","ExplorerOrder":51,"ExplorerImageIndex":33,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LocalizationService","Summary":"","ExplorerOrder":-1,"ExplorerImageIndex":92,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MarketplaceService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":46,"Browsable":true,"PreferredParent":"","Members":[{"Name":"PromptPurchase","Summary":"Will prompt 'player' to purchase the item associated with 'assetId'.  'equipIfPurchased' is an optional argument that will give the item to the player immediately if they buy it (only applies to gear).  'currencyType' is also optional and will attempt to prompt the user with a specified currency if the product can be purchased with this currency, otherwise we use the default currency of the product.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetProductInfo","Summary":"Takes one argument \"assetId\" which should be a number of an asset on www.roblox.com.  Returns a table containing the product information (if this process fails, returns an empty table).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PlayerOwnsAsset","Summary":"Checks to see if 'Player' owns the product associated with 'assetId'. Returns true if the player owns it, false otherwise. This call will produce a warning if called on a guest player.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ProcessReceipt","Summary":"Callback that is executed for pending Developer Product receipts.\n            \n            If this function does not return Enum.ProductPurchaseDecision.PurchaseGranted, then you will not be granted the money for the purchase!\n            \n            The callback will be invoked with a table, containing the following informational fields:\n            PlayerId - the id of the player making the purchase.\n            PlaceIdWherePurchased - the specific place where the purchase was made.\n            PurchaseId - a unique identifier for the purchase, should be used to prevent granting an item multiple times for one purchase.\n            ProductId - the id of the purchased product.\n            CurrencyType - the type of currency used (Tix, Robux).\n            CurrencySpent - the amount of currency spent on the product for this purchase.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PromptPurchaseFinished","Summary":"Fired when a 'player' dismisses a purchase dialog for 'assetId'.  If the player purchased the item 'isPurchased' will be true, otherwise it will be false. This call will produce a warning if called on a guest player.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UserInputService","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"TouchEnabled","Summary":"Returns true if the local device accepts touch input, false otherwise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"KeyboardEnabled","Summary":"Returns true if the local device accepts keyboard input, false otherwise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseEnabled","Summary":"Returns true if the local device accepts mouse input, false otherwise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AccelerometerEnabled","Summary":"Returns true if the local device has an accelerometer, false otherwise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GyroscopeEnabled","Summary":"Returns true if the local device has an gyroscope, false otherwise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchTap","Summary":"Fired when a user taps their finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the tap gesture. This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchPinch","Summary":"Fired when a user pinches their fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the pinch gesture. 'scale' is a float that indicates the difference from the beginning of the pinch gesture. 'velocity' is a float indicating how quickly the pinch gesture is happening. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchSwipe","Summary":"Fired when a user swipes their fingers on a TouchEnabled device. 'swipeDirection' is an Enum.SwipeDirection, indicating the direction the user swiped. 'numberOfTouches' is an int that indicates how many touches were involved with the gesture.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchLongPress","Summary":"Fired when a user holds at least one finger for a short amount of time on the same screen position on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchRotate","Summary":"Fired when a user rotates two fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'rotation' is a float indicating how much the rotation has gone from the start of the gesture. 'velocity' is a float that indicates how quickly the gesture is being performed. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchPan","Summary":"Fired when a user drags at least one finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'totalTranslation' is a Vector2, indicating how far the pan gesture has gone from its starting point. 'velocity' is a Vector2 that indicates how quickly the gesture is being performed in each dimension. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchStarted","Summary":"Fired when a user places their finger on a TouchEnabled device. 'touch' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchMoved","Summary":"Fired when a user moves their finger on a TouchEnabled device. 'touch' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchEnded","Summary":"Fired when a user moves their finger on a TouchEnabled device. 'touch' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InputBegan","Summary":"Fired when a user begins interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InputChanged","Summary":"Fired when a user changes interacting via a Human-Computer Interface device (Mouse move, touch move, mouse wheel, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InputEnded","Summary":"Fired when a user stops interacting via a Human-Computer Interface device (Mouse button up, touch end, keyboard button up, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TextBoxFocused","Summary":"Fired when a user clicks/taps on a textbox to begin text entry. Argument is the textbox that was put in focus. This also fires if a textbox forces focus on the user. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TextBoxFocusReleased","Summary":"Fired when a user stops text entry into a textbox (usually by pressing return or clicking/tapping somewhere else on the screen). Argument is the textbox that was taken out of focus. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DeviceAccelerationChanged","Summary":"Fired when a user moves a device that has an accelerometer. This is fired with an InputObject, which has type Enum.InputType.Accelerometer, and position that shows the g force in each local device axis. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DeviceGravityChanged","Summary":"Fired when the force of gravity changes on a device that has an accelerometer. This is fired with an InputObject, which has type Enum.InputType.Accelerometer, and position that shows the g force in each local device axis. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DeviceRotationChanged","Summary":"Fired when a user rotates a device that has an gyroscope. This is fired with an InputObject, which has type Enum.InputType.Gyroscope, and position that shows total rotation in each local device axis.  The delta property describes the amount of rotation that last happened. A second argument of Vector4 is the device's current quaternion rotation in reference to it's default reference frame. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetDeviceAcceleration","Summary":"Returns an InputObject that describes the device's current acceleration. This is fired with an InputObject, which has type Enum.InputType.Accelerometer, and position that shows the g force in each local device axis.  The delta property describes the amount of rotation that last happened. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetDeviceGravity","Summary":"Returns an InputObject that describes the device's current gravity vector. This is fired with an InputObject, which has type Enum.InputType.Accelerometer, and position that shows the g force in each local device axis. The delta property describes the amount of rotation that last happened. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetDeviceRotation","Summary":"Returns an InputObject and a Vector4 that describes the device's current rotation vector. This is fired with an InputObject, which has type Enum.InputType.Gyroscope, and position that shows total rotation in each local device axis. The delta property describes the amount of rotation that last happened. The Vector4 is the device's current quaternion rotation in reference to it's default reference frame. This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Sky","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":28,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ColorCorrectionEffect","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":83,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Brightness","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Contrast","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Saturation","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BloomEffect","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":83,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Intensity","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Threshold","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Size","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BlurEffect","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":83,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Size","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SunRaysEffect","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":83,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Intensity","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Spread","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Motor","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Humanoid","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":9,"Browsable":true,"PreferredParent":"","Members":[{"Name":"MoveTo","Summary":"Attempts to move the Humanoid and it's associated character to 'part'. 'location' is used as an offset from part's origin.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Jump","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Sit","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TakeDamage","Summary":"Decreases health by the amount.  Use this instead of changing health directly to make sure weapons are filtered for things such as ForceField(s).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UnequipTools","Summary":"Takes any active gear/tools that the Humanoid is using and puts them into the backpack.  This function only works on Humanoids with a corresponding Player.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"EquipTool","Summary":"Takes a specified tool and equips it to the Humanoid's Character.  Tool argument should be of type 'Tool'.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NameOcclusion","Summary":"Sets how to display other humanoid names to this humanoid's player. <a href=\"http://wiki.roblox.com/index.php/NameOcclusion\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BodyColors","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Shirt","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":43,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Pants","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":44,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ShirtGraphic","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":40,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Skin","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"DebugSettings","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FaceInstance","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GameSettings","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GlobalSettings","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Item","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NetworkPeer","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NetworkSettings","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PVInstance","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"CoordinateFrame","Summary":"Deprecated. Use CFrame instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RenderSettings","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RootInstance","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ServiceProvider","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"service","Summary":"Use GetService() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ProfilingItem","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NetworkMarker","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Hopper","Summary":"Use StarterPack instead","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"Instance","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"Archivable","Summary":"Determines whether or not an Instance can be saved when the game closes/attempts to save the game. Note: this only applies to games that use Data Persistence, or SavePlaceAsync.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ClassName","Summary":"The string name of this Instance's most derived class.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Parent","Summary":"The Instance that is directly above this Instance in the tree.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetDebugId","Summary":"This function is for internal testing. Don't use in production code","Browsable":"false","Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Clone","Summary":"Returns a copy of this Object and all its children. The copy's Parent is nil","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"clone","Summary":"Use Clone() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"isA","Summary":"Use IsA() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"IsA","Summary":"Returns a boolean if this Instance is of type 'className' or a is a subclass of type 'className'.  If 'className' is not a valid class type in ROBLOX, this function will always return false.  <a href=\"http://wiki.roblox.com/index.php/IsA\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindFirstChild","Summary":"Returns the first child of this Instance that matches the first argument 'name'.  The second argument 'recursive' is an optional boolean (defaults to false) that will force the call to traverse down thru all of this Instance's descendants until it finds an object with a name that matches the 'name' argument.  The function will return nil if no Instance is found.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindFirstChildOfClass","Summary":"Returns the first child of this Instance that with a ClassName equal to 'className'.  The function will return nil if no Instance is found.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindFirstChildWhichIsA","Summary":"Returns the first child of this Instance that :IsA(className).  The second argument 'recursive' is an optional boolean (defaults to false) that will force the call to traverse down thru all of this Instance's descendants until it finds an object with a name that matches the 'className' argument.  The function will return nil if no Instance is found.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindFirstAncestor","Summary":"Returns the first ancestor of this Instance that matches the first argument 'name'.  The function will return nil if no Instance is found.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindFirstAncestorOfClass","Summary":"Returns the first ancestor of this Instance with a ClassName equal to 'className'.  The function will return nil if no Instance is found.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindFirstAncestorWhichIsA","Summary":"Returns the first ancestor of this Instance that :IsA(className).  The function will return nil if no Instance is found.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetFullName","Summary":"Returns a string that shows the path from the root node (DataModel) to this Instance.  This string does not include the root node (DataModel).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"children","Summary":"Use GetChildren() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"getChildren","Summary":"Use GetChildren() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"GetChildren","Summary":"Returns a read-only table of this Object's children","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetDescendants","Summary":"Returns an array containing all of the descendants of the instance. Returns in preorder traversal, or in other words, where the parents come before their children, depth first.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Remove","Summary":"Deprecated. Use ClearAllChildren() to get rid of all child objects, or Destroy() to invalidate this object and its descendants","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"remove","Summary":"Use Remove() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"ClearAllChildren","Summary":"Removes all children (but not this object) from the workspace.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Destroy","Summary":"Removes object and all of its children from the workspace. Disconnects object and all children from open connections. Object and children may not be usable after calling Destroy.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"findFirstChild","Summary":"Use FindFirstChild() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"AncestryChanged","Summary":"Fired when any of this object's ancestors change.  First argument 'child' is the object whose parent changed.  Second argument 'parent' is the first argument's new parent.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DescendantAdded","Summary":"Fired after an Instance is parented to this object, or any of this object's descendants.  The 'descendant' argument is the Instance that is being added.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DescendantRemoving","Summary":"Fired after an Instance is unparented from this object, or any of this object's descendants.  The 'descendant' argument is the Instance that is being added.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Changed","Summary":"Fired after a property changes value.  The property argument is the name of the property","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BodyGyro","Summary":"Attempts to maintain a fixed orientation of its parent Part","ExplorerOrder":14,"ExplorerImageIndex":14,"Browsable":true,"PreferredParent":"","Members":[{"Name":"MaxTorque","Summary":"The maximum torque that will be exerted on the Part","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"maxTorque","Summary":"Use MaxTorque instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"D","Summary":"The dampening factor applied to this force","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"P","Summary":"The power continually applied to this force","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CFrame","Summary":"The cframe that this force is trying to orient its parent Part to.  Note: this force only uses the rotation of the cframe, not the position.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"cframe","Summary":"Use CFrame instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BodyPosition","Summary":"","ExplorerOrder":14,"ExplorerImageIndex":14,"Browsable":true,"PreferredParent":"","Members":[{"Name":"MaxForce","Summary":"The maximum force that will be exerted on the Part","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"maxForce","Summary":"Use MaxForce instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"D","Summary":"The dampening factor applied to this force","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"P","Summary":"The power factor continually applied to this force","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Position","Summary":"The Vector3 that this force is trying to position its parent Part to.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"position","Summary":"Use position instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RocketPropulsion","Summary":"A propulsion system that mimics a rocket","ExplorerOrder":14,"ExplorerImageIndex":14,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BodyVelocity","Summary":"","ExplorerOrder":14,"ExplorerImageIndex":14,"Browsable":true,"PreferredParent":"","Members":[{"Name":"MaxForce","Summary":"The maximum force that will be exerted on the Part in each axis","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"maxForce","Summary":"Use MaxForce instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"P","Summary":"The amount of power we add to the system.  The higher the power, the quicker the force will achieve its goal.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Velocity","Summary":"The velocity this system tries to achieve.  How quickly the system reaches this velocity (if ever) is defined by P.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"velocity","Summary":"Use Velocity instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BodyAngularVelocity","Summary":"","ExplorerOrder":14,"ExplorerImageIndex":14,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BodyForce","Summary":"When parented to a physical part, BodyForce will continually exert a force upon its parent object.","ExplorerOrder":14,"ExplorerImageIndex":14,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BodyThrust","Summary":"","ExplorerOrder":14,"ExplorerImageIndex":14,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Force","Summary":"The power continually applied to this force","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"force","Summary":"Use Force instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"Location","Summary":"The Vector3 location of where to apply the force to.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"location","Summary":"Use Location instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Hole","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"Feature","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Teams","Summary":"This Service-level object is the container for all Team objects in a level. A map that supports team games must have a Teams service. <a href=\"http://wiki.roblox.com/index.php/Team\" target=\"_blank\">More info</a>","ExplorerOrder":14,"ExplorerImageIndex":23,"Browsable":true,"PreferredParent":"","Members":[{"Name":"GetPlayers","Summary":"Returns a read-only table of players which are on this team.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Team","Summary":"The Team class is used to represent a faction in a team game. The only valid location for a Team object is under the Teams service. <a href=\"http://wiki.roblox.com/index.php/Team\" target=\"_blank\">More info</a>","ExplorerOrder":1,"ExplorerImageIndex":24,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SpawnLocation","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":25,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NetworkClient","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":16,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NetworkServer","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":15,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LuaSourceContainer","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"CurrentEditor","Summary":"The name of the player who is currently editing the script in Team Create.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Script","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":6,"Browsable":true,"PreferredParent":"","Members":[{"Name":"LinkedScript","Summary":"This property is under development. Do not use","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LocalScript","Summary":"A script that runs on clients, NOT servers.  LocalScripts can only run when parented under the PlayerGui currently.","ExplorerOrder":4,"ExplorerImageIndex":18,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NetworkReplicator","Summary":"","ExplorerOrder":3,"ExplorerImageIndex":29,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Model","Summary":"A construct used to group Parts and other objects together, also allows manipulation of multiple objects.","ExplorerOrder":10,"ExplorerImageIndex":2,"Browsable":true,"PreferredParent":"","Members":[{"Name":"BreakJoints","Summary":"Breaks all surface joints contained within","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetModelCFrame","Summary":"Returns a CFrame that has position of the centroid of all Parts in the Model.  The rotation matrix is either the rotation matrix of the user-defined PrimaryPart, or if not specified then  a part in the Model chosen by the engine.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetModelSize","Summary":"Returns a Vector3 that is union of the extents of all Parts in the model.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MakeJoints","Summary":"Creates the appropriate SurfaceJoints between all touching Parts contrained within the model. Technically, this function calls MakeJoints() on all Parts inside the model.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MoveTo","Summary":"Moves the centroid of the Model to the specified location, respecting all relative distances between parts in the model.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ResetOrientationToIdentity","Summary":"Rotates all parts in the model to the orientation that was set using SetIdentityOrientation().  If this function has never been called, rotation is reset to GetModelCFrame()'s rotation.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetIdentityOrientation","Summary":"Takes the current rotation matrix of the model and stores it as the model's identity matrix. The rotation is applied when ResetOrientationToIdentity() is called.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TranslateBy","Summary":"Similar to MoveTo(), except instead of moving to an explicit location, we use the model's current CFrame location and offset it.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetPrimaryPartCFrame","Summary":"Returns the cframe of the Model.PrimaryPart. If PrimaryPart is nil, then this function will throw an error.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetPrimaryPartCFrame","Summary":"Sets the cframe of the Model.PrimaryPart. If PrimaryPart is nil, then this function will throw an error. This also sets the cframe of all descendant Parts relative to the cframe change to PrimaryPart.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"makeJoints","Summary":"Use MakeJoints() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"move","Summary":"Use MoveTo() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"PrimaryPart","Summary":"A Part that serves as a reference for the Model's CFrame. Used in conjunction with GetModelPrimaryPartCFrame and SetModelPrimaryPartCFrame. Use this to rotate/translate all Parts relative to the PrimaryPart.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Status","Summary":"","ExplorerOrder":10,"ExplorerImageIndex":2,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[{"Name":"move","Summary":"Use MoveTo() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Preliminary":false,"IsBackend":false},{"Name":"DataModel","Summary":"The root of ROBLOX's parent-child hierarchy (commonly known as game after the global variable used to access it)","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"OnClose","Summary":"Deprecated. Use DataModel.BindToClose","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"Workspace","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"workspace","Summary":"Deprecated. Use Workspace","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"ShowMouse","Summary":"Deprecated. Use Workspace.IsMouseCursorVisible","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"IsLoaded","Summary":"Returns true if the game has finished loading, false otherwise.  Check this before listening to the Loaded signal to ensure a script knows when a game finishes loading.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Loaded","Summary":"Fires when the game finishes loading.  Use this to know when to remove your custom loading gui.  It is best to check IsLoaded() before connecting to this event, as the game may load before the event is connected to.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetPlaceID","Summary":"Use SetPlaceId() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SetCreatorID","Summary":"Use SetCreatorId() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DataStoreService","Summary":"Responsible for storing data across multiple user created places","ExplorerOrder":-1,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"GetDataStore","Summary":"Returns a data store with the given name and scope","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetGlobalDataStore","Summary":"Returns the default data store","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetOrderedDataStore","Summary":"Returns an ordered data store with the given name and scope","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GlobalDataStore","Summary":"Exposes functions for saving and loading data for the DataStoreService","ExplorerOrder":-1,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"OnUpdate","Summary":"Sets callback as a function to be executed any time the value associated with key is changed. It is important to disconnect the connection when the subscription to the key is no longer needed.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetAsync","Summary":"Returns the value of the entry in the DataStore with the given key","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"IncrementAsync","Summary":"Increments the value of a particular key amd returns the incremented value","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetAsync","Summary":"Sets the value of the key. This overwrites any existing data stored in the key","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UpdateAsync","Summary":"Retrieves the value of the key from the website, and updates it with a new value. The callback until the value fetched matches the value on the web. Returning nil means it will not save.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"OrderedDataStore","Summary":"A type of DataStore where values must be positive integers. This makes OrderedDataStore suitable for leaderboard related scripting where you are required to order large amounts of data efficiently.","ExplorerOrder":-1,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"GetSortedAsync","Summary":"Returns a DataStorePages object. The length of each page is determined by pageSize, and the order is determined by isAscending. minValue and maxValue are optional parameters which will filter the result.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"HopperBin","Summary":"","ExplorerOrder":24,"ExplorerImageIndex":22,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"Camera","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":5,"Browsable":true,"PreferredParent":"","Members":[{"Name":"CameraSubject","Summary":"Where the Camera's focus is.  Any rotation of the camera will be about this subject.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CameraType","Summary":"Defines how the camera will behave. <a href=\"http://wiki.roblox.com/index.php/CameraType\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CoordinateFrame","Summary":"The current position and rotation of the Camera.  For most CameraTypes, the rotation is set such that the CoordinateFrame lookVector is pointing at the Focus.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"CFrame","Summary":"The current position and rotation of the Camera.  For most CameraTypes, the rotation is set such that the CoordinateFrame lookVector is pointing at the Focus.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FieldOfView","Summary":"The current angle, or width, of what the camera can see.  Current acceptable values are from 20 degrees to 80.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Focus","Summary":"The current CoordinateFrame that the camera is looking at.  Note: it is not always guaranteed that the camera is always looking here.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ViewportSize","Summary":"Holds the x,y screen resolution of the viewport the camera is presenting (note: this can differ from the AbsoluteSize property of a full screen gui).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetRoll","Summary":"Returns the camera's current roll. Roll is defined in radians, and is stored as the delta from the camera's y axis default normal vector.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WorldToScreenPoint","Summary":"Takes a 3D position in the world and projects it onto x,y coordinates of screen space. Returns two values, first is a Vector3 that has x,y position and z position which is distance from camera (negative if behind camera, positive if in front). Second return value is a boolean indicating if the first argument is an on-screen coordinate.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScreenPointToRay","Summary":"Takes a 2D screen position and produces a Ray object to be used for 3D raycasting. Input is x,y screen coordinates, and a (optional, defaults to 0) z position which sets how far in the camera look vector to start the ray origin.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ViewportPointToRay","Summary":"Same as ScreenPointToRay, except no GUI offsets are taken into account. Useful for things like casting a ray from the middle of the Camera.ViewportSize","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WorldToViewportPoint","Summary":"Same as WorldToScreenPoint, except no GUI offsets are taken into account.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetRoll","Summary":"Sets the camera's current roll. Roll is defined in radians, and is stored as the delta from the camera's y axis default normal vector.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Players","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":21,"Browsable":true,"PreferredParent":"","Members":[{"Name":"CharacterAutoLoads","Summary":"Set to true, when a player joins a game, they get a character automatically, as well as when they die.  When set to false, characters do not auto load and will only load in using Player:LoadCharacter().","Browsable":"true","Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"players","Summary":"Use GetPlayers() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ReplicatedStorage","Summary":"A container whose contents are replicated to all clients and the server.","ExplorerOrder":3,"ExplorerImageIndex":70,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RobloxReplicatedStorage","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ReplicatedFirst","Summary":"A container whose contents are replicated to all clients (but not back to the server) first before anything else. Useful for creating loading guis, tutorials, etc.","ExplorerOrder":3,"ExplorerImageIndex":70,"Browsable":true,"PreferredParent":"","Members":[{"Name":"RemoveRobloxLoadingScreen","Summary":"Removes the default Roblox loading screen from view. Call this when you are ready to either show your own loading gui, or when the game is ready to play.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ServerStorage","Summary":"A container whose contents are only on the server.","ExplorerOrder":3,"ExplorerImageIndex":69,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ServerScriptService","Summary":"A container whose contents should be scripts. Scripts that are added to the container are run on the server.","ExplorerOrder":3,"ExplorerImageIndex":71,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Lighting","Summary":"Responsible for all lighting aspects of the world (affects how things are rendered).","ExplorerOrder":3,"ExplorerImageIndex":13,"Browsable":true,"PreferredParent":"","Members":[{"Name":"GetMinutesAfterMidnight","Summary":"The number of minutes that the current time is past midnight.  If currently at midnight, returns 0.  Will return decimal values if not at an exact minute.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetMoonDirection","Summary":"Returns the lookVector (Vector3) of the moon. If this lookVector was used in a CFrame, the Part would face the moon.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetMoonPhase","Summary":"Currently always returns 0.75. MoonPhase cannot be edited.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetSunDirection","Summary":"Returns the lookVector (Vector3) of the sun. If this lookVector was used in a CFrame, the Part would face the sun.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetMinutesAfterMidnight","Summary":"Sets the time to be a certain number of minutes after midnight.  This works with integer and decimal values.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Ambient","Summary":"The hue of the global lighting.  Changing this changes the color tint of all objects in the Workspace.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Brightness","Summary":"How much global light each Part in the Workspace receives. Standard range is 0 to 1 (0 being little light), but can be increased all the way to 5 (colors start to be appear very different at this value).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ColorShift_Bottom","Summary":"The hue of global lighting on the bottom surfaces of an object.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ColorShift_Top","Summary":"The hue of global lighting on the top surfaces of an object.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FogColor","Summary":"A Color3 value that changes the hue of distance fog.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FogEnd","Summary":"The distance at which fog completely blocks your vision. This distance is relative to the camera position. Units are in studs","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FogStart","Summary":"The distance at which the fog gradient begins. This distance is relative to the camera position. Units are in studs.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GeographicLatitude","Summary":"The latitude position the level is placed at.  This affects sun position. <a href=\"http://wiki.roblox.com/index.php/GeographicLatitude\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GlobalShadows","Summary":"Flag enabling shadows from sun and moon in the place","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"OutdoorAmbient","Summary":"Effective ambient value for outdoors, effectively shadow color outdoors (requires GlobalShadows enabled)","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Outlines","Summary":"Flag enabling or disabling outlines on parts and terrain","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ShadowColor","Summary":"Color the shadows appear as. Shadows are drawn mostly for characters, but depending on the lighting will also show for Parts in the Workspace.  Rendering settings can also affect if shadows are drawn.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TimeOfDay","Summary":"A string that represent the current time of day. Time is in 24-hour clock format \"XX::YY:ZZ\", where X is hour, Y is minute, and Z is seconds.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ClockTime","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LightingChanged","Summary":"Fired whenever a property of Lighting is changed, or a skybox is added or removed. Skyboxes are of type 'Sky' and should be parented directly to lighting.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TestService","Summary":"","ExplorerOrder":100,"ExplorerImageIndex":68,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DebuggerManager","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScriptDebugger","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DebuggerBreakpoint","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DebuggerWatch","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Debris","Summary":"A service that provides utility in cleaning up objects","ExplorerOrder":-1,"ExplorerImageIndex":30,"Browsable":true,"PreferredParent":"","Members":[{"Name":"addItem","Summary":"Use AddItem() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"AddItem","Summary":"Adds an Instance into the debris service that will later be destroyed.  Second argument 'lifetime' is optional and specifies how long (in seconds) to wait before destroying the item. If no time is specified then the item added will automatically be destroyed in 10 seconds.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MaxItems","Summary":"Deprecated. No replacement","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Accoutrement","Summary":"","ExplorerOrder":2,"ExplorerImageIndex":32,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Player","Summary":"","ExplorerOrder":1,"ExplorerImageIndex":12,"Browsable":true,"PreferredParent":"","Members":[{"Name":"CharacterAppearance","Summary":"","Browsable":"false","Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CameraMode","Summary":"An enum that describes how a Player's camera is allowed to behave. <a href=\"http://wiki.roblox.com/index.php/CameraMode\" target=\"_blank\">More info</a>.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DataReady","Summary":"Read-only. If true, this Player's persistent data can be loaded, false otherwise. <a href=\"http://wiki.roblox.com/index.php/ROBLOX_Scripting_How_To:_Data_Persistence\" target=\"_blank\">Info on Data Persistence</a>.","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"DataComplexity","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"LoadCharacter","Summary":"Loads in a new character for this player.  This will replace the player's current character, if they have one. This should be used in conjunction with Players.CharacterAutoLoads to control spawning of characters. This function only works from a server-side script (NOT a LocalScript).","Browsable":"true","Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LoadData","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SaveData","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SaveBoolean","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SaveInstance","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SaveString","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"LoadBoolean","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"LoadNumber","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"LoadString","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"LoadInstance","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SaveNumber","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"playerFromCharacter","Summary":"Use GetPlayerFromCharacter() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SetUnder13","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"WaitForDataReady","Summary":"Yields until the persistent data for this Player is ready to be loaded. <a href=\"http://wiki.roblox.com/index.php/ROBLOX_Scripting_How_To:_Data_Persistence\" target=\"_blank\">Info on Data Persistence</a>.","Browsable":"true","Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"Idled","Summary":"Fired periodically after the user has been AFK for a while.  Currently this event is only fired for the *local* Player.  \"time\" is the time in seconds that the user has been idle.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Workspace","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":19,"Browsable":true,"PreferredParent":"","Members":[{"Name":"FindPartsInRegion3","Summary":"Returns parts in the area defined by the Region3, up to specified maxCount or 100, whichever is less","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindPartsInRegion3WithIgnoreList","Summary":"Returns parts in the area defined by the Region3, up to specified maxCount or 100, whichever is less","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindPartOnRay","Summary":"Return type is (BasePart, Vector3) if the ray hits.  If it misses it will return (nil, PointAtEndOfRay)","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FindPartOnRayWithIgnoreList","Summary":"Return type is (BasePart, Vector3) if the ray hits.  If it misses it will return (nil, PointAtEndOfRay)","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PGSPhysicsSolverEnabled","Summary":"Boolean used to enable the experimental physics solver","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FallenPartsDestroyHeight","Summary":"Sets the height at which falling characters and parts are destroyed. This property is not scriptable and can only be set in Studio","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BasePart","Summary":"A structural class, not creatable","ExplorerOrder":-1,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"Color","Summary":"Color3 of the part.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CFrame","Summary":"Contains information regarding the Part's position and a matrix that defines the Part's rotation.  Can read/write. <a href=\"http://wiki.roblox.com/index.php/Cframe\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CanCollide","Summary":"Determines whether physical interactions with other Parts are respected.  If true, will collide and react with physics to other Parts.  If false, other parts will pass thru instead of colliding","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Anchored","Summary":"Determines whether or not physics acts upon the Part.  If true, part stays 'Anchored' in space, not moving regardless of any collision/forces acting upon it.  If false, physics works normally on the part.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Elasticity","Summary":"A float value ranging from 0.0f to 1.0f. Sets how much the Part will rebound against another. a value of 1 is like a superball, and 0 is like a lead block.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Friction","Summary":"A float value ranging from 0.0f to 1.0f. Sets how much the Part will be able to slide. a value of 1 is no sliding, and 0 is no friction, so infinite sliding.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Locked","Summary":"Determines whether building tools (in-game and studio) can manipulate this Part.  If true, no editing allowed.  If false, editing is allowed.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Material","Summary":"Specifies the look and feel the Part should have.  Note: this does not define the color the Part is, see BrickColor for that. <a href=\"http://wiki.roblox.com/index.php/Material\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Reflectance","Summary":"Specifies how shiny the Part is. A value of 1 is completely reflective (chrome), while a value of 0 is no reflectance (concrete wall)","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ResizeIncrement","Summary":"Sets the value for the smallest change in size allowable by the Resize(NormalId, int) function.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ResizeableFaces","Summary":"Sets the value for the faces allowed to be resized by the Resize(NormalId, int) function.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Transparency","Summary":"Sets how visible an object is. A value of 1 makes the object invisible, while a value of 0 makes the object opaque.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Velocity","Summary":"How fast the Part is traveling in studs/second. This property is NOT recommended to be modified directly, unless there is good reason.  Otherwise, try using a BodyForce to move a Part.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PositionLocal","Summary":"Position relative to parent part, or global space if there is no parent.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"OrientationLocal","Summary":"Orientation relative to parent part, or global space if there is no parent.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Orientation","Summary":"Rotation around X, Y, and Z axis.  Rotations applied in YXZ order.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Rotation","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CenterOfMass","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"makeJoints","Summary":"Use MakeJoints() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"MakeJoints","Summary":"Creates the appropriate SurfaceJoints with all parts that are touching this Instance (including internal joints in the Instance, as in a Model).  This uses the SurfaceTypes defined on the surfaces of parts to create the appropriate welds. <a href=\"http://wiki.roblox.com/index.php/MakeJoints\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BreakJoints","Summary":"Destroys SurfaceJoints with all parts that are touching this Instance (including internal joints in the Instance, as in a Model).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetMass","Summary":"Returns a number that is the mass of this Instance.  Mass of a Part is immutable, and is changed only by the size of the Part.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Resize","Summary":"Resizes a Part in the direction of the face defined by 'NormalId', by the amount specified by 'deltaAmount'. If the operation will expand the part to intersect another Instance, the part will not resize at all.  Return true if the call is successful, false otherwise.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"getMass","Summary":"Use GetMass() instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"OutfitChanged","Summary":"","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"LocalSimulationTouched","Summary":"Deprecated. Use Touched instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"StoppedTouching","Summary":"Deprecated. Use TouchEnded instead","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchEnded","Summary":"Fired when the part stops touching another part","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Part","Summary":"A plastic building block - the fundamental component of ROBLOX","ExplorerOrder":11,"ExplorerImageIndex":1,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TrussPart","Summary":"An extendable building truss","ExplorerOrder":12,"ExplorerImageIndex":1,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WedgePart","Summary":"A Wedge Part","ExplorerOrder":12,"ExplorerImageIndex":1,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PrismPart","Summary":"A Prism Part","ExplorerOrder":12,"ExplorerImageIndex":1,"Browsable":"false","Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"PyramidPart","Summary":"A Pyramid Part","ExplorerOrder":12,"ExplorerImageIndex":1,"Browsable":"false","Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"ParallelRampPart","Summary":"A ParallelRamp Part","ExplorerOrder":12,"ExplorerImageIndex":1,"Browsable":"false","Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"RightAngleRampPart","Summary":"A RightAngleRamp Part","ExplorerOrder":12,"ExplorerImageIndex":1,"Browsable":"false","Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"CornerWedgePart","Summary":"A CornerWedge Part","ExplorerOrder":12,"ExplorerImageIndex":1,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PlayerGui","Summary":"A container instance that syncs data between a single player and the server.  ScreenGui objects that are placed in this container will be shown to the Player parent only","ExplorerOrder":13,"ExplorerImageIndex":46,"Browsable":true,"PreferredParent":"","Members":[{"Name":"SelectionImageObject","Summary":"Overrides the default selection adornment (used for gamepads). For best results, this should point to a GuiObject.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PlayerScripts","Summary":"A container instance that contains LocalScripts.  LocalScript objects that are placed in this container will be exectue only when a Player is the parent.","ExplorerOrder":13,"ExplorerImageIndex":78,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StarterPlayerScripts","Summary":"A container instance that contains LocalScripts.  LocalScript objects that are placed in this container will be copied to new Players on startup.","ExplorerOrder":13,"ExplorerImageIndex":78,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StarterCharacterScripts","Summary":"A container instance that contains LocalScripts.  LocalScript objects that are placed in this container will be copied to new characters on startup.","ExplorerOrder":13,"ExplorerImageIndex":78,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GuiMain","Summary":"Deprecated, please use ScreenGui","ExplorerOrder":14,"ExplorerImageIndex":47,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"LayerCollector","Summary":"The base class of ScreenGui, BillboardGui, and SurfaceGui.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScreenGui","Summary":"The core GUI object on which tools are built.  Add Frames/Labels/Buttons to this object to have them rendered as a 2D overlay","ExplorerOrder":14,"ExplorerImageIndex":47,"Browsable":true,"PreferredParent":"StarterGui","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"FunctionalTest","Summary":"Deprecated. Use TestService instead","ExplorerOrder":1,"ExplorerImageIndex":0,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"BillboardGui","Summary":"A GUI that adorns an object in the 3D world.  Add Frames/Labels/Buttons to this object to have them rendered while attached to a 3D object","ExplorerOrder":14,"ExplorerImageIndex":64,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"Adornee","Summary":"The Object the billboard gui uses as its base to render from.  Currently, the only way to set this property is thru a script, and must exist in the workspace.  This will only render if the object assigned derives from BasePart.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AbsolutePosition","Summary":"A read-only Vector2 value that is the GuiObject's current position (x,y) in pixel space, from the top left corner of the GuiObject.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AbsoluteSize","Summary":"A read-only Vector2 value that is the GuiObject's current size (width, height) in pixel space.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Active","Summary":"If true, this GuiObject can fire mouse events and will pass them to any GuiObjects layered underneath, while false will do neither.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AlwaysOnTop","Summary":"If true, billboard gui does not get occluded by 3D objects, but always renders on the screen.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Enabled","Summary":"If true, billboard gui will render, otherwise rendering will be skipped.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ExtentsOffset","Summary":"A Vector3 (x,y,z) defined in studs that will offset the gui from the extents of the 3d object it is rendering from.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PlayerToHideFrom","Summary":"Specifies a Player that the BillboardGui will not render to.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"StudsOffset","Summary":"A Vector3 (x,y,z) defined in studs that will offset the gui from the centroid of the 3d object it is rendering from","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SizeOffset","Summary":"A Vector2 (x,y) defined in studs that will offset the gui size from it's current size.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Size","Summary":"A UDim2 value describing the size of the BillboardGui. More information on UDim2 is available <a href=\"http://wiki.roblox.com/index.php/UDim2\" target=\"_blank\">here</a>. Relative values are defined as one-to-one with studs.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LightInfluence","Summary":"Specifies the amount of influence lighting has on the billboard gui. A value of 0 is unlit, 1 is fully lit. Fractional values blend from unlit to lit.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SurfaceGui","Summary":"Renders its contained GuiObjects flat against the face of a part.","ExplorerOrder":14,"ExplorerImageIndex":64,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"Adornee","Summary":"The Object the surface gui uses as its base to render from.  Currently, the only way to set this property is thru a script, and must exist in the workspace.  This will only render if the object assigned derives from BasePart.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Active","Summary":"If true, this GuiObject can fire mouse events and will pass them to any GuiObjects layered underneath, while false will do neither.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Enabled","Summary":"If true, surface gui will render, otherwise rendering will be skipped.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"LightInfluence","Summary":"Specifies the amount of influence lighting has on the surface gui. A value of 0 is unlit, 1 is fully lit. Fractional values blend from unlit to lit.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GuiBase2d","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"AbsolutePosition","Summary":"A read-only Vector2 value that is the GuiObject's current position (x,y) in pixel space, from the top left corner of the GuiObject.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AbsoluteSize","Summary":"A read-only Vector2 value that is the GuiObject's current size (width, height) in pixel space.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InputObject","Summary":"An object that describes a particular user input, such as mouse movement, touches, keyboard, and more.","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":true,"PreferredParent":"","Members":[{"Name":"UserInputType","Summary":"An enum that describes what kind of input this object is describing (mousebutton, touch, etc.).  See Enum.UserInputType for more info.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UserInputState","Summary":"An enum that describes what state of a particular input (touch began, touch moved, touch ended, etc.). See Enum.UserInputState for more info.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Position","Summary":"A Vector3 value that describes a positional value of this input. For mouse and touch input, this is the screen position of the mouse/touch, described in the x and y components. For mouse wheel input, the z component describes whether the wheel was moved forward or backward.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"KeyCode","Summary":"An enum that describes what kind of input is being pressed. For types of input like Keyboard, this describes what key was pressed. For input like mousebutton, this provides no additional information.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GuiObject","Summary":"","ExplorerOrder":0,"ExplorerImageIndex":0,"Browsable":"false","PreferredParent":"","Members":[{"Name":"TweenPosition","Summary":"Smoothly moves a GuiObject from its current position to 'endPosition'. The only required argument is 'endPosition'. <a href=\"http://wiki.roblox.com/index.php/TweenPosition\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TweenSize","Summary":"Smoothly translates a GuiObject's current size to 'endSize'. The only required argument is 'endSize'. <a href=\"http://wiki.roblox.com/index.php/TweenSize\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TweenSizeAndPosition","Summary":"Smoothly translates a GuiObject's current size to 'endSize', and also smoothly translates the GuiObject's current position to 'endPosition'. The only required arguments are 'endSize' and 'endPosition'. <a href=\"http://wiki.roblox.com/index.php/TweenSizeAndPosition\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Active","Summary":"If true, this GuiObject can fire mouse events and will pass them to any GuiObjects layered underneath, while false will do neither.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BackgroundColor3","Summary":"A Color3 value that specifies the background color for the GuiObject. This value is ignored if the Style property (not found on all GuiObjects) is set to something besides custom.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BackgroundTransparency","Summary":"A number value that specifies how transparent the background of the GuiObject is. This value is ignored if the Style property (not found on all GuiObjects) is set to something besides custom.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BorderColor3","Summary":"A Color3 value that specifies the color of the outline of the GuiObject. This value is ignored if the Style property (not found on all GuiObjects) is set to something besides custom.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BorderSizePixel","Summary":"A number value that specifies the thickness (in pixels) of the outline of the GuiObject. Currently this value can only be set to either 0 or 1, any other number has no effect. This value is ignored if the Style property (not found on all GuiObjects) is set to something besides custom.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ClipsDescendants","Summary":"If set to true, any descendants of this GuiObject will only render if contained within it's borders. If set to false, all descendants will render regardless of position.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Draggable","Summary":"If true, allows a GuiObject to be dragged by the user's mouse. The events 'DragBegin' and 'DragStopped' are fired when the appropriate action happens, and only will fire on Draggable=true GuiObjects.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Size","Summary":"A UDim2 value describing the size of the GuiObject on screen in both absolute and relative coordinates. More information on UDim2 is available <a href=\"http://wiki.roblox.com/index.php/UDim2\" target=\"_blank\">here</a>.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Position","Summary":"A UDim2 value describing the position of the top-left corner of the GuiObject on screen. More information on UDim2 is available <a href=\"http://wiki.roblox.com/index.php/UDim2\" target=\"_blank\">here</a>.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SizeConstraint","Summary":"The direction(s) that an object can be resized in. <a href=\"http://wiki.roblox.com/index.php/SizeConstraint\" target=\"_blank\">More info</a>.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ZIndex","Summary":"Describes the ordering in which overlapping GuiObjects will be drawn. A value of 1 is drawn first, while higher values are drawn in ascending order (each value draws over the last).","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BackgroundColor","Summary":"Deprecated. Use BackgroundColor3 instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"BorderColor","Summary":"Deprecated. Use BorderColor3 instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false},{"Name":"SelectionImageObject","Summary":"Overrides the default selection adornment (used for gamepads). For best results, this should point to a GuiObject.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DragBegin","Summary":"Fired when a GuiObject with Draggable set to true starts to be dragged. 'InitialPosition' is a UDim2 value of the position of the GuiObject before any drag operation began.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DragStopped","Summary":"Always fired after a DragBegin event, DragStopped is fired when the user releases the mouse button causing a drag operation on the GuiObject. Arguments 'x', and 'y' specify the top-left absolute position of the GuiObject when the event is fired.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseEnter","Summary":"Fired when the mouse enters a GuiObject, as long as the GuiObject is active (see active property for more detail). Arguments 'x', and 'y' specify the absolute pixel position of the mouse.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseLeave","Summary":"Fired when the mouse leaves a GuiObject, as long as the GuiObject is active (see active property for more detail). Arguments 'x', and 'y' specify the absolute pixel position of the mouse.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseMoved","Summary":"Fired when the mouse is inside a GuiObject and moves, as long as the GuiObject is active (see active property for more detail). Arguments 'x', and 'y' specify the absolute pixel position of the mouse.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchTap","Summary":"Fired when a user taps their finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the tap gesture. This event only fires locally.  This event will always fire regardless of game state.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchPinch","Summary":"Fired when a user pinches their fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the pinch gesture. 'scale' is a float that indicates the difference from the beginning of the pinch gesture. 'velocity' is a float indicating how quickly the pinch gesture is happening. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchSwipe","Summary":"Fired when a user swipes their fingers on a TouchEnabled device. 'swipeDirection' is an Enum.SwipeDirection, indicating the direction the user swiped. 'numberOfTouches' is an int that indicates how many touches were involved with the gesture.  This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchLongPress","Summary":"Fired when a user holds at least one finger for a short amount of time on the same screen position on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchRotate","Summary":"Fired when a user rotates two fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'rotation' is a float indicating how much the rotation has gone from the start of the gesture. 'velocity' is a float that indicates how quickly the gesture is being performed. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TouchPan","Summary":"Fired when a user drags at least one finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'totalTranslation' is a Vector2, indicating how far the pan gesture has gone from its starting point. 'velocity' is a Vector2 that indicates how quickly the gesture is being performed in each dimension. 'state' indicates the Enum.UserInputState of the gesture.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InputBegan","Summary":"Fired when a user begins interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InputChanged","Summary":"Fired when a user changes interacting via a Human-Computer Interface device (Mouse move, touch move, mouse wheel, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InputEnded","Summary":"Fired when a user stops interacting via a Human-Computer Interface device (Mouse button up, touch end, keyboard button up, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Frame","Summary":"A container object used to layout other GUI objects","ExplorerOrder":15,"ExplorerImageIndex":48,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"Style","Summary":"Determines how a frame will look. Uses Enum.FrameStyle. <a href=\"http://wiki.roblox.com/index.php?title=API:Enum/FrameStyle\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScrollingFrame","Summary":"A container object used to layout other GUI objects, and allows for scrolling.","ExplorerOrder":15,"ExplorerImageIndex":48,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"ScrollingEnabled","Summary":"Determines whether or not scrolling is allowed on this frame. If turned off, no scroll bars will be rendered.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CanvasSize","Summary":"Determines the size of the area that is scrollable. The UDim2 is calculated using the parent gui's size, similar to the regular Size property on gui objects.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CanvasPosition","Summary":"The absolute position the scroll frame is in respect to the canvas size. The minimum this can be set to is (0,0), while the max is the absolute canvas size - AbsoluteWindowSize.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AbsoluteWindowSize","Summary":"The size in pixels of the frame, without the scrollbars.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScrollBarThickness","Summary":"How thick the scroll bar appears. This applies to both the horizontal and vertical scroll bars. Can be set to 0 for no bars render.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TopImage","Summary":"The \"Up\" image on the vertical scrollbar. Size of this is always ScrollBarThickness by ScrollBarThickness. This is also used as the \"left\" image on the horizontal scroll bar.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MidImage","Summary":"The \"Middle\" image on the vertical scrollbar. Size of this can vary in the y direction, but is always set at ScrollBarThickness in x direction. This is also used as the \"mid\" image on the horizontal scroll bar.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BottomImage","Summary":"The \"Down\" image on the vertical scrollbar. Size of this is always ScrollBarThickness by ScrollBarThickness. This is also used as the \"right\" image on the horizontal scroll bar.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ImageLabel","Summary":"A GUI object containing an Image","ExplorerOrder":18,"ExplorerImageIndex":49,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"Image","Summary":"Specifies the id of the texture to display. <a href=\"http://wiki.roblox.com/index.php?title=API:Class/ImageLabel/Image\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScaleType","Summary":"Specifies how an image should be displayed. See ScaleType for more info.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SliceCenter","Summary":"If ScaleType is set to Slice, this Rect is used to specify the central part of the image. Everything outside of this is considered to be the border.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TileSize","Summary":"If ScaleType is set to Tile, this sets the size of the tile.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TextLabel","Summary":"A GUI object containing text","ExplorerOrder":19,"ExplorerImageIndex":50,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"TextColor","Summary":"Deprecated. Use TextColor3 instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TextButton","Summary":"A GUI button containing text","ExplorerOrder":17,"ExplorerImageIndex":51,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"TextColor","Summary":"Deprecated. Use TextColor3 instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TextBox","Summary":"A text entry box","ExplorerOrder":17,"ExplorerImageIndex":51,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"TextColor","Summary":"Deprecated. Use TextColor3 instead","Browsable":true,"Deprecated":"true","Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GuiButton","Summary":"A GUI button containing an Image","ExplorerOrder":16,"ExplorerImageIndex":52,"Browsable":"false","PreferredParent":"","Members":[{"Name":"AutoButtonColor","Summary":"Determines whether a button changes color automatically when reacting to mouse events.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Modal","Summary":"Allows the mouse to be free in first person mode. If a button with this property set to true is visible, the mouse is 'free' in first person mode.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Style","Summary":"Determines how a button will look, including mouse event states. Uses Enum.ButtonStyle. <a href=\"http://wiki.roblox.com/index.php?title=API:Class/GuiButton/Style\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseButton1Click","Summary":"Fired when the mouse is over the button, and the mouse down and up events fire without the mouse leaving the button.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseButton1Down","Summary":"Fired when the mouse button is pushed down on a button.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseButton1Up","Summary":"Fired when the mouse button is released on a button.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseButton2Click","Summary":"This function currently does not work :(","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseButton2Down","Summary":"This function currently does not work :(","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MouseButton2Up","Summary":"This function currently does not work :(","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ImageButton","Summary":"A GUI button containing an Image","ExplorerOrder":16,"ExplorerImageIndex":52,"Browsable":true,"PreferredParent":"StarterGui","Members":[{"Name":"Image","Summary":"Specifies the asset id of the texture to display. <a href=\"http://wiki.roblox.com/index.php?title=API:Class/ImageButton/Image\" target=\"_blank\">More info</a>","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ScaleType","Summary":"Specifies how an image should be displayed. See ScaleType for more info.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SliceCenter","Summary":"If ScaleType is set to Slice, this Rect is used to specify the central part of the image. Everything outside of this is considered to be the border.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TileSize","Summary":"If ScaleType is set to Tile, this sets the size of the tile.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Handles","Summary":"A 3D GUI object to represent draggable handles","ExplorerOrder":19,"ExplorerImageIndex":53,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ArcHandles","Summary":"A 3D GUI object to represent draggable arc handles","ExplorerOrder":20,"ExplorerImageIndex":56,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SelectionBox","Summary":"A 3D GUI object to represent the visible selection around an object","ExplorerOrder":21,"ExplorerImageIndex":54,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SelectionSphere","Summary":"A 3D GUI object to represent the visible selection around an object","ExplorerOrder":21,"ExplorerImageIndex":54,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SurfaceSelection","Summary":"A 3D GUI object to represent the visible selection around a face of an object","ExplorerOrder":21,"ExplorerImageIndex":55,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Configuration","Summary":"An object that can be placed under parts to hold Value objects that represent that part's configuration","ExplorerOrder":22,"ExplorerImageIndex":58,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Folder","Summary":"An object that can be created to hold and organize objects","ExplorerOrder":1,"ExplorerImageIndex":77,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SelectionPartLasso","Summary":"A visual line drawn representation between two part objects","ExplorerOrder":22,"ExplorerImageIndex":57,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"SelectionPointLasso","Summary":"A visual line drawn representation between two positions","ExplorerOrder":22,"ExplorerImageIndex":57,"Browsable":true,"Deprecated":"true","PreferredParent":"","Members":[],"Preliminary":false,"IsBackend":false},{"Name":"PartPairLasso","Summary":"A visual line drawn representation between two parts.","ExplorerOrder":22,"ExplorerImageIndex":57,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Pose","Summary":"The pose of a joint relative to it's parent part in a keyframe","ExplorerOrder":22,"ExplorerImageIndex":60,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Keyframe","Summary":"One keyframe of an animation","ExplorerOrder":22,"ExplorerImageIndex":60,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Animation","Summary":"Represents a linked animation object, containing keyframes and poses.","ExplorerOrder":22,"ExplorerImageIndex":60,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AnimationTrack","Summary":"Returned by a call to LoadAnimation. Controls the playback of an animation on a Humanoid.","ExplorerOrder":22,"ExplorerImageIndex":60,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"AnimationController","Summary":"Allows animations to be played on joints of the parent object.","ExplorerOrder":22,"ExplorerImageIndex":60,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"CharacterMesh","Summary":"Modifies the appearance of a body part.","ExplorerOrder":22,"ExplorerImageIndex":60,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Dialog","Summary":"An object used to make dialog trees to converse with players","ExplorerOrder":22,"ExplorerImageIndex":62,"Browsable":true,"PreferredParent":"","Members":[{"Name":"ConversationDistance","Summary":"The maximum distance that the player's character can be from the dialog's parent in order to use the dialog.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GoodbyeChoiceActive","Summary":"Indicates whether or not an extra choice is available for the player to exit the dialog tree at this node.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GoodbyeDialog","Summary":"The prompt text for an extra choice that allows the player to exit the dialog tree at this node.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InUse","Summary":"Indicates whether or not the dialog is currently being used by one or more players.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"InitialPrompt","Summary":"The chat message that is displayed to the player when they first activate the dialog.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Purpose","Summary":"Describes the purpose of the dialog, which is used to display a relevant icon on the dialog's activation button.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Tone","Summary":"Describes the tone of the dialog, which is used to display a relevant color in the dialog interface.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"BehaviorType","Summary":"Indicates how the dialog may be used by players. Use Enum.DialogBehaviorType.SinglePlayer if only one player should interact with the dialog at a time, otherwise use Enum.DialogBehaviorType.MultiplePlayers.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetCurrentPlayers","Summary":"Returns an array of the players currently conversing with this dialog.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"DialogChoice","Summary":"An object used to make dialog trees to converse with players","ExplorerOrder":22,"ExplorerImageIndex":63,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"UnionOperation","Summary":"A UnionOperation is a union of multiple parts","ExplorerOrder":2,"ExplorerImageIndex":73,"Browsable":"true","PreferredParent":"","Members":[{"Name":"UsePartColor","Summary":"Override the colors of the mesh with the part color.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"NegateOperation","Summary":"A NegateOperation can be used to create holes in other parts","ExplorerOrder":2,"ExplorerImageIndex":72,"Browsable":"true","PreferredParent":"","Members":[{"Name":"UsePartColor","Summary":"Override the colors of the mesh with the part color.","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"MeshPart","Summary":"A MeshPart is a physically simulatable mesh","ExplorerOrder":2,"ExplorerImageIndex":73,"Browsable":"true","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Terrain","Summary":"Object representing a high performance bounded grid of static 4x4 parts","ExplorerOrder":0,"ExplorerImageIndex":65,"Browsable":"true","PreferredParent":"","Members":[{"Name":"WaterTransparency","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WaterWaveSize","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WaterWaveSpeed","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"WaterReflectance","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetCell","Summary":"Returns CellMaterial, CellBlock, CellOrientation","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"GetWaterCell","Summary":"Returns hasAnyWater, WaterForce, WaterDirection","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SetWaterCell","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Light","Summary":"Parent of all light objects","ExplorerOrder":3,"ExplorerImageIndex":13,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Brightness","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"PointLight","Summary":"Makes the parent part emit light in a spherical shape","ExplorerOrder":3,"ExplorerImageIndex":13,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Range","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SpotLight","Summary":"Makes the parent part emit light in a conical shape","ExplorerOrder":3,"ExplorerImageIndex":13,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Range","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Angle","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"SurfaceLight","Summary":"Makes the parent part emit light in a frustum shape from rectangle defined by part","ExplorerOrder":3,"ExplorerImageIndex":13,"Browsable":true,"PreferredParent":"","Members":[{"Name":"Range","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Brightness","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"Angle","Summary":"","Browsable":true,"Deprecated":false,"Preliminary":false,"IsBackend":false}],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RemoteFunction","Summary":"Allow functions defined in one script to be called by another script across client/server boundary","ExplorerOrder":4,"ExplorerImageIndex":74,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"RemoteEvent","Summary":"Allow events defined in one script to be subscribed to by another script across client/server boundary","ExplorerOrder":5,"ExplorerImageIndex":75,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"TerrainRegion","Summary":"Object representing a snapshot of the region of terrain","ExplorerOrder":2,"ExplorerImageIndex":65,"Browsable":"true","PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false},{"Name":"ModuleScript","Summary":"A script fragment. Only runs when another script uses require() on it.","ExplorerOrder":5,"ExplorerImageIndex":76,"Browsable":true,"PreferredParent":"","Members":[],"Deprecated":false,"Preliminary":false,"IsBackend":false}]]==]
-        
+
     end
-    
+
     rawRMD = Services.HttpService:JSONDecode(rawRMD)
 
-	local RMD = {}
-	for _,v in pairs(rawRMD) do
-		RMD[v.Name] = v
-	end
+  local RMD = {}
+  for _,v in pairs(rawRMD) do
+    RMD[v.Name] = v
+  end
 
     return RMD
 end
 
 function f.checkInPane(window)
-	local inPane = false
-	for i,v in pairs(LPaneItems) do if v.Window == window then inPane = true end end
-	for i,v in pairs(RPaneItems) do if v.Window == window then inPane = true end end
-	return inPane
+  local inPane = false
+  for i,v in pairs(LPaneItems) do if v.Window == window then inPane = true end end
+  for i,v in pairs(RPaneItems) do if v.Window == window then inPane = true end end
+  return inPane
 end
 
 function f.transGui(gui,num)
-	if gui:IsA("GuiObject") then gui.BackgroundTransparency = num end
-	if gui:IsA("TextBox") or gui:IsA("TextLabel") then gui.TextTransparency = num
-	elseif gui:IsA("ImageButton") or gui:IsA("ImageLabel") then gui.ImageTransparency = num end
-	for i,v in pairs(gui:GetChildren()) do
-		f.transGui(v,num)
-	end
+  if gui:IsA("GuiObject") then gui.BackgroundTransparency = num end
+  if gui:IsA("TextBox") or gui:IsA("TextLabel") then gui.TextTransparency = num
+  elseif gui:IsA("ImageButton") or gui:IsA("ImageLabel") then gui.ImageTransparency = num end
+  for i,v in pairs(gui:GetChildren()) do
+    f.transGui(v,num)
+  end
 end
 
 function f.hookWindowListener(window,name)
-	if name ~= 'Properties' then
-	window.TopBar.Close.MouseEnter:connect(function()
-		window.TopBar.Close.BackgroundTransparency = 0.5
-	end)
-	
-	window.TopBar.Close.MouseLeave:connect(function()
-		window.TopBar.Close.BackgroundTransparency = 1
-	end)
-	
-	window.TopBar.Close.MouseButton1Click:connect(function()
-		if f.checkInPane(window) then f.removeFromPane(window) window.Visible = false;window.Parent:ClearAllChildren();window.Parent:Remove(); script:Remove(); return end
-	end)
-	else
-	    window.TopBar.Close.Visible = false
-	end
+  if name ~= 'Properties' then
+  window.TopBar.Close.MouseEnter:connect(function()
+    window.TopBar.Close.BackgroundTransparency = 0.5
+  end)
+
+  window.TopBar.Close.MouseLeave:connect(function()
+    window.TopBar.Close.BackgroundTransparency = 1
+  end)
+
+  window.TopBar.Close.MouseButton1Click:connect(function()
+    if f.checkInPane(window) then f.removeFromPane(window) window.Visible = false;window.Parent:ClearAllChildren();window.Parent:Remove(); script:Remove(); return end
+  end)
+  else
+      window.TopBar.Close.Visible = false
+  end
 end
 
 -- Explorer Functions
 
 function f.tabIsA(tab,class)
-	for i,v in pairs(tab) do
-		if v:IsA(class) then
-			return true
-		end
-	end
-	return false
+  for i,v in pairs(tab) do
+    if v:IsA(class) then
+      return true
+    end
+  end
+  return false
 end
 
 function f.hasChildren(tab)
-	for i,v in pairs(tab) do
-		if #v:GetChildren() > 0 then
-			return true
-		end
-	end
-	return false
+  for i,v in pairs(tab) do
+    if #v:GetChildren() > 0 then
+      return true
+    end
+  end
+  return false
 end
 
 function f.tabHasChar(tab)
-	local players = Services.Players
-	for i,v in pairs(tab) do
-		if players:GetPlayerFromCharacter(v) then
-			return true
-		end
-	end
-	return false
+  local players = Services.Players
+  for i,v in pairs(tab) do
+    if players:GetPlayerFromCharacter(v) then
+      return true
+    end
+  end
+  return false
 end
 
 function f.expandAll(obj)
-	local node = nodes[obj]
-	while node do
-		explorerTree.Expanded[node] = true
-		node = node.Parent
-	end
+  local node = nodes[obj]
+  while node do
+    explorerTree.Expanded[node] = true
+    node = node.Parent
+  end
 end
 
 function f.rightClick(obj)
-	rightClickContext:Clear()
-	
-	local selection = explorerTree.Selection	
-	
-	-- Cut
-	
-	if obj:IsA('ModuleScript') then
-	    rightClickContext:Add({Name = "Require Module", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
-	        print(pcall(function()
-	            createReqGui()(obj)
-	        end))
-	        rightClickContext:Hide()
-	    end})
-	    if decompile then
-	        rightClickContext:Add({Name = "View Script", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
-	            spawn(function()print(pcall(showCode,obj,obj.Name))end)
-	            
-	            rightClickContext:Hide()
-	        end})
-	    end
-	elseif decompile and obj:IsA('LocalScript') then
-	    rightClickContext:Add({Name = "View Script", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
-	        spawn(function()print(pcall(showCode,obj,obj.Name))end)
-	        
-	        rightClickContext:Hide()
-	    end})
-	
-	    rightClickContext:Add({Name = "Copy Script Source", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
-	        spawn(function()setclipboard(decompile(obj))end)
-	        
-	        rightClickContext:Hide()
-	    end})
-	end
-	if obj:IsA('ModuleScript') or obj:IsA('LocalScript') then
-	    rightClickContext:AddDivider()
-	end
-	
-	rightClickContext:Add({Name = "Cut", Icon = f.icon(nil,iconIndex.CUT_ICON), DisabledIcon = f.icon(nil,iconIndex.CUT_D_ICON), Shortcut = "Ctrl+X", Disabled = #selection.List == 0, OnClick = function()
-		pcall(function()
-			clipboard = {}
-			for i,v in pairs(selection.List) do
-				table.insert(clipboard,v:Clone())
-				v:Destroy()
-			end
-		end)
-		rightClickContext:Hide()
-	end})
-	
-	rightClickContext:Add({Name = "Copy", Icon = f.icon(nil,iconIndex.COPY_ICON), DisabledIcon = f.icon(nil,iconIndex.COPY_D_ICON), Shortcut = "Ctrl+C", Disabled = #selection.List == 0, OnClick = function()
-		pcall(function()
-			clipboard = {}
-			for i,v in pairs(selection.List) do
-				table.insert(clipboard,v:Clone())
-			end
-		end)
-		rightClickContext:Hide()
-	end})
-	
-	rightClickContext:Add({Name = "Paste Into", Icon = f.icon(nil,iconIndex.PASTE_ICON), DisabledIcon = f.icon(nil,iconIndex.PASTE_D_ICON), Shortcut = "Ctrl+V", Disabled = #clipboard == 0, OnClick = function()
-		pcall(function()
-			for i,v in pairs(selection.List) do
-				for _,copy in pairs(clipboard) do
-					copy:Clone().Parent = v
-				end
-			end
-		end)
-		rightClickContext:Hide()
-	end})
-	
-	rightClickContext:Add({Name = "Duplicate", Icon = f.icon(nil,iconIndex.COPY_ICON), DisabledIcon = f.icon(nil,iconIndex.COPY_D_ICON), Shortcut = "Ctrl+D", Disabled = #selection.List == 0, OnClick = function()
-		pcall(function()
-			for i,v in pairs(selection.List) do
-				v:Clone().Parent = v.Parent
-			end
-		end)
-		rightClickContext:Hide()
-	end})
-	
-	rightClickContext:Add({Name = "Delete", Icon = f.icon(nil,iconIndex.DELETE_ICON), DisabledIcon = f.icon(nil,iconIndex.DELETE_D_ICON), Shortcut = "Del", Disabled = #selection.List == 0, OnClick = function()
-		pcall(function()
-			for i,v in pairs(selection.List) do
-				v:Destroy()
-			end
-		end)
-		rightClickContext:Hide()
-	end})
-	
-	if setclipboard then
-	rightClickContext:Add({Name = "Copy Path", Icon = "", DisabledIcon = "", Shortcut = "Ctrl+R", Disabled = #selection.List == 0, OnClick = function()
-	    setclipboard('game.'..string.gsub(obj:GetFullName(),'Players.'..plr.Name,'Players.LocalPlayer'))
-	    rightClickContext:Hide()
-	end})
-	end
-	
-	rightClickContext:AddDivider()
-	
-	rightClickContext:Add({Name = "Group", Icon = f.icon(nil,iconIndex.GROUP_ICON), DisabledIcon = f.icon(nil,iconIndex.GROUP_D_ICON), Shortcut = "Ctrl+G", Disabled = #selection.List == 0, OnClick = function()
-		local base = selection.List[1]
-		local model = Instance.new("Model",base.Parent)
-		for i,v in pairs(selection.List) do
-			v.Parent = model
-		end
-		rightClickContext:Hide()
-	end})
-	
-	rightClickContext:Add({Name = "Ungroup", Icon = f.icon(nil,iconIndex.UNGROUP_ICON), DisabledIcon = f.icon(nil,iconIndex.UNGROUP_D_ICON), Shortcut = "Ctrl+U", Disabled = not f.tabIsA(selection.List,"Model"), OnClick = function()
-		for i,v in pairs(selection.List) do
-			if v:IsA("Model") then
-				for _,child in pairs(v:GetChildren()) do
-					child.Parent = v.Parent
-				end
-				v:Destroy()
-			end
-		end
-		rightClickContext:Hide()
-	end})
-	
-	rightClickContext:Add({Name = "Select Children", Icon = f.icon(nil,iconIndex.SELECTCHILDREN_ICON), DisabledIcon = f.icon(nil,iconIndex.SELECTCHILDREN_D_ICON), Shortcut = "", Disabled = not f.hasChildren(selection.List), OnClick = function()
-		local oldSel = selection.List
-		selection.List = {}
-		selection.Selected = {}
-		for i,v in pairs(oldSel) do
-			for _,child in pairs(v:GetChildren()) do
-				explorerTree.Selection:Add(child)
-				f.expandAll(child.Parent)
-			end
-		end
-		explorerTree:TreeUpdate()
-		explorerTree:Refresh()
-		rightClickContext:Hide()
-	end})
-	
-	rightClickContext:Add({Name = "Jump To Parent", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
-		local oldSel = selection.List
-		selection.List = {}
-		selection.Selected = {}
-		for i,v in pairs(oldSel) do
-			if v.Parent ~= nil then
-				selection:Add(v.Parent)
-			end
-		end
-		explorerTree:Refresh()
-		rightClickContext:Hide()
-	end})
-	
-	-- Parts
-	if f.tabIsA(selection.List, "BasePart") or f.tabIsA(selection.List, "Model") then
-		rightClickContext:AddDivider()
-		
-		rightClickContext:Add({Name = "Teleport To", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
-			for i,v in pairs(selection.List) do
-				if v:IsA("BasePart") then
-					Services.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-					break;
-				end
-			end
-			rightClickContext:Hide()
-		end})
-		
-		rightClickContext:Add({Name = "Teleport Here", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
-			rightClickContext:Hide()
-		end})
-	end
-	
-	-- Player
-	local hasPlayer = false	
-	
-	if f.tabIsA(selection.List, "Player") then
-		hasPlayer = true
-		rightClickContext:AddDivider()
-		
-		rightClickContext:Add({Name = "Jump To Character", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
-			rightClickContext:Hide()
-		end})
-	end
-	
-	if f.tabHasChar(selection.List) then
-		if not hasPlayer then rightClickContext:AddDivider() end
-		
-		rightClickContext:Add({Name = "Jump To Player", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
-			rightClickContext:Hide()
-		end})
-	end
-	
-	rightClickContext:Refresh()
-	rightClickContext:Show(gui,mouse.X,mouse.Y)
+  rightClickContext:Clear()
+
+  local selection = explorerTree.Selection	
+
+  -- Cut
+
+  if obj:IsA('ModuleScript') then
+      rightClickContext:Add({Name = "Require Module", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
+          print(pcall(function()
+              createReqGui()(obj)
+          end))
+          rightClickContext:Hide()
+      end})
+      if decompile then
+          rightClickContext:Add({Name = "View Script", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
+              spawn(function()print(pcall(showCode,obj,obj.Name))end)
+
+              rightClickContext:Hide()
+          end})
+      end
+  elseif decompile and obj:IsA('LocalScript') then
+      rightClickContext:Add({Name = "View Script", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
+          spawn(function()print(pcall(showCode,obj,obj.Name))end)
+
+          rightClickContext:Hide()
+      end})
+
+      rightClickContext:Add({Name = "Copy Script Source", Icon = "", DisabledIcon = "",Shortcut = "Ctrl+E", Disabled = false, OnClick = function()
+          spawn(function()setclipboard(decompile(obj))end)
+
+          rightClickContext:Hide()
+      end})
+  end
+  if obj:IsA('ModuleScript') or obj:IsA('LocalScript') then
+      rightClickContext:AddDivider()
+  end
+
+  rightClickContext:Add({Name = "Cut", Icon = f.icon(nil,iconIndex.CUT_ICON), DisabledIcon = f.icon(nil,iconIndex.CUT_D_ICON), Shortcut = "Ctrl+X", Disabled = #selection.List == 0, OnClick = function()
+    pcall(function()
+      clipboard = {}
+      for i,v in pairs(selection.List) do
+        table.insert(clipboard,v:Clone())
+        v:Destroy()
+      end
+    end)
+    rightClickContext:Hide()
+  end})
+
+  rightClickContext:Add({Name = "Copy", Icon = f.icon(nil,iconIndex.COPY_ICON), DisabledIcon = f.icon(nil,iconIndex.COPY_D_ICON), Shortcut = "Ctrl+C", Disabled = #selection.List == 0, OnClick = function()
+    pcall(function()
+      clipboard = {}
+      for i,v in pairs(selection.List) do
+        table.insert(clipboard,v:Clone())
+      end
+    end)
+    rightClickContext:Hide()
+  end})
+
+  rightClickContext:Add({Name = "Paste Into", Icon = f.icon(nil,iconIndex.PASTE_ICON), DisabledIcon = f.icon(nil,iconIndex.PASTE_D_ICON), Shortcut = "Ctrl+V", Disabled = #clipboard == 0, OnClick = function()
+    pcall(function()
+      for i,v in pairs(selection.List) do
+        for _,copy in pairs(clipboard) do
+          copy:Clone().Parent = v
+        end
+      end
+    end)
+    rightClickContext:Hide()
+  end})
+
+  rightClickContext:Add({Name = "Duplicate", Icon = f.icon(nil,iconIndex.COPY_ICON), DisabledIcon = f.icon(nil,iconIndex.COPY_D_ICON), Shortcut = "Ctrl+D", Disabled = #selection.List == 0, OnClick = function()
+    pcall(function()
+      for i,v in pairs(selection.List) do
+        v:Clone().Parent = v.Parent
+      end
+    end)
+    rightClickContext:Hide()
+  end})
+
+  rightClickContext:Add({Name = "Delete", Icon = f.icon(nil,iconIndex.DELETE_ICON), DisabledIcon = f.icon(nil,iconIndex.DELETE_D_ICON), Shortcut = "Del", Disabled = #selection.List == 0, OnClick = function()
+    pcall(function()
+      for i,v in pairs(selection.List) do
+        v:Destroy()
+      end
+    end)
+    rightClickContext:Hide()
+  end})
+
+  if setclipboard then
+  rightClickContext:Add({Name = "Copy Path", Icon = "", DisabledIcon = "", Shortcut = "Ctrl+R", Disabled = #selection.List == 0, OnClick = function()
+      setclipboard('game.'..string.gsub(obj:GetFullName(),'Players.'..plr.Name,'Players.LocalPlayer'))
+      rightClickContext:Hide()
+  end})
+  end
+
+  rightClickContext:AddDivider()
+
+  rightClickContext:Add({Name = "Group", Icon = f.icon(nil,iconIndex.GROUP_ICON), DisabledIcon = f.icon(nil,iconIndex.GROUP_D_ICON), Shortcut = "Ctrl+G", Disabled = #selection.List == 0, OnClick = function()
+    local base = selection.List[1]
+    local model = Instance.new("Model",base.Parent)
+    for i,v in pairs(selection.List) do
+      v.Parent = model
+    end
+    rightClickContext:Hide()
+  end})
+
+  rightClickContext:Add({Name = "Ungroup", Icon = f.icon(nil,iconIndex.UNGROUP_ICON), DisabledIcon = f.icon(nil,iconIndex.UNGROUP_D_ICON), Shortcut = "Ctrl+U", Disabled = not f.tabIsA(selection.List,"Model"), OnClick = function()
+    for i,v in pairs(selection.List) do
+      if v:IsA("Model") then
+        for _,child in pairs(v:GetChildren()) do
+          child.Parent = v.Parent
+        end
+        v:Destroy()
+      end
+    end
+    rightClickContext:Hide()
+  end})
+
+  rightClickContext:Add({Name = "Select Children", Icon = f.icon(nil,iconIndex.SELECTCHILDREN_ICON), DisabledIcon = f.icon(nil,iconIndex.SELECTCHILDREN_D_ICON), Shortcut = "", Disabled = not f.hasChildren(selection.List), OnClick = function()
+    local oldSel = selection.List
+    selection.List = {}
+    selection.Selected = {}
+    for i,v in pairs(oldSel) do
+      for _,child in pairs(v:GetChildren()) do
+        explorerTree.Selection:Add(child)
+        f.expandAll(child.Parent)
+      end
+    end
+    explorerTree:TreeUpdate()
+    explorerTree:Refresh()
+    rightClickContext:Hide()
+  end})
+
+  rightClickContext:Add({Name = "Jump To Parent", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
+    local oldSel = selection.List
+    selection.List = {}
+    selection.Selected = {}
+    for i,v in pairs(oldSel) do
+      if v.Parent ~= nil then
+        selection:Add(v.Parent)
+      end
+    end
+    explorerTree:Refresh()
+    rightClickContext:Hide()
+  end})
+
+  -- Parts
+  if f.tabIsA(selection.List, "BasePart") or f.tabIsA(selection.List, "Model") then
+    rightClickContext:AddDivider()
+
+    rightClickContext:Add({Name = "Teleport To", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
+      for i,v in pairs(selection.List) do
+        if v:IsA("BasePart") then
+          Services.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+          break;
+        end
+      end
+      rightClickContext:Hide()
+    end})
+
+    rightClickContext:Add({Name = "Teleport Here", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
+      rightClickContext:Hide()
+    end})
+  end
+
+  -- Player
+  local hasPlayer = false	
+
+  if f.tabIsA(selection.List, "Player") then
+    hasPlayer = true
+    rightClickContext:AddDivider()
+
+    rightClickContext:Add({Name = "Jump To Character", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
+      rightClickContext:Hide()
+    end})
+  end
+
+  if f.tabHasChar(selection.List) then
+    if not hasPlayer then rightClickContext:AddDivider() end
+
+    rightClickContext:Add({Name = "Jump To Player", Icon = "", DisabledIcon = "", Shortcut = "", Disabled = #selection.List == 0, OnClick = function()
+      rightClickContext:Hide()
+    end})
+  end
+
+  rightClickContext:Refresh()
+  rightClickContext:Show(gui,mouse.X,mouse.Y)
 end
 
 function f.newExplorer()
-	local newgui = getResource("ExplorerPanel")
-	local explorerScroll = ScrollBar.new()
-	local explorerScrollH = ScrollBar.new(true)
-	local newTree = TreeView.new()
-	newTree.Scroll = explorerScroll
-	newTree.DisplayFrame = newgui.Content.List
-	newTree.TreeUpdate = f.updateTree
-	newTree.SearchText = ""
-	newTree.SearchExpanded = {}
-	
-	local nameEvents = {}
-	
-	newTree.PreUpdate = function(self)
-		for i,v in pairs(nameEvents) do v:Disconnect() nameEvents[i] = nil end
-	end
-	
-	newTree.NodeCreate = function(self,entry,i)
-		entry.Indent.IconFrame.Icon.Image = iconMap
-		
-		entry.MouseEnter:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if self.Selection.Selected[node.Obj] then return end
-				if rightClickContext.Frame.Parent ~= nil and f.checkMouseInGui(rightClickContext.Frame) then return end
-				entry.BackgroundTransparency = 0.7
-			end
-		end)
-		entry.MouseLeave:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if self.Selection.Selected[node.Obj] then return end
-				entry.BackgroundTransparency = 1
-			end
-		end)						
-		entry.MouseButton1Down:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if Services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then
-				self.Selection:Add(node.Obj)
-			else
-				self.Selection:Set({node.Obj})
-			end
-			self:Refresh()
-			propertiesTree:TreeUpdate()
-			propertiesTree:Refresh()
-		end)
-		entry.MouseButton2Down:Connect(function()
-			local node = self.Tree[i + self.Index]
-			rightEntry = entry
-			rightClickContext.Frame.Parent = nil
-			if not self.Selection.Selected[node.Obj] then
-				self.Selection:Set({node.Obj})
-			end
-			self:Refresh()
-		end)
-		entry.MouseButton2Up:Connect(function()
-			if rightEntry and f.checkMouseInGui(rightEntry) then
-				f.rightClick((self.Tree[i + self.Index]).Obj)
-			end
-		end)
-						
-		entry.Indent.Expand.MouseEnter:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
-					f.icon(entry.Indent.Expand,iconIndex.NodeExpandedOver)
-				else
-					f.icon(entry.Indent.Expand,iconIndex.NodeCollapsedOver)
-				end
-			end
-		end)
-		entry.Indent.Expand.MouseLeave:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
-					f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
-				else
-					f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
-				end
-			end
-		end)
-		entry.Indent.Expand.MouseButton1Down:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node and not self.SearchResults then
-				self:Expand(node)
-			else
-				if self.SearchExpanded[node.Obj] then
-					self.SearchExpanded[node.Obj] = nil
-				else
-					self.SearchExpanded[node.Obj] = 2
-				end
-				if self.TreeUpdate then self:TreeUpdate() end
-				self:Refresh()
-			end
-		end)
-	end
-	
-	newTree.NodeDraw = function(self,entry,node)
-		f.icon(entry.Indent.IconFrame,iconIndex[node.Obj.ClassName] or 0)
-		entry.Indent.EntryName.Text = node.Obj.Name									
-		if #node > 0 then
-			entry.Indent.Expand.Visible = true
-			if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj] == 2) then
-				f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
-			else
-				f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
-			end
-			if self.SearchExpanded[node.Obj] == 1 then
-				entry.Indent.Expand.Visible = false
-			end
-		else
-			entry.Indent.Expand.Visible = false
-		end
-		
-		if node.Obj.Parent ~= node.Parent.Obj then
-			spawn(function() f.moveObject(node.Obj,node.Obj.Parent) end)
-		end
-					
-		if self.Selection.Selected[node.Obj] then
-			entry.Indent.EntryName.TextColor3 = Color3.new(1,1,1)
-			entry.BackgroundTransparency = 0
-		else
-			entry.Indent.EntryName.TextColor3 = Color3.new(220/255, 220/255, 220/255)
-			entry.BackgroundTransparency = 1
-		end
-		
-		nameEvents[node.Obj] = node.Obj:GetPropertyChangedSignal("Name"):Connect(function()
-			entry.Indent.EntryName.Text = node.Obj.Name
-		end)
-					
-		entry.Indent.Position = UDim2.new(0,18*node.Depth,0,0)
-		entry.Size = UDim2.new(0,nodeWidth+10,0,18)
-	end
-	
-	explorerScroll.Gui.Parent = newgui.Content
-	explorerScroll:Texture({
-		FrameColor = Color3.new(80/255,80/255,80/255),
-		ThumbColor = Color3.new(120/255,120/255,120/255),
-		ThumbSelectColor = Color3.new(140/255,140/255,140/255),
-		ButtonColor = Color3.new(163/255,162/255,165/255),
-		ArrowColor = Color3.new(220/255,220/255,220/255)
-	})
-	explorerScroll:SetScrollFrame(newgui.Content,3)
-	
-	explorerScrollH.Gui.Visible = false
-	explorerScrollH.Gui.Parent = newgui.Content
-	explorerScrollH:Texture({
-		FrameColor = Color3.new(80/255,80/255,80/255),
-		ThumbColor = Color3.new(120/255,120/255,120/255),
-		ThumbSelectColor = Color3.new(140/255,140/255,140/255),
-		ButtonColor = Color3.new(163/255,162/255,165/255),
-		ArrowColor = Color3.new(220/255,220/255,220/255)
-	})
-	explorerScrollH.Gui.Position = UDim2.new(0,0,1,-16)
-	explorerScrollH.Gui.Size = UDim2.new(1,-16,0,16)
-	
-	newTree.OnUpdate = function(self)
-		local guiX = explorerPanel.Content.AbsoluteSize.X-16
-		explorerScrollH.VisibleSpace = guiX
-		explorerScrollH.TotalSpace = nodeWidth+10
-		if nodeWidth > guiX then
-			explorerScrollH.Gui.Visible = true
-			explorerScroll.Gui.Size = UDim2.new(0,16,1,-16)
-			self.DisplayFrame.Size = UDim2.new(1,-16,1,-16)
-		else
-			explorerScrollH.Gui.Visible = false
-			explorerScroll.Gui.Size = UDim2.new(0,16,1,0)
-			self.DisplayFrame.Size = UDim2.new(1,-16,1,0)
-		end
-		explorerScroll.TotalSpace = #self.Tree + 1
-		explorerScroll.VisibleSpace = math.ceil(self.DisplayFrame.AbsoluteSize.Y / 19)
-		explorerScrollH:Update()		
-		explorerScroll:Update()
-	end
-	explorerScroll.OnUpdate = function(self) if newTree.Index == self.Index then return end newTree.Index = self.Index newTree:Refresh() end
-	explorerScrollH.OnUpdate = function(self)
-		for i,v in pairs(explorerTree.Entries) do
-			v.Position = UDim2.new(0,1-self.Index,0,v.Position.Y.Offset)
-		end
-	end
-	--explorerData = {Window = newgui, NodeData = {}, Scroll = explorerScroll, Entries = {}}
-	
-	explorerTree = newTree
-	
-	table.insert(activeWindows,newgui)
-	f.hookWindowListener(newgui,'Explorer')
-	newgui.Changed:connect(function(prop) if prop == "AbsoluteSize" or prop == "AbsolutePosition" then newTree:Refresh() end end)
-	
-	local searchBox = newgui.TopBar.SearchFrame.Search
-	local searchAnim = searchBox.Parent.Entering
-	searchBox:GetPropertyChangedSignal("Text"):Connect(function()
-		local searchTime = tick()
-		lastSearch = searchTime
-		wait()
-		if lastSearch ~= searchTime then return end
-		newTree.SearchText = searchBox.Text
-		f.updateSearch(newTree)
-		explorerTree:TreeUpdate()
-		explorerTree:Refresh()
-	end)
-	
-	searchBox.Focused:Connect(function()
-		searchBox.Empty.Visible = false
-		searchAnim:TweenSizeAndPosition(UDim2.new(1,0,0,2),UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
-	end)
-	
-	searchBox.FocusLost:Connect(function()
-		if searchBox.Text == "" then searchBox.Empty.Visible = true else searchBox.Empty.Visible = false end
-		searchAnim:TweenSizeAndPosition(UDim2.new(0,0,0,2),UDim2.new(0.5,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
-	end)
-	
-	return newgui
+  local newgui = getResource("ExplorerPanel")
+  local explorerScroll = ScrollBar.new()
+  local explorerScrollH = ScrollBar.new(true)
+  local newTree = TreeView.new()
+  newTree.Scroll = explorerScroll
+  newTree.DisplayFrame = newgui.Content.List
+  newTree.TreeUpdate = f.updateTree
+  newTree.SearchText = ""
+  newTree.SearchExpanded = {}
+
+  local nameEvents = {}
+
+  newTree.PreUpdate = function(self)
+    for i,v in pairs(nameEvents) do v:Disconnect() nameEvents[i] = nil end
+  end
+
+  newTree.NodeCreate = function(self,entry,i)
+    entry.Indent.IconFrame.Icon.Image = iconMap
+
+    entry.MouseEnter:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if self.Selection.Selected[node.Obj] then return end
+        if rightClickContext.Frame.Parent ~= nil and f.checkMouseInGui(rightClickContext.Frame) then return end
+        entry.BackgroundTransparency = 0.7
+      end
+    end)
+    entry.MouseLeave:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if self.Selection.Selected[node.Obj] then return end
+        entry.BackgroundTransparency = 1
+      end
+    end)						
+    entry.MouseButton1Down:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if Services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then
+        self.Selection:Add(node.Obj)
+      else
+        self.Selection:Set({node.Obj})
+      end
+      self:Refresh()
+      propertiesTree:TreeUpdate()
+      propertiesTree:Refresh()
+    end)
+    entry.MouseButton2Down:Connect(function()
+      local node = self.Tree[i + self.Index]
+      rightEntry = entry
+      rightClickContext.Frame.Parent = nil
+      if not self.Selection.Selected[node.Obj] then
+        self.Selection:Set({node.Obj})
+      end
+      self:Refresh()
+    end)
+    entry.MouseButton2Up:Connect(function()
+      if rightEntry and f.checkMouseInGui(rightEntry) then
+        f.rightClick((self.Tree[i + self.Index]).Obj)
+      end
+    end)
+
+    entry.Indent.Expand.MouseEnter:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
+          f.icon(entry.Indent.Expand,iconIndex.NodeExpandedOver)
+        else
+          f.icon(entry.Indent.Expand,iconIndex.NodeCollapsedOver)
+        end
+      end
+    end)
+    entry.Indent.Expand.MouseLeave:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
+          f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
+        else
+          f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
+        end
+      end
+    end)
+    entry.Indent.Expand.MouseButton1Down:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node and not self.SearchResults then
+        self:Expand(node)
+      else
+        if self.SearchExpanded[node.Obj] then
+          self.SearchExpanded[node.Obj] = nil
+        else
+          self.SearchExpanded[node.Obj] = 2
+        end
+        if self.TreeUpdate then self:TreeUpdate() end
+        self:Refresh()
+      end
+    end)
+  end
+
+  newTree.NodeDraw = function(self,entry,node)
+    f.icon(entry.Indent.IconFrame,iconIndex[node.Obj.ClassName] or 0)
+    entry.Indent.EntryName.Text = node.Obj.Name									
+    if #node > 0 then
+      entry.Indent.Expand.Visible = true
+      if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj] == 2) then
+        f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
+      else
+        f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
+      end
+      if self.SearchExpanded[node.Obj] == 1 then
+        entry.Indent.Expand.Visible = false
+      end
+    else
+      entry.Indent.Expand.Visible = false
+    end
+
+    if node.Obj.Parent ~= node.Parent.Obj then
+      spawn(function() f.moveObject(node.Obj,node.Obj.Parent) end)
+    end
+
+    if self.Selection.Selected[node.Obj] then
+      entry.Indent.EntryName.TextColor3 = Color3.new(1,1,1)
+      entry.BackgroundTransparency = 0
+    else
+      entry.Indent.EntryName.TextColor3 = Color3.new(220/255, 220/255, 220/255)
+      entry.BackgroundTransparency = 1
+    end
+
+    nameEvents[node.Obj] = node.Obj:GetPropertyChangedSignal("Name"):Connect(function()
+      entry.Indent.EntryName.Text = node.Obj.Name
+    end)
+
+    entry.Indent.Position = UDim2.new(0,18*node.Depth,0,0)
+    entry.Size = UDim2.new(0,nodeWidth+10,0,18)
+  end
+
+  explorerScroll.Gui.Parent = newgui.Content
+  explorerScroll:Texture({
+    FrameColor = Color3.new(80/255,80/255,80/255),
+    ThumbColor = Color3.new(120/255,120/255,120/255),
+    ThumbSelectColor = Color3.new(140/255,140/255,140/255),
+    ButtonColor = Color3.new(163/255,162/255,165/255),
+    ArrowColor = Color3.new(220/255,220/255,220/255)
+  })
+  explorerScroll:SetScrollFrame(newgui.Content,3)
+
+  explorerScrollH.Gui.Visible = false
+  explorerScrollH.Gui.Parent = newgui.Content
+  explorerScrollH:Texture({
+    FrameColor = Color3.new(80/255,80/255,80/255),
+    ThumbColor = Color3.new(120/255,120/255,120/255),
+    ThumbSelectColor = Color3.new(140/255,140/255,140/255),
+    ButtonColor = Color3.new(163/255,162/255,165/255),
+    ArrowColor = Color3.new(220/255,220/255,220/255)
+  })
+  explorerScrollH.Gui.Position = UDim2.new(0,0,1,-16)
+  explorerScrollH.Gui.Size = UDim2.new(1,-16,0,16)
+
+  newTree.OnUpdate = function(self)
+    local guiX = explorerPanel.Content.AbsoluteSize.X-16
+    explorerScrollH.VisibleSpace = guiX
+    explorerScrollH.TotalSpace = nodeWidth+10
+    if nodeWidth > guiX then
+      explorerScrollH.Gui.Visible = true
+      explorerScroll.Gui.Size = UDim2.new(0,16,1,-16)
+      self.DisplayFrame.Size = UDim2.new(1,-16,1,-16)
+    else
+      explorerScrollH.Gui.Visible = false
+      explorerScroll.Gui.Size = UDim2.new(0,16,1,0)
+      self.DisplayFrame.Size = UDim2.new(1,-16,1,0)
+    end
+    explorerScroll.TotalSpace = #self.Tree + 1
+    explorerScroll.VisibleSpace = math.ceil(self.DisplayFrame.AbsoluteSize.Y / 19)
+    explorerScrollH:Update()		
+    explorerScroll:Update()
+  end
+  explorerScroll.OnUpdate = function(self) if newTree.Index == self.Index then return end newTree.Index = self.Index newTree:Refresh() end
+  explorerScrollH.OnUpdate = function(self)
+    for i,v in pairs(explorerTree.Entries) do
+      v.Position = UDim2.new(0,1-self.Index,0,v.Position.Y.Offset)
+    end
+  end
+  --explorerData = {Window = newgui, NodeData = {}, Scroll = explorerScroll, Entries = {}}
+
+  explorerTree = newTree
+
+  table.insert(activeWindows,newgui)
+  f.hookWindowListener(newgui,'Explorer')
+  newgui.Changed:connect(function(prop) if prop == "AbsoluteSize" or prop == "AbsolutePosition" then newTree:Refresh() end end)
+
+  local searchBox = newgui.TopBar.SearchFrame.Search
+  local searchAnim = searchBox.Parent.Entering
+  searchBox:GetPropertyChangedSignal("Text"):Connect(function()
+    local searchTime = tick()
+    lastSearch = searchTime
+    wait()
+    if lastSearch ~= searchTime then return end
+    newTree.SearchText = searchBox.Text
+    f.updateSearch(newTree)
+    explorerTree:TreeUpdate()
+    explorerTree:Refresh()
+  end)
+
+  searchBox.Focused:Connect(function()
+    searchBox.Empty.Visible = false
+    searchAnim:TweenSizeAndPosition(UDim2.new(1,0,0,2),UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
+  end)
+
+  searchBox.FocusLost:Connect(function()
+    if searchBox.Text == "" then searchBox.Empty.Visible = true else searchBox.Empty.Visible = false end
+    searchAnim:TweenSizeAndPosition(UDim2.new(0,0,0,2),UDim2.new(0.5,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
+  end)
+
+  return newgui
 end
 
 function f.refreshExplorer()
-	explorerTree:Refresh()
+  explorerTree:Refresh()
 end
 
 function f.makeWindow(name)
-	local newWindow = getResource(name)
-	
-	table.insert(activeWindows,newWindow)
-	f.hookWindowListener(newWindow,name)
-	
-	return newWindow
+  local newWindow = getResource(name)
+
+  table.insert(activeWindows,newWindow)
+  f.hookWindowListener(newWindow,name)
+
+  return newWindow
 end
 
 function f.getRMDOrder(class)
-	local currentClass = API.Classes[class]
-	while currentClass do
-		if RMD[currentClass.Name] and RMD[currentClass.Name].ExplorerOrder then return RMD[currentClass.Name].ExplorerOrder end
-		currentClass = API.Classes[currentClass.Superclass]
-	end
-	return 999
+  local currentClass = API.Classes[class]
+  while currentClass do
+    if RMD[currentClass.Name] and RMD[currentClass.Name].ExplorerOrder then return RMD[currentClass.Name].ExplorerOrder end
+    currentClass = API.Classes[currentClass.Superclass]
+  end
+  return 999
 end
 
 function f.reDepth(node,depth)
-	for i,v in ipairs(node) do
-		v.Depth = depth + 1
-		f.reDepth(node[i], depth + 1)
-	end
+  for i,v in ipairs(node) do
+    v.Depth = depth + 1
+    f.reDepth(node[i], depth + 1)
+  end
 end
 
 function f.moveObject(obj,par)
-	ypcall(function()
-		if obj.Parent == nil then return end
-		local node = nodes[obj]
-		local newNode = nodes[par]
-		if node and newNode then
-			local parNode = node.Parent
-			for i,v in ipairs(parNode) do
-				if v == node then
-					table.remove(parNode,i)
-					break
-				end
-			end
-			
-			node.Depth = f.depth(par) + 1
-			f.reDepth(node,node.Depth)
-			
-			node.Parent = newNode
-			newNode.Sorted = nil
-			table.insert(newNode,node)
-		
-			if not updateDebounce then
-				updateDebounce = true
-				wait()
-				updateDebounce = false
-				explorerTree:TreeUpdate()
-				f.refreshExplorer()
-			end
-		end
-	end)
+  ypcall(function()
+    if obj.Parent == nil then return end
+    local node = nodes[obj]
+    local newNode = nodes[par]
+    if node and newNode then
+      local parNode = node.Parent
+      for i,v in ipairs(parNode) do
+        if v == node then
+          table.remove(parNode,i)
+          break
+        end
+      end
+
+      node.Depth = f.depth(par) + 1
+      f.reDepth(node,node.Depth)
+
+      node.Parent = newNode
+      newNode.Sorted = nil
+      table.insert(newNode,node)
+
+      if not updateDebounce then
+        updateDebounce = true
+        wait()
+        updateDebounce = false
+        explorerTree:TreeUpdate()
+        f.refreshExplorer()
+      end
+    end
+  end)
 end
 
 function f.addObject(obj,noupdate,recurse)
-	ypcall(function()
-		local access = obj.Changed
-		if not nodes[obj.Parent] then return end
-		local newNode = {
-			Obj = obj,
-			Parent = nodes[obj.Parent],
-			ExplorerOrder = f.getRMDOrder(obj.ClassName),
-			Depth = f.depth(obj),
-			UID = tick()
-		}
-		if newNode.ExplorerOrder <= 0 and not obj:IsA("Workspace") and obj.Parent == game then newNode.ExplorerOrder = 999 end
-		nodes[obj] = newNode
-		newNode.Parent.Sorted = nil
-		table.insert(newNode.Parent,newNode)
-		
-		newNode.AncestryEvent = obj.AncestryChanged:Connect(function(child,par)
-			if child == obj then
-				f.moveObject(obj,par)
-			end
-		end)
-		
-		newNode.AddedEvent = obj.ChildAdded:Connect(function(child)
-			f.addObject(child,false,true)
-		end)
-		
-		newNode.RemovedEvent = obj.ChildRemoved:Connect(function(child)
-			f.removeObject(child,false,true)
-		end)
-		
-		if recurse then
-			for i,v in pairs(obj:GetDescendants()) do
-				f.addObject(v,true)
-			end
-		end
-	end)
+  ypcall(function()
+    local access = obj.Changed
+    if not nodes[obj.Parent] then return end
+    local newNode = {
+      Obj = obj,
+      Parent = nodes[obj.Parent],
+      ExplorerOrder = f.getRMDOrder(obj.ClassName),
+      Depth = f.depth(obj),
+      UID = tick()
+    }
+    if newNode.ExplorerOrder <= 0 and not obj:IsA("Workspace") and obj.Parent == game then newNode.ExplorerOrder = 999 end
+    nodes[obj] = newNode
+    newNode.Parent.Sorted = nil
+    table.insert(newNode.Parent,newNode)
+
+    newNode.AncestryEvent = obj.AncestryChanged:Connect(function(child,par)
+      if child == obj then
+        f.moveObject(obj,par)
+      end
+    end)
+
+    newNode.AddedEvent = obj.ChildAdded:Connect(function(child)
+      f.addObject(child,false,true)
+    end)
+
+    newNode.RemovedEvent = obj.ChildRemoved:Connect(function(child)
+      f.removeObject(child,false,true)
+    end)
+
+    if recurse then
+      for i,v in pairs(obj:GetDescendants()) do
+        f.addObject(v,true)
+      end
+    end
+  end)
 end
 
 function f.nodeDescendants(node,descendants)
-	for i,v in ipairs(node) do
-		table.insert(descendants,v.Obj)
-		f.nodeDescendants(v,descendants)
-	end
+  for i,v in ipairs(node) do
+    table.insert(descendants,v.Obj)
+    f.nodeDescendants(v,descendants)
+  end
 end
 
 function f.removeObject(obj,noupdate,recurse)
-	ypcall(function()
-		local node = nodes[obj]
-		if node then
-			local par = node.Parent
-			for i,v in ipairs(par) do
-				if v == node then
-					table.remove(par,i)
-					break
-				end
-			end
-			
-			node.AncestryEvent:Disconnect()
-			node.AncestryEvent = nil
-			
-			node.AddedEvent:Disconnect()
-			node.AddedEvent = nil
-			
-			node.RemovedEvent:Disconnect()
-			node.RemovedEvent = nil
-			
-			if recurse then
-				local descendants = {}
-				f.nodeDescendants(node,descendants)
-				for i,v in ipairs(descendants) do
-					f.removeObject(v,true)
-				end
-			end
-			
-			nodes[obj] = nil
-			
-			if not updateDebounce and not noupdate then
-				updateDebounce = true
-				wait()
-				updateDebounce = false
-				explorerTree:TreeUpdate()
-				f.refreshExplorer()
-			end
-		end
-	end)
+  ypcall(function()
+    local node = nodes[obj]
+    if node then
+      local par = node.Parent
+      for i,v in ipairs(par) do
+        if v == node then
+          table.remove(par,i)
+          break
+        end
+      end
+
+      node.AncestryEvent:Disconnect()
+      node.AncestryEvent = nil
+
+      node.AddedEvent:Disconnect()
+      node.AddedEvent = nil
+
+      node.RemovedEvent:Disconnect()
+      node.RemovedEvent = nil
+
+      if recurse then
+        local descendants = {}
+        f.nodeDescendants(node,descendants)
+        for i,v in ipairs(descendants) do
+          f.removeObject(v,true)
+        end
+      end
+
+      nodes[obj] = nil
+
+      if not updateDebounce and not noupdate then
+        updateDebounce = true
+        wait()
+        updateDebounce = false
+        explorerTree:TreeUpdate()
+        f.refreshExplorer()
+      end
+    end
+  end)
 end
 
 function f.indexNodes(obj)
-	if not nodes[game] then nodes[game] = {Obj = game,Parent = nil} end
-	
-	local addObject = f.addObject
-	local removeObject = f.removeObject
-    
-	for i,v in pairs(game:GetChildren()) do
-		addObject(v,true,true)
-	end
+  if not nodes[game] then nodes[game] = {Obj = game,Parent = nil} end
+
+  local addObject = f.addObject
+  local removeObject = f.removeObject
+
+  for i,v in pairs(game:GetChildren()) do
+    addObject(v,true,true)
+  end
 end
 
 function f.gExpanded(obj)
-	if explorerData.NodeData and explorerData.NodeData[obj] and explorerData.NodeData[obj].Expanded then
-		return true
-	end
-	return false
+  if explorerData.NodeData and explorerData.NodeData[obj] and explorerData.NodeData[obj].Expanded then
+    return true
+  end
+  return false
 end
 
 local searchFunctions = {
-	["class:"] = function(token,results)
-		local class = string.match(token,"%S+:%s*(%S*)")
-		if class == "" then return end
-		local foundClass = ""
-		for i,v in pairs(API.Classes) do
-			if i:lower() == class:lower() then
-				foundClass = i
-				break
-			elseif i:lower():find(class:lower(),1,true) then
-				foundClass = i
-			end
-		end
-		
-		if foundClass == "" then return end
-		
-		return function(obj)
-			return obj.ClassName == foundClass
-		end
-	end,
-	["isa:"] = function(token,results)
-		local class = string.match(token,"%S+:%s*(%S*)")
-		if class == "" then return end
-		local foundClass = ""
-		for i,v in pairs(API.Classes) do
-			if i:lower() == class:lower() then
-				foundClass = i
-				break
-			elseif i:lower():find(class:lower(),1,true) then
-				foundClass = i
-			end
-		end
-		
-		if foundClass == "" then return end
-		
-		return function(obj)
-			return obj:IsA(foundClass)
-		end
-	end,
-	["regex:"] = function(token,results)
-		local pattern = string.match(token,"%S+:%s*(%S*)")
-		if pattern == "" then return end
-		
-		return function(obj)
-			return obj.Name:find(pattern)
-		end
-	end,
+  ["class:"] = function(token,results)
+    local class = string.match(token,"%S+:%s*(%S*)")
+    if class == "" then return end
+    local foundClass = ""
+    for i,v in pairs(API.Classes) do
+      if i:lower() == class:lower() then
+        foundClass = i
+        break
+      elseif i:lower():find(class:lower(),1,true) then
+        foundClass = i
+      end
+    end
+
+    if foundClass == "" then return end
+
+    return function(obj)
+      return obj.ClassName == foundClass
+    end
+  end,
+  ["isa:"] = function(token,results)
+    local class = string.match(token,"%S+:%s*(%S*)")
+    if class == "" then return end
+    local foundClass = ""
+    for i,v in pairs(API.Classes) do
+      if i:lower() == class:lower() then
+        foundClass = i
+        break
+      elseif i:lower():find(class:lower(),1,true) then
+        foundClass = i
+      end
+    end
+
+    if foundClass == "" then return end
+
+    return function(obj)
+      return obj:IsA(foundClass)
+    end
+  end,
+  ["regex:"] = function(token,results)
+    local pattern = string.match(token,"%S+:%s*(%S*)")
+    if pattern == "" then return end
+
+    return function(obj)
+      return obj.Name:find(pattern)
+    end
+  end,
 }
 
 local searchCache = {}
 
 function f.updateSearch(self)
-	local searchText = self.SearchText
-	if searchText == "" then self.SearchResults = nil return end
-	local results = {}
-	local tokens = {}
-	local checks = {}
-	local tokenMap = {}
-	
-	self.SearchExpanded = {}
-	
-	-- Splits search text into multiple tokens for multiple searching
-	for w in string.gmatch(searchText,"[^|]+") do
-		table.insert(tokens,w)
-	end
-	
-	-- Create checks based on search text
-	for _,token in pairs(tokens) do
-		token = token:match("%s*(.+)")
-		tokenMap[token] = true
-		local keyword = string.match(token,"%S+:")
-		if searchFunctions[keyword] then
-			local res = searchFunctions[keyword](token,results)
-			if res then checks[token] = res end
-		else
-			checks[token] = function(obj)
-				return obj.Name:lower():find(token:lower(),1,true)
-			end
-		end
-	end
-	
-	-- Remove uneeded items from cache
-	for i,v in pairs(searchCache) do
-		if not tokenMap[i] then
-			searchCache[i] = nil
-		end
-	end
-	
-	-- Perform the searches
-	local searchExpanded = self.SearchExpanded	
-	
-	for token,check in pairs(checks) do
-		local newResults = {}
-		if searchCache[token] then
-			for obj,v in pairs(searchCache[token]) do
-				results[obj] = true
-				searchExpanded[obj] = math.max(searchExpanded[obj] or 0, 1)
-				local par = obj.Parent
-				while par and not results[par] or searchExpanded[par] == 1 do
-					results[par] = true
-					searchExpanded[par] = 2
-					par = par.Parent
-				end
-			end
-		else
-			for i,v in pairs(game:GetDescendants()) do
-				local success,found = pcall(check,v)
-				if found and nodes[v] then
-					results[v] = true
-					newResults[v] = true
-					searchExpanded[v] = math.max(searchExpanded[v] or 0, 1)
-					local par = v.Parent
-					while par and not results[par] or searchExpanded[par] == 1 do
-						results[par] = true
-						newResults[par] = true
-						searchExpanded[par] = 2
-						par = par.Parent
-					end
-				end
-			end
-			searchCache[token] = newResults
-		end
-	end
-	
-	--[[
-	for i,v in pairs(game:GetDescendants()) do
-		searchCache[token] = {}
-		for token,check in pairs(checks) do
-			if searchCache[token] then for obj,_ in pairs(searchCache[token]) do results[obj] = true end break end
-			local success,found = pcall(check,v)
-			if found and nodes[v] then
-				results[v] = true
-				local par = v.Parent
-				while par and not results[par] do
-					results[par] = true
-					par = par.Parent
-				end
-				break
-			end
-		end
-	end
-	--]]
-	self.SearchChecks = checks
-	self.SearchResults = results
+  local searchText = self.SearchText
+  if searchText == "" then self.SearchResults = nil return end
+  local results = {}
+  local tokens = {}
+  local checks = {}
+  local tokenMap = {}
+
+  self.SearchExpanded = {}
+
+  -- Splits search text into multiple tokens for multiple searching
+  for w in string.gmatch(searchText,"[^|]+") do
+    table.insert(tokens,w)
+  end
+
+  -- Create checks based on search text
+  for _,token in pairs(tokens) do
+    token = token:match("%s*(.+)")
+    tokenMap[token] = true
+    local keyword = string.match(token,"%S+:")
+    if searchFunctions[keyword] then
+      local res = searchFunctions[keyword](token,results)
+      if res then checks[token] = res end
+    else
+      checks[token] = function(obj)
+        return obj.Name:lower():find(token:lower(),1,true)
+      end
+    end
+  end
+
+  -- Remove uneeded items from cache
+  for i,v in pairs(searchCache) do
+    if not tokenMap[i] then
+      searchCache[i] = nil
+    end
+  end
+
+  -- Perform the searches
+  local searchExpanded = self.SearchExpanded	
+
+  for token,check in pairs(checks) do
+    local newResults = {}
+    if searchCache[token] then
+      for obj,v in pairs(searchCache[token]) do
+        results[obj] = true
+        searchExpanded[obj] = math.max(searchExpanded[obj] or 0, 1)
+        local par = obj.Parent
+        while par and not results[par] or searchExpanded[par] == 1 do
+          results[par] = true
+          searchExpanded[par] = 2
+          par = par.Parent
+        end
+      end
+    else
+      for i,v in pairs(game:GetDescendants()) do
+        local success,found = pcall(check,v)
+        if found and nodes[v] then
+          results[v] = true
+          newResults[v] = true
+          searchExpanded[v] = math.max(searchExpanded[v] or 0, 1)
+          local par = v.Parent
+          while par and not results[par] or searchExpanded[par] == 1 do
+            results[par] = true
+            newResults[par] = true
+            searchExpanded[par] = 2
+            par = par.Parent
+          end
+        end
+      end
+      searchCache[token] = newResults
+    end
+  end
+
+  --[[
+  for i,v in pairs(game:GetDescendants()) do
+    searchCache[token] = {}
+    for token,check in pairs(checks) do
+      if searchCache[token] then for obj,_ in pairs(searchCache[token]) do results[obj] = true end break end
+      local success,found = pcall(check,v)
+      if found and nodes[v] then
+        results[v] = true
+        local par = v.Parent
+        while par and not results[par] do
+          results[par] = true
+          par = par.Parent
+        end
+        break
+      end
+    end
+  end
+  --]]
+  self.SearchChecks = checks
+  self.SearchResults = results
 end
 
 local textWidthRuler = Instance.new("TextLabel",gui)
@@ -3186,820 +3189,820 @@ textWidthRuler.TextSize = 14
 textWidthRuler.Visible = false
 
 function f.textWidth(text)
-	textWidthRuler.Text = text
-	return textWidthRuler.TextBounds.X
+  textWidthRuler.Text = text
+  return textWidthRuler.TextBounds.X
 end
 
 function f.updateTree(self)
-	local isSearching = self.SearchResults
-	local searchExpanded = self.SearchExpanded
-	
-	nodeWidth = 0
-	
-	local function fillTree(node,tree)
-		if not node.Sorted then
-			table.sort(node,function(a,b)
-				local o1 = a.ExplorerOrder
-				local o2 = b.ExplorerOrder
-				if o1 ~= o2 then
-					return o1 < o2
-				elseif a.Obj.Name ~= b.Obj.Name then
-					return a.Obj.Name < b.Obj.Name
-				elseif a.Obj.ClassName ~= b.Obj.ClassName then
-					return a.Obj.ClassName < b.Obj.ClassName
-				else
-					return a.UID < b.UID
-				end
-			end)
-			node.Sorted = true
-		end
-		
-		for i = 1,#node do
-			--node[i].Ind = i
-			if not isSearching or (isSearching and isSearching[node[i].Obj]) then
-				local textWidth = node[i].Depth * 18 + f.textWidth(node[i].Obj.Name) + 22
-				nodeWidth = textWidth > nodeWidth and textWidth or nodeWidth
-				table.insert(tree,node[i])
-				if (not isSearching and explorerTree.Expanded[node[i]]) or (isSearching and searchExpanded[node[i].Obj] == 2) then
-					fillTree(node[i],tree)
-				end
-			end
-		end
-	end
-	
-	self.Tree = {}
-	fillTree(nodes[game],self.Tree)
-	--self.Scroll:Update()
+  local isSearching = self.SearchResults
+  local searchExpanded = self.SearchExpanded
+
+  nodeWidth = 0
+
+  local function fillTree(node,tree)
+    if not node.Sorted then
+      table.sort(node,function(a,b)
+        local o1 = a.ExplorerOrder
+        local o2 = b.ExplorerOrder
+        if o1 ~= o2 then
+          return o1 < o2
+        elseif a.Obj.Name ~= b.Obj.Name then
+          return a.Obj.Name < b.Obj.Name
+        elseif a.Obj.ClassName ~= b.Obj.ClassName then
+          return a.Obj.ClassName < b.Obj.ClassName
+        else
+          return a.UID < b.UID
+        end
+      end)
+      node.Sorted = true
+    end
+
+    for i = 1,#node do
+      --node[i].Ind = i
+      if not isSearching or (isSearching and isSearching[node[i].Obj]) then
+        local textWidth = node[i].Depth * 18 + f.textWidth(node[i].Obj.Name) + 22
+        nodeWidth = textWidth > nodeWidth and textWidth or nodeWidth
+        table.insert(tree,node[i])
+        if (not isSearching and explorerTree.Expanded[node[i]]) or (isSearching and searchExpanded[node[i].Obj] == 2) then
+          fillTree(node[i],tree)
+        end
+      end
+    end
+  end
+
+  self.Tree = {}
+  fillTree(nodes[game],self.Tree)
+  --self.Scroll:Update()
 end
 
 function f.icon(frame,index)
-	local row,col = math.floor(index/14%14),math.floor(index%14)
-	local pad,border = 2,1
-	if not frame then
-		frame = Instance.new("Frame")
-		frame.BackgroundTransparency = 1
-		frame.Size = UDim2.new(0,16,0,16)
-		frame.ClipsDescendants = true
-		local newMap = Instance.new("ImageLabel",frame)
-		newMap.Name = "Icon"
-		newMap.BackgroundTransparency = 1
-		newMap.Size = UDim2.new(16,0,16,0)
-		newMap.Image = iconMap
-	end
-	local icon = frame.Icon
-	icon.Position = UDim2.new(-col - (pad*(col+1) + border)/16,0,-row - (pad*(row+1) + border)/16,0)
-	return frame
+  local row,col = math.floor(index/14%14),math.floor(index%14)
+  local pad,border = 2,1
+  if not frame then
+    frame = Instance.new("Frame")
+    frame.BackgroundTransparency = 1
+    frame.Size = UDim2.new(0,16,0,16)
+    frame.ClipsDescendants = true
+    local newMap = Instance.new("ImageLabel",frame)
+    newMap.Name = "Icon"
+    newMap.BackgroundTransparency = 1
+    newMap.Size = UDim2.new(16,0,16,0)
+    newMap.Image = iconMap
+  end
+  local icon = frame.Icon
+  icon.Position = UDim2.new(-col - (pad*(col+1) + border)/16,0,-row - (pad*(row+1) + border)/16,0)
+  return frame
 end
 
 function f.depth(obj)
-	local depth = 0
-	local curPar = obj.Parent
-	while curPar ~= nil do
-		curPar = curPar.Parent
-		depth = depth + 1
-	end
-	return depth
+  local depth = 0
+  local curPar = obj.Parent
+  while curPar ~= nil do
+    curPar = curPar.Parent
+    depth = depth + 1
+  end
+  return depth
 end
 
 local Selection do
-	Selection = {
-		List = {},
-		Selected = {}
-	}
-	
-	function Selection:Add(obj)
-		if Selection.Selected[obj] then return end
-		
-		Selection.Selected[obj] = true
-		table.insert(Selection.List,obj)
-	end
-	
-	function Selection:Set(objs)
-		for i,v in pairs(Selection.List) do
-			Selection.Selected[v] = nil
-		end
-		Selection.List = {}
-		
-		for i,v in pairs(objs) do
-			if not Selection.Selected[v] then
-				Selection.Selected[v] = true
-				table.insert(Selection.List,v)
-			end
-		end
-	end
-	
-	function Selection:Remove(obj)
-		if not Selection.Selected[obj] then return end
-		
-		Selection.Selected[obj] = false
-		for i,v in pairs(Selection.List) do
-			if v == obj then table.remove(Selection.List,i) break end
-		end
-	end
+  Selection = {
+    List = {},
+    Selected = {}
+  }
+
+  function Selection:Add(obj)
+    if Selection.Selected[obj] then return end
+
+    Selection.Selected[obj] = true
+    table.insert(Selection.List,obj)
+  end
+
+  function Selection:Set(objs)
+    for i,v in pairs(Selection.List) do
+      Selection.Selected[v] = nil
+    end
+    Selection.List = {}
+
+    for i,v in pairs(objs) do
+      if not Selection.Selected[v] then
+        Selection.Selected[v] = true
+        table.insert(Selection.List,v)
+      end
+    end
+  end
+
+  function Selection:Remove(obj)
+    if not Selection.Selected[obj] then return end
+
+    Selection.Selected[obj] = false
+    for i,v in pairs(Selection.List) do
+      if v == obj then table.remove(Selection.List,i) break end
+    end
+  end
 end
 
 function f.refreshExplorers(id)
-	--wait()
-	local e = explorerData
-			local window = e.Window
-			local scroll = e.Scroll
-			local entrySpace = math.floor(window.Content.List.AbsoluteSize.Y / 19) + 1
-			
-			scroll.TotalSpace = #e.Tree
-			scroll.VisibleSpace = entrySpace - 1		
-			
-			for i = 1,entrySpace do
-				local node = e.Tree[i + scroll.Index]
-				if node then
-					local nodeData = e.NodeData[node.Obj]
-					local cEntry = e.Entries[i]
-					if not cEntry then
-						cEntry = entryTemplate:Clone()
-						cEntry.Position = UDim2.new(0,1,0,2 + 19 * #window.Content.List:GetChildren())
-						cEntry.Parent = window.Content.List
-						e.Entries[i] = cEntry
-					
-						cEntry.MouseEnter:connect(function()
-							local node = e.Tree[i + scroll.Index]
-							if node then
-								if Selection.Selected[node.Obj] then return end
-								cEntry.BackgroundTransparency = 0.7
-							end
-						end)
-						cEntry.MouseLeave:connect(function()
-							local node = e.Tree[i + scroll.Index]
-							if node then
-								if Selection.Selected[node.Obj] then return end
-								cEntry.BackgroundTransparency = 1
-							end
-						end)						
-						cEntry.MouseButton1Down:connect(function()
-							local node = e.Tree[i + scroll.Index]
-							if Services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then
-								Selection:Add(node.Obj)
-							else
-								Selection:Set({node.Obj})
-							end
-							f.refreshExplorer()
-						end)
-						
-						cEntry.Indent.Expand.MouseEnter:connect(function()
-							local node = e.Tree[i + scroll.Index]
-							if node then
-								if not e.NodeData[node.Obj] then e.NodeData[node.Obj] = {} end
-								if e.NodeData[node.Obj].Expanded then
-									f.icon(cEntry.Indent.Expand,iconIndex.NodeExpandedOver)
-								else
-									f.icon(cEntry.Indent.Expand,iconIndex.NodeCollapsedOver)
-								end
-							end
-						end)
-						cEntry.Indent.Expand.MouseLeave:connect(function()
-							local node = e.Tree[i + scroll.Index]
-							if node then
-								if not e.NodeData[node.Obj] then e.NodeData[node.Obj] = {} end
-								if e.NodeData[node.Obj].Expanded then
-									f.icon(cEntry.Indent.Expand,iconIndex.NodeExpanded)
-								else
-									f.icon(cEntry.Indent.Expand,iconIndex.NodeCollapsed)
-								end
-							end
-						end)
-						cEntry.Indent.Expand.MouseButton1Down:connect(function()
-							local node = e.Tree[i + scroll.Index]
-							if node then
-								if not e.NodeData[node.Obj] then e.NodeData[node.Obj] = {} end
-								if e.NodeData[node.Obj].Expanded then
-									e.NodeData[node.Obj].Expanded = false
-								else
-									e.NodeData[node.Obj].Expanded = true
-								end
-								f.updateTree()
-								f.refreshExplorer()
-							end
-						end)
-					end
-					
-					cEntry.Visible = true
-					f.icon(cEntry.Indent.IconFrame,iconIndex[node.Obj.ClassName] or 0)
-					cEntry.Indent.EntryName.Text = node.Obj.Name									
-					if #node.Obj:GetChildren() > 0 then
-						cEntry.Indent.Expand.Visible = true
-						if nodeData and nodeData.Expanded then
-							f.icon(cEntry.Indent.Expand,iconIndex.NodeExpanded)
-						else
-							f.icon(cEntry.Indent.Expand,iconIndex.NodeCollapsed)
-						end
-					else
-						cEntry.Indent.Expand.Visible = false
-					end
-					
-					if Selection.Selected[node.Obj] then
-						cEntry.Indent.EntryName.TextColor3 = Color3.new(1,1,1)
-						cEntry.BackgroundTransparency = 0
-					else
-						cEntry.Indent.EntryName.TextColor3 = Color3.new(220/255, 220/255, 220/255)
-						cEntry.BackgroundTransparency = 1
-					end
-					
-					cEntry.Indent.Position = UDim2.new(0,18*node.Depth,0,0)
-				else
-					local cEntry = e.Entries[i]
-					if cEntry then
-						cEntry.Visible = false
-					end
-				end
-			end
-			
-			-- Outliers
-			for i = entrySpace+1, #e.Entries do
-				if e.Entries[i] then
-					e.Entries[i]:Destroy()
-					e.Entries[i] = nil
-				end
-			end
+  --wait()
+  local e = explorerData
+      local window = e.Window
+      local scroll = e.Scroll
+      local entrySpace = math.floor(window.Content.List.AbsoluteSize.Y / 19) + 1
+
+      scroll.TotalSpace = #e.Tree
+      scroll.VisibleSpace = entrySpace - 1		
+
+      for i = 1,entrySpace do
+        local node = e.Tree[i + scroll.Index]
+        if node then
+          local nodeData = e.NodeData[node.Obj]
+          local cEntry = e.Entries[i]
+          if not cEntry then
+            cEntry = entryTemplate:Clone()
+            cEntry.Position = UDim2.new(0,1,0,2 + 19 * #window.Content.List:GetChildren())
+            cEntry.Parent = window.Content.List
+            e.Entries[i] = cEntry
+
+            cEntry.MouseEnter:connect(function()
+              local node = e.Tree[i + scroll.Index]
+              if node then
+                if Selection.Selected[node.Obj] then return end
+                cEntry.BackgroundTransparency = 0.7
+              end
+            end)
+            cEntry.MouseLeave:connect(function()
+              local node = e.Tree[i + scroll.Index]
+              if node then
+                if Selection.Selected[node.Obj] then return end
+                cEntry.BackgroundTransparency = 1
+              end
+            end)						
+            cEntry.MouseButton1Down:connect(function()
+              local node = e.Tree[i + scroll.Index]
+              if Services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then
+                Selection:Add(node.Obj)
+              else
+                Selection:Set({node.Obj})
+              end
+              f.refreshExplorer()
+            end)
+
+            cEntry.Indent.Expand.MouseEnter:connect(function()
+              local node = e.Tree[i + scroll.Index]
+              if node then
+                if not e.NodeData[node.Obj] then e.NodeData[node.Obj] = {} end
+                if e.NodeData[node.Obj].Expanded then
+                  f.icon(cEntry.Indent.Expand,iconIndex.NodeExpandedOver)
+                else
+                  f.icon(cEntry.Indent.Expand,iconIndex.NodeCollapsedOver)
+                end
+              end
+            end)
+            cEntry.Indent.Expand.MouseLeave:connect(function()
+              local node = e.Tree[i + scroll.Index]
+              if node then
+                if not e.NodeData[node.Obj] then e.NodeData[node.Obj] = {} end
+                if e.NodeData[node.Obj].Expanded then
+                  f.icon(cEntry.Indent.Expand,iconIndex.NodeExpanded)
+                else
+                  f.icon(cEntry.Indent.Expand,iconIndex.NodeCollapsed)
+                end
+              end
+            end)
+            cEntry.Indent.Expand.MouseButton1Down:connect(function()
+              local node = e.Tree[i + scroll.Index]
+              if node then
+                if not e.NodeData[node.Obj] then e.NodeData[node.Obj] = {} end
+                if e.NodeData[node.Obj].Expanded then
+                  e.NodeData[node.Obj].Expanded = false
+                else
+                  e.NodeData[node.Obj].Expanded = true
+                end
+                f.updateTree()
+                f.refreshExplorer()
+              end
+            end)
+          end
+
+          cEntry.Visible = true
+          f.icon(cEntry.Indent.IconFrame,iconIndex[node.Obj.ClassName] or 0)
+          cEntry.Indent.EntryName.Text = node.Obj.Name									
+          if #node.Obj:GetChildren() > 0 then
+            cEntry.Indent.Expand.Visible = true
+            if nodeData and nodeData.Expanded then
+              f.icon(cEntry.Indent.Expand,iconIndex.NodeExpanded)
+            else
+              f.icon(cEntry.Indent.Expand,iconIndex.NodeCollapsed)
+            end
+          else
+            cEntry.Indent.Expand.Visible = false
+          end
+
+          if Selection.Selected[node.Obj] then
+            cEntry.Indent.EntryName.TextColor3 = Color3.new(1,1,1)
+            cEntry.BackgroundTransparency = 0
+          else
+            cEntry.Indent.EntryName.TextColor3 = Color3.new(220/255, 220/255, 220/255)
+            cEntry.BackgroundTransparency = 1
+          end
+
+          cEntry.Indent.Position = UDim2.new(0,18*node.Depth,0,0)
+        else
+          local cEntry = e.Entries[i]
+          if cEntry then
+            cEntry.Visible = false
+          end
+        end
+      end
+
+      -- Outliers
+      for i = entrySpace+1, #e.Entries do
+        if e.Entries[i] then
+          e.Entries[i]:Destroy()
+          e.Entries[i] = nil
+        end
+      end
 end
 
 -- Properties Functions
 
 function f.toValue(str,valueType)
-	if valueType == "int" or valueType == "float" or valueType == "double" then
-		return tonumber(str)
-	end
+  if valueType == "int" or valueType == "float" or valueType == "double" then
+    return tonumber(str)
+  end
 end
 
 function f.childValue(prop,value,obj)
-	local propName = prop.Name
-	local parentPropName = prop.ParentProp.Name
-	local parentPropType = prop.ParentProp.ValueType
-	local objProp = obj[parentPropName]
-	
-	if parentPropType == "Vector3" then
-		return Vector3.new(
-			propName == "X" and value or objProp.X,
-			propName == "Y" and value or objProp.Y,
-			propName == "Z" and value or objProp.Z
-		)
-	elseif parentPropType == "Rect2D" then
-		return Rect.new(
-			propName == "X0" and value or objProp.Min.X,
-			propName == "Y0" and value or objProp.Min.Y,
-			propName == "X1" and value or objProp.Max.X,
-			propName == "Y1" and value or objProp.Max.Y
-		)
-	end
+  local propName = prop.Name
+  local parentPropName = prop.ParentProp.Name
+  local parentPropType = prop.ParentProp.ValueType
+  local objProp = obj[parentPropName]
+
+  if parentPropType == "Vector3" then
+    return Vector3.new(
+      propName == "X" and value or objProp.X,
+      propName == "Y" and value or objProp.Y,
+      propName == "Z" and value or objProp.Z
+    )
+  elseif parentPropType == "Rect2D" then
+    return Rect.new(
+      propName == "X0" and value or objProp.Min.X,
+      propName == "Y0" and value or objProp.Min.Y,
+      propName == "X1" and value or objProp.Max.X,
+      propName == "Y1" and value or objProp.Max.Y
+    )
+  end
 end
 
 function f.setProp(prop,str,child)
-	local value = f.toValue(str,prop.ValueType)
-	if value then
-		for i,v in pairs(explorerTree.Selection.List) do
-			pcall(function()
-				if v:IsA(prop.Class) then
-					if #child == 0 then
-						v[prop.Name] = value
-					else
-						v[prop.ParentProp.Name] = f.childValue(prop,value,v)
-					end
-				end
-			end)
-		end
-	end
+  local value = f.toValue(str,prop.ValueType)
+  if value then
+    for i,v in pairs(explorerTree.Selection.List) do
+      pcall(function()
+        if v:IsA(prop.Class) then
+          if #child == 0 then
+            v[prop.Name] = value
+          else
+            v[prop.ParentProp.Name] = f.childValue(prop,value,v)
+          end
+        end
+      end)
+    end
+  end
 end
 
 local propControls = {
-	["Default"] = function(prop,child)
-		local newMt = setmetatable({},{})
-	
-		local controlGui,readOnlyText,lastValue
-	
-		local function setup(self,frame)
-			controlGui = resources.PropControls.String:Clone()
-			readOnlyText = controlGui.ReadOnly		
-		
-			if prop.Tags["readonly"] then
-				if lastValue then readOnlyText.Text = tostring(lastValue) end
-				readOnlyText.Visible = true
-				readOnlyText.Parent = frame
-			else
-				if lastValue then controlGui.Text = tostring(lastValue) end
-				controlGui.FocusLost:Connect(function()
-					f.setProp(prop,controlGui.Text,child or {})
-				end)
-				controlGui.Parent = frame
-			end	
-		end
-		newMt.Setup = setup
-	
-		local function update(self,value)
-			lastValue = value
-			if not controlGui then return end
-			if not prop.Tags["readonly"] then
-				controlGui.Text = tostring(value)
-			else
-				readOnlyText.Text = tostring(value)
-			end
-		end	
-		newMt.Update = update
-	
-		local function focus(self)
-			controlGui:CaptureFocus()
-		end
-		newMt.Focus = focus
-		return newMt
-	end,
-	["Vector3"] = function(prop,child)
-		local newMt = setmetatable({},{})
-	
-		local controlGui,readOnlyText
-	
-		local function setup(self,frame)
-			controlGui = resources.PropControls.String:Clone()
-			readOnlyText = controlGui.ReadOnly		
-		
-			if prop.Tags["readonly"] then
-				readOnlyText.Visible = true
-				readOnlyText.Parent = frame
-			else
-				controlGui.FocusLost:Connect(function()
-					f.setProp(prop,controlGui.Text,child or {})
-				end)
-				controlGui.Parent = frame
-			end	
-		end
-		newMt.Setup = setup
-	
-		local function update(self,value)
-			if not prop.Tags["readonly"] then
-				controlGui.Text = tostring(value)
-				self.Children[1].Control:Update(value.X)
-				self.Children[2].Control:Update(value.Y)
-				self.Children[3].Control:Update(value.Z)
-			else
-				readOnlyText.Text = tostring(value)
-				self.Children[1].Control:Update(value.X)
-				self.Children[2].Control:Update(value.Y)
-				self.Children[3].Control:Update(value.Z)
-			end
-		end	
-		newMt.Update = update
-	
-		local function focus(self)
-			controlGui:CaptureFocus()
-		end
-		newMt.Focus = focus
-		
-		newMt.Children = {
-			f.getChildProp(prop,{Name = "X",ValueType = "double",Depth = 2}),
-			f.getChildProp(prop,{Name = "Y",ValueType = "double",Depth = 2}),
-			f.getChildProp(prop,{Name = "Z",ValueType = "double",Depth = 2})
-		}
-		
-		return newMt
-	end,
-	["Rect2D"] = function(prop,child)
-		local newMt = setmetatable({},{})
-	
-		local controlGui,readOnlyText
-	
-		local function setup(self,frame)
-			controlGui = resources.PropControls.String:Clone()
-			readOnlyText = controlGui.ReadOnly		
-		
-			if prop.Tags["readonly"] then
-				readOnlyText.Visible = true
-				readOnlyText.Parent = frame
-			else
-				controlGui.FocusLost:Connect(function()
-					f.setProp(prop,controlGui.Text,child or {})
-				end)
-				controlGui.Parent = frame
-			end	
-		end
-		newMt.Setup = setup
-	
-		local function update(self,value)
-			if not prop.Tags["readonly"] then
-				controlGui.Text = tostring(value)
-				self.Children[1].Control:Update(value.Min.X)
-				self.Children[2].Control:Update(value.Min.Y)
-				self.Children[3].Control:Update(value.Max.X)
-				self.Children[4].Control:Update(value.Max.Y)
-			else
-				readOnlyText.Text = tostring(value)
-				self.Children[1].Control:Update(value.Min.X)
-				self.Children[2].Control:Update(value.Min.Y)
-				self.Children[3].Control:Update(value.Max.X)
-				self.Children[4].Control:Update(value.Max.Y)
-			end
-		end	
-		newMt.Update = update
-	
-		local function focus(self)
-			controlGui:CaptureFocus()
-		end
-		newMt.Focus = focus
-		
-		newMt.Children = {
-			f.getChildProp(prop,{Name = "X0",ValueType = "double",Depth = 2}),
-			f.getChildProp(prop,{Name = "Y0",ValueType = "double",Depth = 2}),
-			f.getChildProp(prop,{Name = "X1",ValueType = "double",Depth = 2}),
-			f.getChildProp(prop,{Name = "Y1",ValueType = "double",Depth = 2})
-		}
-		
-		return newMt
-	end
+  ["Default"] = function(prop,child)
+    local newMt = setmetatable({},{})
+
+    local controlGui,readOnlyText,lastValue
+
+    local function setup(self,frame)
+      controlGui = resources.PropControls.String:Clone()
+      readOnlyText = controlGui.ReadOnly		
+
+      if prop.Tags["readonly"] then
+        if lastValue then readOnlyText.Text = tostring(lastValue) end
+        readOnlyText.Visible = true
+        readOnlyText.Parent = frame
+      else
+        if lastValue then controlGui.Text = tostring(lastValue) end
+        controlGui.FocusLost:Connect(function()
+          f.setProp(prop,controlGui.Text,child or {})
+        end)
+        controlGui.Parent = frame
+      end	
+    end
+    newMt.Setup = setup
+
+    local function update(self,value)
+      lastValue = value
+      if not controlGui then return end
+      if not prop.Tags["readonly"] then
+        controlGui.Text = tostring(value)
+      else
+        readOnlyText.Text = tostring(value)
+      end
+    end	
+    newMt.Update = update
+
+    local function focus(self)
+      controlGui:CaptureFocus()
+    end
+    newMt.Focus = focus
+    return newMt
+  end,
+  ["Vector3"] = function(prop,child)
+    local newMt = setmetatable({},{})
+
+    local controlGui,readOnlyText
+
+    local function setup(self,frame)
+      controlGui = resources.PropControls.String:Clone()
+      readOnlyText = controlGui.ReadOnly		
+
+      if prop.Tags["readonly"] then
+        readOnlyText.Visible = true
+        readOnlyText.Parent = frame
+      else
+        controlGui.FocusLost:Connect(function()
+          f.setProp(prop,controlGui.Text,child or {})
+        end)
+        controlGui.Parent = frame
+      end	
+    end
+    newMt.Setup = setup
+
+    local function update(self,value)
+      if not prop.Tags["readonly"] then
+        controlGui.Text = tostring(value)
+        self.Children[1].Control:Update(value.X)
+        self.Children[2].Control:Update(value.Y)
+        self.Children[3].Control:Update(value.Z)
+      else
+        readOnlyText.Text = tostring(value)
+        self.Children[1].Control:Update(value.X)
+        self.Children[2].Control:Update(value.Y)
+        self.Children[3].Control:Update(value.Z)
+      end
+    end	
+    newMt.Update = update
+
+    local function focus(self)
+      controlGui:CaptureFocus()
+    end
+    newMt.Focus = focus
+
+    newMt.Children = {
+      f.getChildProp(prop,{Name = "X",ValueType = "double",Depth = 2}),
+      f.getChildProp(prop,{Name = "Y",ValueType = "double",Depth = 2}),
+      f.getChildProp(prop,{Name = "Z",ValueType = "double",Depth = 2})
+    }
+
+    return newMt
+  end,
+  ["Rect2D"] = function(prop,child)
+    local newMt = setmetatable({},{})
+
+    local controlGui,readOnlyText
+
+    local function setup(self,frame)
+      controlGui = resources.PropControls.String:Clone()
+      readOnlyText = controlGui.ReadOnly		
+
+      if prop.Tags["readonly"] then
+        readOnlyText.Visible = true
+        readOnlyText.Parent = frame
+      else
+        controlGui.FocusLost:Connect(function()
+          f.setProp(prop,controlGui.Text,child or {})
+        end)
+        controlGui.Parent = frame
+      end	
+    end
+    newMt.Setup = setup
+
+    local function update(self,value)
+      if not prop.Tags["readonly"] then
+        controlGui.Text = tostring(value)
+        self.Children[1].Control:Update(value.Min.X)
+        self.Children[2].Control:Update(value.Min.Y)
+        self.Children[3].Control:Update(value.Max.X)
+        self.Children[4].Control:Update(value.Max.Y)
+      else
+        readOnlyText.Text = tostring(value)
+        self.Children[1].Control:Update(value.Min.X)
+        self.Children[2].Control:Update(value.Min.Y)
+        self.Children[3].Control:Update(value.Max.X)
+        self.Children[4].Control:Update(value.Max.Y)
+      end
+    end	
+    newMt.Update = update
+
+    local function focus(self)
+      controlGui:CaptureFocus()
+    end
+    newMt.Focus = focus
+
+    newMt.Children = {
+      f.getChildProp(prop,{Name = "X0",ValueType = "double",Depth = 2}),
+      f.getChildProp(prop,{Name = "Y0",ValueType = "double",Depth = 2}),
+      f.getChildProp(prop,{Name = "X1",ValueType = "double",Depth = 2}),
+      f.getChildProp(prop,{Name = "Y1",ValueType = "double",Depth = 2})
+    }
+
+    return newMt
+  end
 }
 
 function f.getPropControl(prop,child)
-	local control = propControls[prop.ValueType] or propControls["Default"]
-	return control(prop,child)
+  local control = propControls[prop.ValueType] or propControls["Default"]
+  return control(prop,child)
 end
 
 --[[
 local propExpandable = {
-	["Vector3"] = true
+  ["Vector3"] = true
 }
 --]]
 
 --[[
 function f.getChildrenControls(obj,prop)
-	local children = {}
-	if prop.ValueType == "Vector3" then
-		local newProp = {}
-		for i,v in pairs(prop) do newProp[i] = v end
-		newProp.ValueType = "double"
-		newProp.Name = "X"
-		newProp.ParentName = prop.Name
-		newProp.ParentType = prop.ValueType
-		local newNode = {
-			Prop = newProp,
-			RefName = prop.Class.."|"..prop.Name.."|X",
-			Control = f.getPropControl(newProp,{"X"}),
-			Depth = 2,
-			Obj = obj,
-			Children = {}
-		}
-		table.insert(children,newNode)
-	end
-	return children
+  local children = {}
+  if prop.ValueType == "Vector3" then
+    local newProp = {}
+    for i,v in pairs(prop) do newProp[i] = v end
+    newProp.ValueType = "double"
+    newProp.Name = "X"
+    newProp.ParentName = prop.Name
+    newProp.ParentType = prop.ValueType
+    local newNode = {
+      Prop = newProp,
+      RefName = prop.Class.."|"..prop.Name.."|X",
+      Control = f.getPropControl(newProp,{"X"}),
+      Depth = 2,
+      Obj = obj,
+      Children = {}
+    }
+    table.insert(children,newNode)
+  end
+  return children
 end
 --]]
 
 function f.getChildProp(prop,data)
-	local newProp = {
-		Name = data.Name,
-		ValueType = data.ValueType,
-		ParentProp = prop,
-		Tags = prop.Tags,
-		Class = prop.Class
-	}
-	local childNode = {
-		Prop = newProp,
-		RefName = prop.Class.."|"..prop.Name.."|"..data.Name,
-		Control = f.getPropControl(newProp,{data.Name}),
-		Depth = data.Depth,
-		Children = {}
-	}
-	return childNode
+  local newProp = {
+    Name = data.Name,
+    ValueType = data.ValueType,
+    ParentProp = prop,
+    Tags = prop.Tags,
+    Class = prop.Class
+  }
+  local childNode = {
+    Prop = newProp,
+    RefName = prop.Class.."|"..prop.Name.."|"..data.Name,
+    Control = f.getPropControl(newProp,{data.Name}),
+    Depth = data.Depth,
+    Children = {}
+  }
+  return childNode
 end
 
 function f.updatePropTree(self)
-	self.Tree = {}
-	
-	propWidth = 0
-	local gotProps = {}
-	local props = {}
-	local newTree = {}	
-	
-	for i,v in pairs(explorerTree.Selection.List) do
-		local class = API.Classes[v.ClassName]
-		while class ~= nil and not gotProps[class.Name] do
-			for _,prop in pairs(class.Properties) do
-				pcall(function()
-					local check = v[prop.Name]
-					local categoryList = propCategories[class.Name] or {}
-					local newNode = {
-						Prop = prop,
-						RefName = class.Name.."|"..prop.Name,
-						Obj = v,
-						Control = f.getPropControl(prop),
-						Depth = 1,
-						--Children = f.getChildrenControls(v,prop)
-					}
-					--f.setupControls(newNode)
-					--newNode.Control.Children = newNode.Children
-					local textWidth = f.textWidth(prop.Name) + newNode.Depth * 18 + 5
-					propWidth = textWidth > propWidth and textWidth or propWidth
-					table.insert(props,newNode)
-				end)
-			end
-			gotProps[class.Name] = true
-			class = API.Classes[class.Superclass]
-		end
-	end
-	
-	table.sort(props,function(a,b)
-		local o1 = categoryOrder[a.Prop.Category] or 0
-		local o2 = categoryOrder[b.Prop.Category] or 0
-		if o1 ~= o2 then
-			return o1 < o2
-		else
-			return a.Prop.Name < b.Prop.Name
-		end
-	end)
-	
-	local nextCategory = ""
-	local categoryNode
-	for i,v in pairs(props) do
-		if nextCategory ~= v.Prop.Category then
-			nextCategory = v.Prop.Category
-			categoryNode = {
-				Category = true,
-				RefName = "CAT:"..nextCategory,
-				Prop = {Name=nextCategory},
-				Depth = 1
-			}
-			table.insert(newTree,categoryNode)
-		end
-		if self.Expanded["CAT:"..nextCategory] then
-			table.insert(newTree,v)
-			if v.Control.Children and self.Expanded[v.RefName] then
-				for _,child in pairs(v.Control.Children) do
-					table.insert(newTree,child)
-				end
-			end
-		end
-	end
-	
-	self.Tree = newTree
+  self.Tree = {}
+
+  propWidth = 0
+  local gotProps = {}
+  local props = {}
+  local newTree = {}	
+
+  for i,v in pairs(explorerTree.Selection.List) do
+    local class = API.Classes[v.ClassName]
+    while class ~= nil and not gotProps[class.Name] do
+      for _,prop in pairs(class.Properties) do
+        pcall(function()
+          local check = v[prop.Name]
+          local categoryList = propCategories[class.Name] or {}
+          local newNode = {
+            Prop = prop,
+            RefName = class.Name.."|"..prop.Name,
+            Obj = v,
+            Control = f.getPropControl(prop),
+            Depth = 1,
+            --Children = f.getChildrenControls(v,prop)
+          }
+          --f.setupControls(newNode)
+          --newNode.Control.Children = newNode.Children
+          local textWidth = f.textWidth(prop.Name) + newNode.Depth * 18 + 5
+          propWidth = textWidth > propWidth and textWidth or propWidth
+          table.insert(props,newNode)
+        end)
+      end
+      gotProps[class.Name] = true
+      class = API.Classes[class.Superclass]
+    end
+  end
+
+  table.sort(props,function(a,b)
+    local o1 = categoryOrder[a.Prop.Category] or 0
+    local o2 = categoryOrder[b.Prop.Category] or 0
+    if o1 ~= o2 then
+      return o1 < o2
+    else
+      return a.Prop.Name < b.Prop.Name
+    end
+  end)
+
+  local nextCategory = ""
+  local categoryNode
+  for i,v in pairs(props) do
+    if nextCategory ~= v.Prop.Category then
+      nextCategory = v.Prop.Category
+      categoryNode = {
+        Category = true,
+        RefName = "CAT:"..nextCategory,
+        Prop = {Name=nextCategory},
+        Depth = 1
+      }
+      table.insert(newTree,categoryNode)
+    end
+    if self.Expanded["CAT:"..nextCategory] then
+      table.insert(newTree,v)
+      if v.Control.Children and self.Expanded[v.RefName] then
+        for _,child in pairs(v.Control.Children) do
+          table.insert(newTree,child)
+        end
+      end
+    end
+  end
+
+  self.Tree = newTree
 end
 
 function f.newProperties()
-	local newgui = getResource("PropertiesPanel")
-	local propertiesScroll = ScrollBar.new()
-	local propertiesScrollH = ScrollBar.new(true)
-	local newTree = TreeView.new()
-	newTree.NodeTemplate = getResource("PEntry")
-	newTree.Height = 22
-	newTree.OffY = 0
-	newTree.Scroll = propertiesScroll
-	newTree.DisplayFrame = newgui.Content.List
-	newTree.TreeUpdate = f.updatePropTree
-	newTree.SearchText = ""
-	
-	local changeEvents = {}
-	local drawOrder = 0
-	
-	newTree.PreUpdate = function(self)
-		drawOrder = 0
-		for i,v in pairs(changeEvents) do v:Disconnect() changeEvents[i] = nil end
-	end
-	
-	newTree.NodeCreate = function(self,entry,i)	
-		entry.MouseEnter:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if self.Selection.Selected[node.RefName] then return end
-				entry.Indent.BackgroundTransparency = 0.7
-			end
-		end)
-		entry.MouseLeave:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if self.Selection.Selected[node.RefName] then return end
-				entry.Indent.BackgroundTransparency = 1
-			end
-		end)						
-		entry.MouseButton1Down:Connect(function()
-			local node = self.Tree[i + self.Index]
-			--node.Control:Focus()
-		end)
-		entry.MouseButton2Down:Connect(function()
-			local node = self.Tree[i + self.Index]
-			--node.Control:Focus()
-		end)
-						
-		entry.Indent.Expand.MouseEnter:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
-					f.icon(entry.Indent.Expand,iconIndex.NodeExpandedOver)
-				else
-					f.icon(entry.Indent.Expand,iconIndex.NodeCollapsedOver)
-				end
-			end
-		end)
-		entry.Indent.Expand.MouseLeave:Connect(function()
-			local node = self.Tree[i + self.Index]
-			if node then
-				if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
-					f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
-				else
-					f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
-				end
-			end
-		end)
-		entry.Indent.Expand.MouseButton1Down:Connect(function()
-			local node = self.Tree[i + self.Index]
-			self:Expand(node.RefName)
-		end)
-	end
-	
-	newTree.NodeDraw = function(self,entry,node)
-		entry.Indent.EntryName.Text = node.Prop.Name
-		entry.Indent.Control:ClearAllChildren()
-		
-		if not node.Category then
-			-- Update property controls
-			node.Control:Setup(entry.Indent.Control)
-			if node.Depth > 1 then
-				--node.Control:Update(node.Obj[node.Prop.ParentName][node.Prop.Name])
-			else
-				node.Control:Update(node.Obj[node.Prop.Name])
-			end
-		
-			-- Color switching
-			--if drawOrder % 2 == 0 and not node.Category then
-			--	entry.BackgroundColor3 = Color3.new(96/255,96/255,96/255)
-			--else
-				entry.BackgroundColor3 = Color3.new(80/255,80/255,80/255)
-			--end
-		else
-			entry.BackgroundColor3 = Color3.new(64/255,64/255,64/255)
-		end
-		drawOrder = drawOrder + 1
-		
-		-- Fonts for category nodes and property nodes
-		if node.Category then
-			entry.Indent.Sep.Visible = false
-			entry.Indent.EntryName.Font = Enum.Font.SourceSansBold
-			entry.Indent.EntryName.TextColor3 = Color3.new(220/255,220/255,220/255)
-		else
-			entry.Indent.Sep.Visible = true
-			entry.Indent.EntryName.Font = Enum.Font.SourceSans
-			if node.Prop.Tags["readonly"] then
-				entry.Indent.EntryName.TextColor3 = Color3.new(144/255,144/255,144/255)
-			else
-				entry.Indent.EntryName.TextColor3 = Color3.new(220/255,220/255,220/255)
-			end
-		end
-		
-		if node.Category or node.Control.Children then
-			entry.Indent.Expand.Visible = true
-			if self.Expanded[node.RefName] then
-				f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
-			else
-				f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
-			end
-		else
-			entry.Indent.Expand.Visible = false
-		end
-					
-		if self.Selection.Selected[node.Obj] then
-			entry.Indent.EntryName.TextColor3 = Color3.new(1,1,1)
-			entry.Indent.BackgroundTransparency = 0
-		else
-			--entry.Indent.EntryName.TextColor3 = Color3.new(220/255, 220/255, 220/255)
-			entry.Indent.BackgroundTransparency = 1
-		end
-		
-		if not node.Category and node.Depth == 1 then
-			changeEvents[node.Obj] = node.Obj:GetPropertyChangedSignal(node.Prop.Name):Connect(function()
-				node.Control:Update(node.Obj[node.Prop.Name])
-			end)
-		end
-					
-		entry.Indent.Position = UDim2.new(0,18*node.Depth,0,0)
-		
-		local newPropWidth = propWidth - node.Depth*18
-		entry.Indent.EntryName.Size = UDim2.new(0,newPropWidth,0,22)
-		entry.Indent.Control.Position = UDim2.new(0,newPropWidth+2,0,0)
-		entry.Indent.Control.Size = UDim2.new(1,-newPropWidth-2,0,22)
-		entry.Indent.Sep.Position = UDim2.new(0,newPropWidth+1,0,0)
-		entry.Size = UDim2.new(0,281,0,22)
-	end
-	
-	propertiesScroll.Gui.Parent = newgui.Content
-	propertiesScroll:Texture({
-		FrameColor = Color3.new(80/255,80/255,80/255),
-		ThumbColor = Color3.new(120/255,120/255,120/255),
-		ThumbSelectColor = Color3.new(140/255,140/255,140/255),
-		ButtonColor = Color3.new(163/255,162/255,165/255),
-		ArrowColor = Color3.new(220/255,220/255,220/255)
-	})
-	propertiesScroll:SetScrollFrame(newgui.Content,3)
-	
-	propertiesScrollH.Gui.Visible = false
-	propertiesScrollH.Gui.Parent = newgui.Content
-	propertiesScrollH:Texture({
-		FrameColor = Color3.new(80/255,80/255,80/255),
-		ThumbColor = Color3.new(120/255,120/255,120/255),
-		ThumbSelectColor = Color3.new(140/255,140/255,140/255),
-		ButtonColor = Color3.new(163/255,162/255,165/255),
-		ArrowColor = Color3.new(220/255,220/255,220/255)
-	})
-	propertiesScrollH.Gui.Position = UDim2.new(0,0,1,-16)
-	propertiesScrollH.Gui.Size = UDim2.new(1,-16,0,16)
-	
-	newTree.OnUpdate = function(self)
-		local guiX = propertiesPanel.Content.AbsoluteSize.X-16
-		--[[
-		propertiesScrollH.VisibleSpace = guiX
-		propertiesScrollH.TotalSpace = nodeWidth+10
-		if nodeWidth > guiX then
-			explorerScrollH.Gui.Visible = true
-			explorerScroll.Gui.Size = UDim2.new(0,16,1,-16)
-			self.DisplayFrame.Size = UDim2.new(1,-16,1,-16)
-		else
-			explorerScrollH.Gui.Visible = false
-			explorerScroll.Gui.Size = UDim2.new(0,16,1,0)
-			self.DisplayFrame.Size = UDim2.new(1,-16,1,0)
-		end
-		--]]
-		propertiesScroll.TotalSpace = #self.Tree + 1
-		propertiesScroll.VisibleSpace = math.ceil(self.DisplayFrame.AbsoluteSize.Y / 23)
-		propertiesScrollH:Update()		
-		propertiesScroll:Update()
-	end
-	propertiesScroll.OnUpdate = function(self) if newTree.Index == self.Index then return end newTree.Index = self.Index newTree:Refresh() end
-	propertiesScrollH.OnUpdate = function(self)
-		for i,v in pairs(propertiesTree.Entries) do
-			v.Position = UDim2.new(0,-self.Index,0,v.Position.Y.Offset)
-		end
-	end
-	--explorerData = {Window = newgui, NodeData = {}, Scroll = explorerScroll, Entries = {}}
-	
-	propertiesTree = newTree
-	
-	table.insert(activeWindows,newgui)
-	f.hookWindowListener(newgui,'Properties')
-	newgui.Changed:connect(function(prop) if prop == "AbsoluteSize" or prop == "AbsolutePosition" then newTree:Refresh() end end)
-	
-	local searchBox = newgui.TopBar.SearchFrame.Search
-	local searchAnim = searchBox.Parent.Entering
-	searchBox:GetPropertyChangedSignal("Text"):Connect(function()
-		--[[
-		local searchTime = tick()
-		lastSearch = searchTime
-		wait()
-		if lastSearch ~= searchTime then return end
-		newTree.SearchText = searchBox.Text
-		f.updateSearch(newTree)
-		explorerTree:TreeUpdate()
-		explorerTree:Refresh()
-		--]]
-	end)
-	
-	searchBox.Focused:Connect(function()
-		searchBox.Empty.Visible = false
-		searchAnim:TweenSizeAndPosition(UDim2.new(1,0,0,2),UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
-	end)
-	
-	searchBox.FocusLost:Connect(function()
-		if searchBox.Text == "" then searchBox.Empty.Visible = true else searchBox.Empty.Visible = false end
-		searchAnim:TweenSizeAndPosition(UDim2.new(0,0,0,2),UDim2.new(0.5,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
-	end)
-	
-	return newgui
+  local newgui = getResource("PropertiesPanel")
+  local propertiesScroll = ScrollBar.new()
+  local propertiesScrollH = ScrollBar.new(true)
+  local newTree = TreeView.new()
+  newTree.NodeTemplate = getResource("PEntry")
+  newTree.Height = 22
+  newTree.OffY = 0
+  newTree.Scroll = propertiesScroll
+  newTree.DisplayFrame = newgui.Content.List
+  newTree.TreeUpdate = f.updatePropTree
+  newTree.SearchText = ""
+
+  local changeEvents = {}
+  local drawOrder = 0
+
+  newTree.PreUpdate = function(self)
+    drawOrder = 0
+    for i,v in pairs(changeEvents) do v:Disconnect() changeEvents[i] = nil end
+  end
+
+  newTree.NodeCreate = function(self,entry,i)	
+    entry.MouseEnter:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if self.Selection.Selected[node.RefName] then return end
+        entry.Indent.BackgroundTransparency = 0.7
+      end
+    end)
+    entry.MouseLeave:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if self.Selection.Selected[node.RefName] then return end
+        entry.Indent.BackgroundTransparency = 1
+      end
+    end)						
+    entry.MouseButton1Down:Connect(function()
+      local node = self.Tree[i + self.Index]
+      --node.Control:Focus()
+    end)
+    entry.MouseButton2Down:Connect(function()
+      local node = self.Tree[i + self.Index]
+      --node.Control:Focus()
+    end)
+
+    entry.Indent.Expand.MouseEnter:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
+          f.icon(entry.Indent.Expand,iconIndex.NodeExpandedOver)
+        else
+          f.icon(entry.Indent.Expand,iconIndex.NodeCollapsedOver)
+        end
+      end
+    end)
+    entry.Indent.Expand.MouseLeave:Connect(function()
+      local node = self.Tree[i + self.Index]
+      if node then
+        if (not self.SearchResults and self.Expanded[node]) or (self.SearchResults and self.SearchExpanded[node.Obj]) then
+          f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
+        else
+          f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
+        end
+      end
+    end)
+    entry.Indent.Expand.MouseButton1Down:Connect(function()
+      local node = self.Tree[i + self.Index]
+      self:Expand(node.RefName)
+    end)
+  end
+
+  newTree.NodeDraw = function(self,entry,node)
+    entry.Indent.EntryName.Text = node.Prop.Name
+    entry.Indent.Control:ClearAllChildren()
+
+    if not node.Category then
+      -- Update property controls
+      node.Control:Setup(entry.Indent.Control)
+      if node.Depth > 1 then
+        --node.Control:Update(node.Obj[node.Prop.ParentName][node.Prop.Name])
+      else
+        node.Control:Update(node.Obj[node.Prop.Name])
+      end
+
+      -- Color switching
+      --if drawOrder % 2 == 0 and not node.Category then
+      --	entry.BackgroundColor3 = Color3.new(96/255,96/255,96/255)
+      --else
+        entry.BackgroundColor3 = Color3.new(80/255,80/255,80/255)
+      --end
+    else
+      entry.BackgroundColor3 = Color3.new(64/255,64/255,64/255)
+    end
+    drawOrder = drawOrder + 1
+
+    -- Fonts for category nodes and property nodes
+    if node.Category then
+      entry.Indent.Sep.Visible = false
+      entry.Indent.EntryName.Font = Enum.Font.SourceSansBold
+      entry.Indent.EntryName.TextColor3 = Color3.new(220/255,220/255,220/255)
+    else
+      entry.Indent.Sep.Visible = true
+      entry.Indent.EntryName.Font = Enum.Font.SourceSans
+      if node.Prop.Tags["readonly"] then
+        entry.Indent.EntryName.TextColor3 = Color3.new(144/255,144/255,144/255)
+      else
+        entry.Indent.EntryName.TextColor3 = Color3.new(220/255,220/255,220/255)
+      end
+    end
+
+    if node.Category or node.Control.Children then
+      entry.Indent.Expand.Visible = true
+      if self.Expanded[node.RefName] then
+        f.icon(entry.Indent.Expand,iconIndex.NodeExpanded)
+      else
+        f.icon(entry.Indent.Expand,iconIndex.NodeCollapsed)
+      end
+    else
+      entry.Indent.Expand.Visible = false
+    end
+
+    if self.Selection.Selected[node.Obj] then
+      entry.Indent.EntryName.TextColor3 = Color3.new(1,1,1)
+      entry.Indent.BackgroundTransparency = 0
+    else
+      --entry.Indent.EntryName.TextColor3 = Color3.new(220/255, 220/255, 220/255)
+      entry.Indent.BackgroundTransparency = 1
+    end
+
+    if not node.Category and node.Depth == 1 then
+      changeEvents[node.Obj] = node.Obj:GetPropertyChangedSignal(node.Prop.Name):Connect(function()
+        node.Control:Update(node.Obj[node.Prop.Name])
+      end)
+    end
+
+    entry.Indent.Position = UDim2.new(0,18*node.Depth,0,0)
+
+    local newPropWidth = propWidth - node.Depth*18
+    entry.Indent.EntryName.Size = UDim2.new(0,newPropWidth,0,22)
+    entry.Indent.Control.Position = UDim2.new(0,newPropWidth+2,0,0)
+    entry.Indent.Control.Size = UDim2.new(1,-newPropWidth-2,0,22)
+    entry.Indent.Sep.Position = UDim2.new(0,newPropWidth+1,0,0)
+    entry.Size = UDim2.new(0,281,0,22)
+  end
+
+  propertiesScroll.Gui.Parent = newgui.Content
+  propertiesScroll:Texture({
+    FrameColor = Color3.new(80/255,80/255,80/255),
+    ThumbColor = Color3.new(120/255,120/255,120/255),
+    ThumbSelectColor = Color3.new(140/255,140/255,140/255),
+    ButtonColor = Color3.new(163/255,162/255,165/255),
+    ArrowColor = Color3.new(220/255,220/255,220/255)
+  })
+  propertiesScroll:SetScrollFrame(newgui.Content,3)
+
+  propertiesScrollH.Gui.Visible = false
+  propertiesScrollH.Gui.Parent = newgui.Content
+  propertiesScrollH:Texture({
+    FrameColor = Color3.new(80/255,80/255,80/255),
+    ThumbColor = Color3.new(120/255,120/255,120/255),
+    ThumbSelectColor = Color3.new(140/255,140/255,140/255),
+    ButtonColor = Color3.new(163/255,162/255,165/255),
+    ArrowColor = Color3.new(220/255,220/255,220/255)
+  })
+  propertiesScrollH.Gui.Position = UDim2.new(0,0,1,-16)
+  propertiesScrollH.Gui.Size = UDim2.new(1,-16,0,16)
+
+  newTree.OnUpdate = function(self)
+    local guiX = propertiesPanel.Content.AbsoluteSize.X-16
+    --[[
+    propertiesScrollH.VisibleSpace = guiX
+    propertiesScrollH.TotalSpace = nodeWidth+10
+    if nodeWidth > guiX then
+      explorerScrollH.Gui.Visible = true
+      explorerScroll.Gui.Size = UDim2.new(0,16,1,-16)
+      self.DisplayFrame.Size = UDim2.new(1,-16,1,-16)
+    else
+      explorerScrollH.Gui.Visible = false
+      explorerScroll.Gui.Size = UDim2.new(0,16,1,0)
+      self.DisplayFrame.Size = UDim2.new(1,-16,1,0)
+    end
+    --]]
+    propertiesScroll.TotalSpace = #self.Tree + 1
+    propertiesScroll.VisibleSpace = math.ceil(self.DisplayFrame.AbsoluteSize.Y / 23)
+    propertiesScrollH:Update()		
+    propertiesScroll:Update()
+  end
+  propertiesScroll.OnUpdate = function(self) if newTree.Index == self.Index then return end newTree.Index = self.Index newTree:Refresh() end
+  propertiesScrollH.OnUpdate = function(self)
+    for i,v in pairs(propertiesTree.Entries) do
+      v.Position = UDim2.new(0,-self.Index,0,v.Position.Y.Offset)
+    end
+  end
+  --explorerData = {Window = newgui, NodeData = {}, Scroll = explorerScroll, Entries = {}}
+
+  propertiesTree = newTree
+
+  table.insert(activeWindows,newgui)
+  f.hookWindowListener(newgui,'Properties')
+  newgui.Changed:connect(function(prop) if prop == "AbsoluteSize" or prop == "AbsolutePosition" then newTree:Refresh() end end)
+
+  local searchBox = newgui.TopBar.SearchFrame.Search
+  local searchAnim = searchBox.Parent.Entering
+  searchBox:GetPropertyChangedSignal("Text"):Connect(function()
+    --[[
+    local searchTime = tick()
+    lastSearch = searchTime
+    wait()
+    if lastSearch ~= searchTime then return end
+    newTree.SearchText = searchBox.Text
+    f.updateSearch(newTree)
+    explorerTree:TreeUpdate()
+    explorerTree:Refresh()
+    --]]
+  end)
+
+  searchBox.Focused:Connect(function()
+    searchBox.Empty.Visible = false
+    searchAnim:TweenSizeAndPosition(UDim2.new(1,0,0,2),UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
+  end)
+
+  searchBox.FocusLost:Connect(function()
+    if searchBox.Text == "" then searchBox.Empty.Visible = true else searchBox.Empty.Visible = false end
+    searchAnim:TweenSizeAndPosition(UDim2.new(0,0,0,2),UDim2.new(0.5,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,0.5,true)
+  end)
+
+  return newgui
 end
 
 local function welcomePlayer()
     local oldt = tick()
-    
-	API = f.fetchAPI()
-	RMD = f.fetchRMD()
-	rightClickContext = ContextMenu.new()
-	f.indexNodes()
-	explorerTree:TreeUpdate()
-	
-	explorerTree:Refresh()
-	f.addToPane(explorerPanel,"Right")
-	--f.addToPane(propertiesPanel,"Right")
-	--f.resizePaneItem(propertiesPanel,"Right",0.5)
-	
-	local now = tick()
-	print('Loaded in',tostring(now-oldt):sub(0,4),'Seconds')
+
+  API = f.fetchAPI()
+  RMD = f.fetchRMD()
+  rightClickContext = ContextMenu.new()
+  f.indexNodes()
+  explorerTree:TreeUpdate()
+
+  explorerTree:Refresh()
+  f.addToPane(explorerPanel,"Right")
+  --f.addToPane(propertiesPanel,"Right")
+  --f.resizePaneItem(propertiesPanel,"Right",0.5)
+
+  local now = tick()
+  print('Loaded in',tostring(now-oldt):sub(0,4),'Seconds')
 end
 
 mouse.Move:connect(function()
-	--if mouseWindow == nil then return end
-	local x,y = mouse.X,mouse.Y
-	
-	if x <= 50 then
-		setPane = "Left"
-	elseif x >= gui.AbsoluteSize.X - 50 then
-		setPane = "Right"
-	else
-		setPane = "None"
-	end
+  --if mouseWindow == nil then return end
+  local x,y = mouse.X,mouse.Y
+
+  if x <= 50 then
+    setPane = "Left"
+  elseif x >= gui.AbsoluteSize.X - 50 then
+    setPane = "Right"
+  else
+    setPane = "None"
+  end
 end)
 
 explorerPanel = f.newExplorer()
 propertiesPanel = f.newProperties()
 
 for category,_ in pairs(categoryOrder) do
-	propertiesTree.Expanded["CAT:"..category] = true
+  propertiesTree.Expanded["CAT:"..category] = true
 end
 
 propertiesTree.Expanded["CAT:Surface Inputs"] = false
